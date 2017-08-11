@@ -8,15 +8,50 @@
         Title="MainWindow" Height="950" Width="800" ResizeMode="NoResize">
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="1.25*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1.25*" ></RowDefinition>
+            <RowDefinition Height="2.6*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.RowSpan="6" VerticalScrollBarVisibility="Auto" />
-        <GroupBox Padding="5" Margin="5" Grid.Row="1">
+        <ScrollViewer Grid.RowSpan="6" VerticalScrollBarVisibility="Hidden" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal" >
+            <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
+                </DockPanel>
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
+                    <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0" />
+                </DockPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <DatePicker DockPanel.Dock="Right"/>
+                </DockPanel>
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <TextBox Text="Pavel Cherniavskyi" Height="20" DockPanel.Dock="Right" Margin="0,0,0,0" IsReadOnly="True" Background="#FFF0F0F0" />
+                </DockPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <TextBlock Text="Event Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <DatePicker DockPanel.Dock="Right"/>
+                </DockPanel>
+                <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                    <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
+                    <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
+                    <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
+                </DockPanel>
+            </StackPanel>
+        </StackPanel>
+        <GroupBox Padding="5" Margin="5,0,5,5" Grid.Row="1" BorderThickness="2" BorderBrush="Coral">
             <GroupBox.Header>
                 <TextBlock Text="Caller" FontWeight="Bold" FontSize="14"/>
             </GroupBox.Header>
@@ -24,7 +59,7 @@
                 <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Last Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="Pavel" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                         <TextBlock Text="First Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
@@ -36,51 +71,283 @@
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                         <TextBlock Text="Relation to ..." DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <Button x:Name="RelToCallerClear" DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
-                        <Button x:Name="RelToCaller" DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                        <Button x:Name="RelationToCallerClear" DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                        <Button x:Name="RelationToClr" DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
                         <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
                 </StackPanel>
                 <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <Button x:Name="CountryOfCallerClr"  DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                        <Button x:Name="CountryOfCaller"  DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="Region:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <Button x:Name="RegionOfCallerClr"  DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                        <Button x:Name="RegionOfCaller"  DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="City:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <Button x:Name="CityOfCallerClr"  DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                        <Button x:Name="CityOfCaller"  DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="Location info:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
                 </StackPanel>
                 <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="Place of stay:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="Room:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
+                    <DockPanel LastChildFill="True" VerticalAlignment="Center" Height="20" ></DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
-                    </DockPanel>
-                    <DockPanel LastChildFill="False" VerticalAlignment="Center" >
-                        <TextBlock Text="Last Name" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="180" Margin="0,0,10,0"  />
+                        <TextBlock Text="Caler ID:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Membership and Subscriber" Padding="5" Margin="5" Grid.Row="2">
+        <GroupBox Padding="5" Margin="5,0,5,5" Grid.Row="2" BorderThickness="2" BorderBrush="Coral">
+            <GroupBox.Header>
+                <TextBlock Text="Membership and Subscriber" FontWeight="Bold" FontSize="14"/>
+            </GroupBox.Header>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" ui:MarginSetter.Margin="6">
+                    <DockPanel LastChildFill="False" VerticalAlignment="Center" Width="241">
+                        <TextBlock Text="Membership:" DockPanel.Dock="Left" Margin="11,0,0,0" />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-27,0,14,0" Panel.ZIndex="1" Content="X" />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-36,0,26,0" Panel.ZIndex="1" Content="..." />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,4,0"  />
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" VerticalAlignment="Center" Width="241">
+                        <TextBlock Text="M.O. Case№:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,6,0"  />
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" VerticalAlignment="Center" Width="241">
+                        <TextBlock Text="Valid Subscr." DockPanel.Dock="Left" Margin="3,0,0,0" />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-30,0,17,0" Panel.ZIndex="1" Content="X" />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-39,0,29,0" Panel.ZIndex="1" Content="..." />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-16,0,3,0" Panel.ZIndex="1" Content="O" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,9,0"  />
+                    </DockPanel>
+                </StackPanel>
+                <Separator HorizontalAlignment="Stretch" Height="1"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10,4,1,-6" >
+                    <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Last Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                            <TextBlock Text="First Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                            <TextBlock Text="Middle Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
+                        </DockPanel>
+                        <DockPanel >
+                            <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Left" Margin="0">
+                                <TextBlock Text="Date of Birth:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                                <DatePicker DockPanel.Dock="Right" Margin="8,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" />
+                            </DockPanel>
+                            <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Right" >
+                                <TextBox DockPanel.Dock="Right" Width="20" Margin="0,0,10,0" Height="22" />
+                                <TextBlock Text="Age:" DockPanel.Dock="Right" Margin="0,0,3,0" />
+                            </DockPanel>
+                        </DockPanel>
 
+                    </StackPanel>
+                    <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                            <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                            <TextBlock Text="Region:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                            <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                            <TextBlock Text="City:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                            <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                            <TextBlock Text="Location info:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Hotel:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-30,0,17,0" Panel.ZIndex="1" Content="X" />
+                            <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-39,0,29,0" Panel.ZIndex="1" Content="..." />
+                            <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-16,0,3,0" Panel.ZIndex="1" Content="O" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                            <TextBlock Text="Room:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                            <TextBox  DockPanel.Dock="Right" Height="20" Width="157" Margin="0,0,5,0"  />
+                        </DockPanel>
+                        <DockPanel >
+                            <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Left" Margin="0">
+                                <TextBlock Text="Date of Birth:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                                <DatePicker DockPanel.Dock="Right" Margin="8,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" />
+                            </DockPanel>
+                            <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Right" >
+                                <TextBlock Text="Duration:" DockPanel.Dock="Right" Margin="0,0,7,0" />
+                            </DockPanel>
+                        </DockPanel>
+                        <DockPanel >
+                            <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Left" Margin="0">
+                                <TextBlock Text="Date of Birth:" DockPanel.Dock="Left" Margin="7,0,0,0" />
+                                <DatePicker DockPanel.Dock="Right" Margin="8,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" />
+                            </DockPanel>
+                            <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Right" >
+                                <TextBlock Text="5 Days" DockPanel.Dock="Right" Margin="0,0,15,0" />
+                            </DockPanel>
+                        </DockPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Separator HorizontalAlignment="Stretch" Height="1" Margin="0,9,0,0"/>
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Left" Text="Home Adrs:" Margin="16,10,0,0" />
+                    <TextBox DockPanel.Dock="Left" Height="20" Width="498" Margin="1,10,153,0"  />
+                </DockPanel>
+                <Separator HorizontalAlignment="Stretch" Height="1" Margin="0,9,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,7,0,0" >
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="5" Margin="16,0,0,0">
+                        <DockPanel LastChildFill="False">
+                            <TextBlock Text="Policy Num." DockPanel.Dock="Left" Margin="0" />
+                            <TextBox  DockPanel.Dock="Right" Width="100" Height="21" MaxWidth="150" Margin="0,0,5,0" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" >
+                            <TextBlock Text="Letter Code:" DockPanel.Dock="Left" Margin="0" />
+                            <TextBox  DockPanel.Dock="Right" Width="100" MinHeight="20" Margin="10,0,5,0" />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="5" Margin="16,0,0,0">
+                        <DockPanel LastChildFill="False">
+                            <TextBlock Text="Valid From:" DockPanel.Dock="Left" Margin="0" />
+                            <DatePicker DockPanel.Dock="Right" Height="21" FontSize="10" Margin="8,0,0,0" Width="90" VerticalContentAlignment="Center" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" >
+                            <TextBlock Text="Valid To:" DockPanel.Dock="Left" Margin="0" />
+                            <DatePicker DockPanel.Dock="Right" Height="21" FontSize="10" Margin="8,0,0,0" Width="90" VerticalContentAlignment="Center" />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="5" Margin="16,0,0,0">
+                        <DockPanel LastChildFill="False">
+                            <TextBlock Text="Insured Days:" DockPanel.Dock="Left" Margin="0" />
+                            <TextBox  DockPanel.Dock="Right" Width="30" Height="21" MaxWidth="150" Margin="0,0,5,0" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" Margin="3,8,3,5" >
+                            <TextBlock Text="Insur. Programm:" DockPanel.Dock="Left" Margin="0" />
+                            <TextBox  DockPanel.Dock="Right" Width="30" Height="21" Margin="10,0,5,0" />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="16,0,0,0">
+                        <DockPanel LastChildFill="False">
+                            <TextBlock Text="Deductable:" DockPanel.Dock="Left" Margin="0" />
+                            <TextBox  DockPanel.Dock="Right" Width="100" MaxWidth="150" Height="21" Margin="9,0" />
+                        </DockPanel>
+                        <DockPanel>
+                            <Button Content="Find Subsriber by Policy info" Width="170" Height="21" DockPanel.Dock="Bottom" Margin="0,6,8,6"/>
+                        </DockPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" Margin="33,0,0,0" Width="450" ui:MarginSetter.Margin="4">
+                <DockPanel>
+                    <TextBlock Text="Reason for call:" Width="60" DockPanel.Dock="Left" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
+                    <TextBox Width="350" Height="70" DockPanel.Dock="Right" Margin="-6,0,0,0" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel Width="158" Margin="76,0,0,0">
+                        <CheckBox DockPanel.Dock="Left"/>
+                        <TextBlock Text="This is chronical desease" DockPanel.Dock="Right" Margin="4,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Width="200">
+                        <CheckBox DockPanel.Dock="Left"/>
+                        <TextBlock Text="Alcohol or Drug usage within 24h" DockPanel.Dock="Left" Margin="4,0,0,0"/>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+            <DockPanel Width="273" LastChildFill="False" Margin="0,5,0,76">
+                <TextBlock Text="Status of call:" DockPanel.Dock="Left" Margin="26,0,0,0"/>
+                <ComboBox DockPanel.Dock="Right" Width="160" >
+                    <ComboBoxItem Content="Before Medical Care"/>
+                    <ComboBoxItem Content="From Medical Facility"/>
+                    <ComboBoxItem Content="Treated, Medex not paid"/>
+                    <ComboBoxItem Content="Treated, Medex paid"/>
+                </ComboBox>
+            </DockPanel>
+        </StackPanel>
+        <GroupBox Grid.Row="4" Padding="5" Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" >
+            <GroupBox.Header>
+                <TextBlock Text="Treating doctor / Medical facility" FontWeight="Bold" FontSize="14"/>
+            </GroupBox.Header>
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="17,10,0,0" Width="298">
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False" Width="239">
+                            <RadioButton GroupName="TreatDoc" Content="Outsourced doctor" DockPanel.Dock="Left"/>
+                            <RadioButton GroupName="TreatDoc" Content="Medical Facility" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                    </StackPanel>
+                    
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-27,0,14,0" Panel.ZIndex="1" Content="X" />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-36,0,26,0" Panel.ZIndex="1" Content="..." />
+                        <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
+                        <TextBox  DockPanel.Dock="Right" Height="20" Width="294" Margin="0,0,4,0"  />
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="17,10,0,0" Width="191">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
+                        <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0" />
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Region:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
+                        <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0" />
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="21,10,0,0" Width="209">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="City:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
+                        <TextBox  DockPanel.Dock="Right" Width="130" Height="20"  Margin="0,0,0,0" />
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Location info:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" Width="130" Height="20"  Margin="0,0,0,0" />
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
         </GroupBox>
     </Grid>
 
