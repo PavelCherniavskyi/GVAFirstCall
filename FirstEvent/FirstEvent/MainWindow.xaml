@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FirstEvent"
         xmlns:ui="clr-namespace:FirstEvent.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="950" Width="800" ResizeMode="NoResize">
@@ -11,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1.25*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -21,7 +20,7 @@
             <GroupBox.Header>
                 <TextBlock Text="Caller" FontWeight="Bold" FontSize="14"/>
             </GroupBox.Header>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="113" Margin="10,0,1,-6" VerticalAlignment="Bottom" Width="751" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10,0,1,-6" VerticalAlignment="Bottom" >
                 <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Last Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
@@ -37,6 +36,8 @@
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                         <TextBlock Text="Relation to ..." DockPanel.Dock="Left" Margin="7,0,0,0" />
+                        <Button x:Name="RelToCallerClear" DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
+                        <Button x:Name="RelToCaller" DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
                         <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
                     </DockPanel>
                 </StackPanel>
