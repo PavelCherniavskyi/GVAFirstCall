@@ -25,7 +25,7 @@
                 <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Last Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="Pavel Cherniavskyi" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="Pavel" />
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                         <TextBlock Text="First Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
