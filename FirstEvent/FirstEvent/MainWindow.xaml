@@ -5,57 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="clr-namespace:FirstEvent.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="950" Width="800" ResizeMode="NoResize">
-    <Grid x:Name="MainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="1.25*" ></RowDefinition>
-            <RowDefinition Height="2.6*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <ScrollViewer Grid.RowSpan="6" VerticalScrollBarVisibility="Hidden" />
-        <StackPanel Grid.Row="0" Orientation="Horizontal" >
-            <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
-                <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                    <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                    <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
-                </DockPanel>
-                <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                    <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                    <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
-                    <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0" />
-                </DockPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
-                <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                    <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                    <DatePicker DockPanel.Dock="Right"/>
-                </DockPanel>
-                <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                    <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                    <TextBox Text="Pavel Cherniavskyi" Height="20" DockPanel.Dock="Right" Margin="0,0,0,0" IsReadOnly="True" Background="#FFF0F0F0" />
-                </DockPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
-                <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                    <TextBlock Text="Event Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                    <DatePicker DockPanel.Dock="Right"/>
-                </DockPanel>
-                <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                    <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                    <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
-                    <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
-                    <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
-                </DockPanel>
-            </StackPanel>
-        </StackPanel>
-        <GroupBox Padding="5" Margin="5,0,5,5" Grid.Row="1" BorderThickness="2" BorderBrush="Coral">
-            <GroupBox.Header>
-                <TextBlock Text="Caller" FontWeight="Bold" FontSize="14"/>
-            </GroupBox.Header>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10,0,1,-6" VerticalAlignment="Bottom" >
+        Title="MainWindow" Height="950" Width="800" ResizeMode="CanResize">
+    
+    <StackPanel Orientation="Vertical">
+
+        <ScrollViewer CanContentScroll="True">
+            <Expander Margin="5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
+                <Expander.Header>
+                    <TextBlock Text="General info" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
+                </Expander.Header>
+                <StackPanel Orientation="Horizontal" Margin="0,-17,0,0" >
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                            <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0" />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                            <DatePicker DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                            <TextBox Text="Pavel Cherniavskyi" Height="20" DockPanel.Dock="Right" Margin="0,0,0,0" IsReadOnly="True" Background="#FFF0F0F0" />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Event Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                            <DatePicker DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                            <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
+                            <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
+                        </DockPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+        </ScrollViewer>
+        
+        <Expander Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5" >
+            <Expander.Header>
+                <TextBlock Text="Caller" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
+            </Expander.Header>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10,-9,1,-5" VerticalAlignment="Bottom" >
                 <StackPanel ui:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Last Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
@@ -116,11 +117,11 @@
                     </DockPanel>
                 </StackPanel>
             </StackPanel>
-        </GroupBox>
-        <GroupBox Padding="5" Margin="5,0,5,5" Grid.Row="2" BorderThickness="2" BorderBrush="Coral">
-            <GroupBox.Header>
-                <TextBlock Text="Membership and Subscriber" FontWeight="Bold" FontSize="14"/>
-            </GroupBox.Header>
+        </Expander>
+        <Expander Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
+            <Expander.Header>
+                <TextBlock Text="Membership and Subscriber" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
+            </Expander.Header>
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" ui:MarginSetter.Margin="6">
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" Width="241">
@@ -273,39 +274,44 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </GroupBox>
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" Margin="33,0,0,0" Width="450" ui:MarginSetter.Margin="4">
-                <DockPanel>
-                    <TextBlock Text="Reason for call:" Width="60" DockPanel.Dock="Left" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
-                    <TextBox Width="350" Height="70" DockPanel.Dock="Right" Margin="-6,0,0,0" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                </DockPanel>
-                <StackPanel Orientation="Horizontal">
-                    <DockPanel Width="158" Margin="76,0,0,0">
-                        <CheckBox DockPanel.Dock="Left"/>
-                        <TextBlock Text="This is chronical desease" DockPanel.Dock="Right" Margin="4,0,0,0"/>
+        </Expander>
+        <Expander Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
+            <Expander.Header>
+                <TextBlock Text="Call info" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
+            </Expander.Header>
+            <StackPanel Orientation="Horizontal" Margin="0,-11,0,-4">
+                <StackPanel Orientation="Vertical" Margin="33,0,0,0" Width="450" ui:MarginSetter.Margin="4">
+                    <DockPanel>
+                        <TextBlock Text="Reason for call:" Width="60" DockPanel.Dock="Left" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
+                        <TextBox Width="350" Height="70" DockPanel.Dock="Right" Margin="-6,0,0,0" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     </DockPanel>
-                    <DockPanel Width="200">
-                        <CheckBox DockPanel.Dock="Left"/>
-                        <TextBlock Text="Alcohol or Drug usage within 24h" DockPanel.Dock="Left" Margin="4,0,0,0"/>
-                    </DockPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel Width="158" Margin="76,0,0,0">
+                            <CheckBox DockPanel.Dock="Left"/>
+                            <TextBlock Text="This is chronical desease" DockPanel.Dock="Right" Margin="4,0,0,0"/>
+                        </DockPanel>
+                        <DockPanel Width="200">
+                            <CheckBox DockPanel.Dock="Left"/>
+                            <TextBlock Text="Alcohol or Drug usage within 24h" DockPanel.Dock="Left" Margin="4,0,0,0"/>
+                        </DockPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="273"  Height="33" Margin="0,0,0,64">
+                    <TextBlock Text="Status of call:" DockPanel.Dock="Left" Margin="26,0,0,0"  Height="22"/>
+                    <ComboBox DockPanel.Dock="Right" Width="160" Height="22" Padding="0" Margin="17,0,0,0" >
+                        <ComboBoxItem Content="Before Medical Care"/>
+                        <ComboBoxItem Content="From Medical Facility"/>
+                        <ComboBoxItem Content="Treated, Medex not paid"/>
+                        <ComboBoxItem Content="Treated, Medex paid"/>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
-            <DockPanel Width="273" LastChildFill="False" Margin="0,5,0,76">
-                <TextBlock Text="Status of call:" DockPanel.Dock="Left" Margin="26,0,0,0"/>
-                <ComboBox DockPanel.Dock="Right" Width="160" >
-                    <ComboBoxItem Content="Before Medical Care"/>
-                    <ComboBoxItem Content="From Medical Facility"/>
-                    <ComboBoxItem Content="Treated, Medex not paid"/>
-                    <ComboBoxItem Content="Treated, Medex paid"/>
-                </ComboBox>
-            </DockPanel>
-        </StackPanel>
-        <GroupBox Grid.Row="4" Padding="5" Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" >
-            <GroupBox.Header>
-                <TextBlock Text="Treating doctor / Medical facility" FontWeight="Bold" FontSize="14"/>
-            </GroupBox.Header>
-            <StackPanel Orientation="Horizontal" >
+        </Expander>
+        <Expander Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5" >
+            <Expander.Header>
+                <TextBlock Text="Treating doctor / Medical facility" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0" />
+            </Expander.Header>
+            <StackPanel Orientation="Horizontal" Margin="0,-15,0,0" >
                 <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="17,10,0,0" Width="298">
                     <StackPanel Orientation="Horizontal">
                         <DockPanel VerticalAlignment="Center" LastChildFill="False" Width="239">
@@ -313,7 +319,7 @@
                             <RadioButton GroupName="TreatDoc" Content="Medical Facility" DockPanel.Dock="Right"/>
                         </DockPanel>
                     </StackPanel>
-                    
+
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-27,0,14,0" Panel.ZIndex="1" Content="X" />
                         <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-36,0,26,0" Panel.ZIndex="1" Content="..." />
@@ -348,7 +354,57 @@
                     </DockPanel>
                 </StackPanel>
             </StackPanel>
-        </GroupBox>
-    </Grid>
+        </Expander>
+        <Expander Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
+            <Expander.Header>
+                <TextBlock Text="Contacts" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0" />
+            </Expander.Header>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" ui:MarginSetter.Margin="3" Margin="10,0">
+                    <Button Name="ContactsAddBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Click="ContactsAddBtn_OnClick">
+                        <Image Source="UI/add1.ico"/>
+                    </Button>
+                    <Button Name="ContactsCopyBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Click="ContactsCopyBtn_OnClick">
+                        <Image Source="UI/copy.ico"/>
+                    </Button>
+                    <Button Name="ContactsDeleteBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Click="ContactsDeleteBtn_OnClick">
+                        <Image Source="UI/delete.ico"/>
+                    </Button>
+                </StackPanel>
+                <DataGrid Name="DataGridContacts" Margin="10,0" CanUserResizeRows="False" 
+                          ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFF0F0F0" VerticalGridLinesBrush="#FFF0F0F0" 
+                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" RowHeaderWidth="0" CanUserAddRows="False">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#FFA0A0A0" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Id }" Header="№" Width="23"/>
+                        <DataGridTextColumn Binding="{Binding Path=RelationToSubscr}" Header="Relation to Subscriber" Width="130"/>
+                        <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" Width="150"/>
+                        <DataGridTemplateColumn  x:Name="ContactsTypeOfContact" Header="Type of contact" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding TypeOfContact}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding Path=ContactNumber}" Header="Contact" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path=Info}" Header="Info" Width="225"/>
+                    </DataGrid.Columns>
+                    
+
+                </DataGrid>
+            </StackPanel>
+        </Expander>
+        
+    </StackPanel>
+        
+        
 
 </Window>
