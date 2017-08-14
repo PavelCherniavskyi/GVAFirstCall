@@ -4,54 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="clr-namespace:FirstEvent.UI"
+         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="950" Width="800" ResizeMode="CanResize">
     
     <StackPanel Orientation="Vertical">
 
-        <ScrollViewer CanContentScroll="True">
-            <Expander Margin="5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
-                <Expander.Header>
-                    <TextBlock Text="General info" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
-                </Expander.Header>
-                <StackPanel Orientation="Horizontal" Margin="0,-17,0,0" >
-                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
-                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                            <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
-                        </DockPanel>
-                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                            <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0" />
-                        </DockPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
-                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                            <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <DatePicker DockPanel.Dock="Right"/>
-                        </DockPanel>
-                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                            <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <TextBox Text="Pavel Cherniavskyi" Height="20" DockPanel.Dock="Right" Margin="0,0,0,0" IsReadOnly="True" Background="#FFF0F0F0" />
-                        </DockPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
-                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                            <TextBlock Text="Event Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <DatePicker DockPanel.Dock="Right"/>
-                        </DockPanel>
-                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
-                            <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
-                            <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
-                        </DockPanel>
-                    </StackPanel>
+        <Expander Margin="5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
+            <Expander.Header>
+                <TextBlock Text="General info" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
+            </Expander.Header>
+            <StackPanel Orientation="Horizontal" Margin="-7,-17,0,0" >
+                <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <TextBox  DockPanel.Dock="Right" Width="150" Height="20" Text="M-369524" IsReadOnly="True" Background="#FFF0F0F0" />
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0" />
+                    </DockPanel>
                 </StackPanel>
-            </Expander>
-        </ScrollViewer>
-        
+                <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <wpfTool:DateTimePicker Name="GeneralInfoDocDate" DockPanel.Dock="Right" IsReadOnly="True" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" Background="#FFF0F0F0" />
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <TextBox Text="Pavel Cherniavskyi" Height="20" DockPanel.Dock="Right" Width="150" IsReadOnly="True" Background="#FFF0F0F0" />
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" ui:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Event Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <wpfTool:DateTimePicker Name="GeneralInfoEventDate" DockPanel.Dock="Right" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss"/>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <TextBlock Text="Duty doc:" DockPanel.Dock="Left" Margin="0,0,0,0" />
+                        <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" />
+                        <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Click="ButtonDutyDoc_OnClick" />
+                        <TextBox Name="GeneralInfoDuryDocText" DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" />
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+        </Expander>
         <Expander Margin="5,0,5,5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5" >
             <Expander.Header>
                 <TextBlock Text="Caller" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>

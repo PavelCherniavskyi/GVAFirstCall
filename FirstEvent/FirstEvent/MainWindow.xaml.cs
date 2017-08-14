@@ -27,6 +27,8 @@ namespace FirstEvent
         {
             InitializeComponent();
 
+            GeneralInfoDocDate.Value = DateTime.Now;
+            GeneralInfoEventDate.Value = DateTime.Now;
         }
 
         private void ContactsAddBtn_OnClick(object sender, RoutedEventArgs e)
@@ -61,6 +63,12 @@ namespace FirstEvent
             DataContext = context;
         }
 
-       
+
+        private void ButtonDutyDoc_OnClick(object sender, RoutedEventArgs e)
+        {
+            DoctorsList doctorsList = new DoctorsList();
+            doctorsList.Owner = this;
+            doctorsList.ShowDialog();
+        }
     }
 }
