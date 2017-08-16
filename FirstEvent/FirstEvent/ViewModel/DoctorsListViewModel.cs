@@ -39,7 +39,6 @@ namespace FirstEvent.ViewModel
             {
                 return;
             }
-
             Messenger.Default.Send<Doctor>(SelectedDoctor);
         }
 

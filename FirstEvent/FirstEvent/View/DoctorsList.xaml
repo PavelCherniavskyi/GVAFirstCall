@@ -7,7 +7,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="DoctorsList" Height="216.164" Width="327.123" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen">
+        Title="List of doctors" Height="216.164" Width="327.123" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewmodel:DoctorsListViewModel/>
     </Window.DataContext>

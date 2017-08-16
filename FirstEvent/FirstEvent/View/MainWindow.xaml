@@ -6,8 +6,9 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:view="clr-namespace:FirstEvent.View"
         xmlns:local="clr-namespace:FirstEvent.ViewModel"
+        xmlns:sections="clr-namespace:FirstEvent.ViewModel.Sections"
         mc:Ignorable="d"
-        Title="MainWindow" Height="950" Width="800" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Topmost="True">
+        Title="MainWindow" Height="950" Width="800" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -15,6 +16,9 @@
     <StackPanel Orientation="Vertical">
 
         <Expander Margin="5" BorderThickness="2" BorderBrush="Coral" IsExpanded="False" Padding="0,0,0,5">
+            <Expander.DataContext>
+                <sections:GeneralInfo/>
+            </Expander.DataContext>
             <Expander.Header>
                 <TextBlock Text="General info" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
             </Expander.Header>
@@ -33,25 +37,32 @@
                 <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                        <wpfTool:DateTimePicker Name="GeneralInfoDocDate" DockPanel.Dock="Right" IsReadOnly="True" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" Background="#FFF0F0F0" />
+                        <wpfTool:DateTimePicker DockPanel.Dock="Right" IsReadOnly="True" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" Background="#FFF0F0F0" 
+                                                Value="{Binding DocDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                        <TextBox Text="Pavel Cherniavskyi" Height="20" DockPanel.Dock="Right" Width="150" IsReadOnly="True" Background="#FFF0F0F0" />
+                        <TextBox Text="{Binding DutyOPS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" DockPanel.Dock="Right" Width="150" IsReadOnly="True" Background="#FFF0F0F0" />
                     </DockPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Event Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                        <wpfTool:DateTimePicker DockPanel.Dock="Right" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss"/>
+                        <wpfTool:DateTimePicker DockPanel.Dock="Right" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss"
+                                                Value="{Binding EventDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Duty doctor:" DockPanel.Dock="Left" Margin="0,0,0,0" />
                         <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding CancelDocTextField}" />
                         <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding ShowDocListWindow}"/>
-                        <TextBox Name="DutyDoctor" DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" 
+                        <TextBox DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" 
                                  IsReadOnly="{Binding IsDutyDocReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Path=DutyDoctor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                 Text="{Binding DutyDoctor.FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="{Binding DutyDocColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding EnterKeyCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
                     </DockPanel>
                 </StackPanel>
             </StackPanel>
