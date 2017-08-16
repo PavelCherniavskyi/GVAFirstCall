@@ -108,12 +108,14 @@
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="ViewModel\DoctorsListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Sections\Caller.cs" />
     <Compile Include="View\DoctorsList.xaml.cs">
       <DependentUpon>DoctorsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MarginSetter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\Sections\GeneralInfo.cs" />
     <Compile Include="View\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>

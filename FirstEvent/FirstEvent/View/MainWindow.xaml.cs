@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Media;
 using FirstEvent.Model;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -19,7 +20,6 @@ namespace FirstEvent.View
         {
             InitializeComponent();
             Messenger.Default.Register(this, new Action<string>(ProcessMessage));
-            
         }
 
         private void ProcessMessage(string msg)
