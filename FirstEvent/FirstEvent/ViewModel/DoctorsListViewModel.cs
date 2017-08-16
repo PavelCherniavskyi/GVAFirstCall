@@ -47,7 +47,7 @@ namespace FirstEvent.ViewModel
         {
             get
             {
-                return _okClickCommand ?? (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<Doctor>(null), () => true));
+                return _calcelClickCommand ?? (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<Doctor>(null), () => true));
             }
         }
     }
