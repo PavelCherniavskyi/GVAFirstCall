@@ -106,7 +106,9 @@
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\DataBaseManager.cs" />
     <Compile Include="Model\Doctor.cs" />
-    <Compile Include="ViewModel\DoctorsListViewModel.cs" />
+    <Compile Include="Model\RelationToSubscr.cs" />
+    <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
+    <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Sections\Caller.cs" />
     <Compile Include="View\DoctorsList.xaml.cs">
@@ -116,6 +118,12 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\Sections\GeneralInfo.cs" />
+    <Compile Include="View\RelationToSubscrList.xaml.cs">
+      <DependentUpon>RelationToSubscrList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchTip.xaml.cs">
+      <DependentUpon>SearchTip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
@@ -135,6 +143,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\RelationToSubscrList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Welcome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

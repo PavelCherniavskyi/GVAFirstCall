@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using FirstEvent.Model;
@@ -19,6 +21,8 @@ namespace FirstEvent.ViewModel.Sections
         private Doctor _dutyDoctor;
         private Brush _dutyDocColorTextBox;
         private string _dutyOPS;
+        private Visibility _docTextBoxVisibility;
+
 
         public GeneralInfo()
         {
@@ -26,6 +30,17 @@ namespace FirstEvent.ViewModel.Sections
             EventDateTime = DocDateTime = DateTime.Now;
             _dutyDoctor = new Doctor();
             DutyOPS = "Pavel Cherniavskyi";
+            DocTextBoxVisibility = Visibility.Hidden;
+            DocInSearchList = new ObservableCollection<Doctor>();
+        }
+
+        public ObservableCollection<Doctor> DocInSearchList { get; set; }
+
+
+        public Visibility DocTextBoxVisibility
+        {
+            get { return _docTextBoxVisibility; }
+            set { _docTextBoxVisibility = value; RaisePropertyChanged("DocTextBoxVisibility"); }
         }
 
         public string DutyOPS
@@ -119,18 +134,39 @@ namespace FirstEvent.ViewModel.Sections
 
         private void EnterKeyCommandExecute()
         {
-            var tempId = int.Parse(DutyDoctor.FullName);
-            foreach (var d in DataBaseManager.Doctors)
+            int tempId;
+            if (int.TryParse(DutyDoctor.FullName, out tempId))
             {
-                if (tempId != d.Id)
-                    continue;
-                DutyDoctor = d;
-                IsDutyDocReadOnly = true;
+                foreach (var d in DataBaseManager.Doctors)
+                {
+                    if (tempId != d.Id)
+                        continue;
+                    DutyDoctor = d;
+                    IsDutyDocReadOnly = true;
+                    break;
+                }
             }
+            else
+            {
+                var strToSrch = DutyDoctor.FullName.ToUpper();
+
+                foreach (var d in DataBaseManager.Doctors)
+                {
+                    if (!d.FullName.ToUpper().Contains(strToSrch))
+                        continue;
+                    DutyDoctor = d;
+                    IsDutyDocReadOnly = true;
+                }
+            }
+            
         }
 
         private void ClearDocFeildExecute()
         {
+            DocTextBoxVisibility = Visibility.Visible;
+            DocInSearchList.Add(new Doctor() {FullName = "asdfa"});
+            DocInSearchList.Add(new Doctor() { FullName = "fghdfg" });
+            DocInSearchList.Add(new Doctor() { FullName = "werwe" });
             DutyDoctor = new Doctor();
             IsDutyDocReadOnly = false;
         }

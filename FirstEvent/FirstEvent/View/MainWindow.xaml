@@ -53,8 +53,8 @@
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Duty doctor:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                        <Button DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding CancelDocTextField}" />
-                        <Button DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding ShowDocListWindow}"/>
+                        <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding CancelDocTextField}" />
+                        <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-25,0,9,0" Panel.ZIndex="1" Content="..." Command="{Binding ShowDocListWindow}"/>
                         <TextBox DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" 
                                  IsReadOnly="{Binding IsDutyDocReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Text="{Binding DutyDoctor.FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -71,6 +71,9 @@
             <Expander.Header>
                 <TextBlock Text="Caller" FontWeight="Bold" FontSize="14" Height="22" Margin="0,5,0,0"/>
             </Expander.Header>
+            <Expander.DataContext>
+                <sections:Caller/>
+            </Expander.DataContext>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10,-9,1,-5" VerticalAlignment="Bottom" >
                 <StackPanel view:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
@@ -87,9 +90,16 @@
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                         <TextBlock Text="Relation to ..." DockPanel.Dock="Left" Margin="7,0,0,0" />
-                        <Button x:Name="RelationToCallerClear" DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
-                        <Button x:Name="RelationToClr" DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  />
+                        <Button x:Name="RelationToCallerClear" DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding CancelRelationToSubscrListWindow}" />
+                        <Button x:Name="RelationToClr" DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding ShowRelationToSubscrListWindow}" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  
+                                 IsReadOnly="{Binding IsRelToSubscrReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding RelationToSubscr.Relation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="{Binding RelationToSubscrColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding EnterKeyCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
                     </DockPanel>
                 </StackPanel>
                 <StackPanel view:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">

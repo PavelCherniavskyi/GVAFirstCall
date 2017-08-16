@@ -14,7 +14,7 @@ namespace FirstEvent.View
     {
         
         private readonly DoctorsList _doctorsList = new DoctorsList();
-        private Welcome _welcome = new Welcome();
+        private readonly RelationToSubscrList _relationToSubscrListList = new RelationToSubscrList();
 
         public MainWindow()
         {
@@ -31,6 +31,12 @@ namespace FirstEvent.View
                     break;
                 case "doctorsListHide":
                     _doctorsList.Hide();
+                    break;
+                case "subscrListShow":
+                    _relationToSubscrListList.ShowDialog();
+                    break;
+                case "subscrListHide":
+                    _relationToSubscrListList.Hide();
                     break;
             }
         }
