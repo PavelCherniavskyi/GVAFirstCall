@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using FirstEvent.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -7,8 +8,8 @@ namespace FirstEvent.ViewModel.ListWindows
 {
     public abstract class BaseListViewModel<T> where T : class 
     {
-        private RelayCommand _okClickCommand;
-        private RelayCommand _calcelClickCommand;
+        protected RelayCommand _okClickCommand;
+        protected RelayCommand _calcelClickCommand;
         protected ObservableCollection<T> _items;
         public abstract ObservableCollection<T> Items { get; }
 
@@ -22,21 +23,8 @@ namespace FirstEvent.ViewModel.ListWindows
             }
         }
 
-        public void ExecuteDoneClickCommand()
-        {
-            if (SelectedItem == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<T>(SelectedItem);
-        }
+        public abstract void ExecuteDoneClickCommand();
 
-        public ICommand CancelClickCommand
-        {
-            get
-            {
-                return _calcelClickCommand ?? (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<T>(null), () => true));
-            }
-        }
+        public abstract ICommand CancelClickCommand { get; }
     }
 }

@@ -26,23 +26,19 @@ namespace FirstEvent.View
         {
             switch (msg)
             {
-                case "doctorsListShow":
+                case "DoctorsListShow":
                     _doctorsList.ShowDialog();
                     break;
-                case "doctorsListHide":
+                case "DoctorsListHide":
                     _doctorsList.Hide();
                     break;
-                case "subscrListShow":
+                case "SubscrListShow":
                     _relationToSubscrListList.ShowDialog();
                     break;
-                case "subscrListHide":
+                case "SubscrListHide":
                     _relationToSubscrListList.Hide();
                     break;
             }
         }
-
-        
-
-        
     }
 }

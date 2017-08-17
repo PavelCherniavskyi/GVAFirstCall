@@ -21,27 +21,19 @@ namespace FirstEvent.ViewModel.Sections
         private Doctor _dutyDoctor;
         private Brush _dutyDocColorTextBox;
         private string _dutyOPS;
-        private Visibility _docTextBoxVisibility;
 
 
         public GeneralInfo()
         {
-            Messenger.Default.Register(this, new Action<Doctor>(DoctorFieldMessage));
+            Messenger.Default.Register(this, "GeneralInfoDoctor", new Action<Doctor>(DoctorFieldMessage));
             EventDateTime = DocDateTime = DateTime.Now;
             _dutyDoctor = new Doctor();
             DutyOPS = "Pavel Cherniavskyi";
-            DocTextBoxVisibility = Visibility.Hidden;
             DocInSearchList = new ObservableCollection<Doctor>();
         }
 
         public ObservableCollection<Doctor> DocInSearchList { get; set; }
 
-
-        public Visibility DocTextBoxVisibility
-        {
-            get { return _docTextBoxVisibility; }
-            set { _docTextBoxVisibility = value; RaisePropertyChanged("DocTextBoxVisibility"); }
-        }
 
         public string DutyOPS
         {
@@ -99,7 +91,7 @@ namespace FirstEvent.ViewModel.Sections
             get
             {
                 return _showDocListWindowCommand ?? 
-                    (_showDocListWindowCommand = new RelayCommand(() => Messenger.Default.Send<string>("doctorsListShow"), () => true));
+                    (_showDocListWindowCommand = new RelayCommand(() => Messenger.Default.Send<string>("DoctorsListShow"), () => true));
             }
         }
 
@@ -128,7 +120,7 @@ namespace FirstEvent.ViewModel.Sections
                 DutyDoctor = doc;
                 IsDutyDocReadOnly = true;
             }
-            Messenger.Default.Send<string>("doctorsListHide");
+            Messenger.Default.Send<string>("DoctorsListHide");
 
         }
 
@@ -163,10 +155,6 @@ namespace FirstEvent.ViewModel.Sections
 
         private void ClearDocFeildExecute()
         {
-            DocTextBoxVisibility = Visibility.Visible;
-            DocInSearchList.Add(new Doctor() {FullName = "asdfa"});
-            DocInSearchList.Add(new Doctor() { FullName = "fghdfg" });
-            DocInSearchList.Add(new Doctor() { FullName = "werwe" });
             DutyDoctor = new Doctor();
             IsDutyDocReadOnly = false;
         }

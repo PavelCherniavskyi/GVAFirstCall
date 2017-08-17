@@ -107,7 +107,14 @@
                         <TextBlock Text="Country:" DockPanel.Dock="Left" Margin="7,0,0,0" />
                         <Button x:Name="CountryOfCallerClr"  DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" />
                         <Button x:Name="CountryOfCaller"  DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." />
-                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" />
+                        <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
+                                  IsReadOnly="{Binding IsRelToSubscrReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding RelationToSubscr.Relation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="{Binding RelationToSubscrColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding EnterKeyCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
                     </DockPanel>
                     <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                         <TextBlock Text="Region:" DockPanel.Dock="Left" Margin="7,0,0,0" />

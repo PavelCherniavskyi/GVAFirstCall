@@ -23,7 +23,7 @@ namespace FirstEvent.ViewModel.Sections
 
         public Caller()
         {
-            Messenger.Default.Register(this, new Action<RelationToSubscr>(CallerMessage));
+            Messenger.Default.Register(this, "CallerRelationToSubscr", new Action<RelationToSubscr>(CallerMessage));
             _relationToSubscr = new RelationToSubscr();
         }
 
@@ -57,7 +57,7 @@ namespace FirstEvent.ViewModel.Sections
             get
             {
                 return _showRelationToSubscrListCommand ??
-                    (_showRelationToSubscrListCommand = new RelayCommand(() => Messenger.Default.Send<string>("subscrListShow"), () => true));
+                    (_showRelationToSubscrListCommand = new RelayCommand(() => Messenger.Default.Send<string>("SubscrListShow"), () => true));
             }
         }
 
@@ -87,24 +87,40 @@ namespace FirstEvent.ViewModel.Sections
 
         private void EnterKeyCommandExecute()
         {
-            var tempId = int.Parse(RelationToSubscr.Relation);
-            foreach (var d in DataBaseManager.RelationsToSubscr)
+            int tempId;
+            if (int.TryParse(RelationToSubscr.Relation, out tempId))
             {
-                if (tempId != d.Id)
-                    continue;
-                RelationToSubscr = d;
-                IsRelToSubscrReadOnly = true;
+                foreach (var d in DataBaseManager.RelationsToSubscr)
+                {
+                    if (tempId != d.Id)
+                        continue;
+                    RelationToSubscr = d;
+                    IsRelToSubscrReadOnly = true;
+                    break;
+                }
+            }
+            else
+            {
+                var strToSrch = RelationToSubscr.Relation.ToUpper();
+
+                foreach (var d in DataBaseManager.RelationsToSubscr)
+                {
+                    if (!d.Relation.ToUpper().Contains(strToSrch))
+                        continue;
+                    RelationToSubscr = d;
+                    IsRelToSubscrReadOnly = true;
+                }
             }
         }
 
-        private void CallerMessage(RelationToSubscr relToSubscr)
+        private void CallerMessage(RelationToSubscr rel)
         {
-            if (relToSubscr != null)
+            if (rel != null)
             {
-                RelationToSubscr = relToSubscr;
+                RelationToSubscr = rel;
                 IsRelToSubscrReadOnly = true;
             }
-            Messenger.Default.Send<string>("subscrListHide");
+            Messenger.Default.Send<string>("SubscrListHide");
 
         }
     }

@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace FirstEvent.Model
 {
-    public class DataBaseManager
+    public static class DataBaseManager
     {
-        private static ObservableCollection<Doctor> _doctors;
-        private static ObservableCollection<RelationToSubscr> _relationsToSubscr;
+        public static ObservableCollection<Doctor> Doctors { get; }
 
-        public static ObservableCollection<Doctor> Doctors => _doctors ?? (_doctors = GetDoctorRepository());
+        public static ObservableCollection<RelationToSubscr> RelationsToSubscr { get; }
 
-        public static ObservableCollection<RelationToSubscr> RelationsToSubscr => _relationsToSubscr ?? (_relationsToSubscr = GetRelationsToSubscriber());
+        static DataBaseManager()
+        {
+            RelationsToSubscr = GetRelationsToSubscriber();
+            Doctors = GetDoctorRepository();
+        }
 
         private static ObservableCollection<Doctor> GetDoctorRepository()
         {
@@ -35,5 +38,7 @@ namespace FirstEvent.Model
 
             return relations;
         }
+
+        
     }
 }
