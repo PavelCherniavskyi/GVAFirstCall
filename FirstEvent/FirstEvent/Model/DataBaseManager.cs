@@ -1,31 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FirstEvent.Model
 {
     public static class DataBaseManager
     {
+        private static readonly DbHandler db;
+
         public static ObservableCollection<Doctor> Doctors { get; }
+
+        public static ObservableCollection<Country> Countries { get; }
+
+        public static ObservableCollection<Region> Regions { get; }
+
+        public static ObservableCollection<City> Cities { get; }
 
         public static ObservableCollection<RelationToSubscr> RelationsToSubscr { get; }
 
         static DataBaseManager()
         {
-            RelationsToSubscr = GetRelationsToSubscriber();
-            Doctors = GetDoctorRepository();
-        }
+            using (db = new DbHandler())
+            {
+                db.Doctors.Load();
+                db.Cities.Load();
+                db.Countries.Load();
+                db.Regions.Load();
 
-        private static ObservableCollection<Doctor> GetDoctorRepository()
-        {
-            ObservableCollection<Doctor> doctors = new ObservableCollection<Doctor>();
-            doctors.Add(new Doctor() {Id = 1, FullName = "Lavrova Kseniya", City = "Odessa", Country = "Ukraine"});
-            doctors.Add(new Doctor() { Id = 2, FullName = "Andrievskyi Andrey", City = "Odessa", Country = "Ukraine" });
-            doctors.Add(new Doctor() { Id = 3, FullName = "Agalakov Sergey", City = "Odessa", Country = "Ukraine" });
-            return doctors;
+                Doctors = db.Doctors.Local;
+                Doctors = db.Doctors.Local;
+                Countries = db.Countries.Local;
+                Regions = db.Regions.Local;
+                Cities = db.Cities.Local;
+            }
+            
+
+            
+
+            RelationsToSubscr = GetRelationsToSubscriber();
         }
 
         private static ObservableCollection<RelationToSubscr> GetRelationsToSubscriber()

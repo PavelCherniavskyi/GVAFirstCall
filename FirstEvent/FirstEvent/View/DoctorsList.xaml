@@ -23,8 +23,8 @@
                     <GridView AllowsColumnReorder="False" >
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="40">Code</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FullName}" Width="145">Name</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Country}" Width="60">Country</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=City}" Width="70">City</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CountryId}" Width="60">Country</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CityId}" Width="70">City</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

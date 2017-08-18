@@ -7,42 +7,33 @@ using System.Threading.Tasks;
 
 namespace FirstEvent.Model
 {
-    public struct City
+    public class City
     {
-        public string Name;
+        public int Id { get; set; }
 
-        public City(string name)
-        {
-            Name = name;
-        }
+        public int RegionId { get; set; }
+
+        public int CountryId { get; set; }
+
+        public string Name { get; set; }
+
     }
 
-    public struct Region
+    public class Region
     {
-        public string Name;
+        public int Id { get; set; }
 
-        public ObservableCollection<City> Cities;
+        public int CountryId { get; set; }
 
-        public Region(string name, ObservableCollection<City> cities )
-        {
-            Name = name;
-            Cities = cities;
-        }
+        public string Name { get; set; }
+
     }
 
-    public struct Country
+    public class Country
     {
-        public string Name;
+        public int Id { get; set; }
 
-        public ObservableCollection<Region> Regions;
+        public string Name { get; set; }
 
-        public ObservableCollection<City> Cities;
-
-        public Country(string name, ObservableCollection<Region> regions, ObservableCollection<City> cities)
-        {
-            Name = name;
-            Cities = cities;
-            Regions = regions;
-        }
     }
 }
