@@ -33,16 +33,16 @@ namespace FirstEvent.ViewModel.ListWindows
         }
     }
 
-    public class RelationToSubscrListViewModel : BaseListViewModel<RelationToSubscr>
+    public class RelationToSubscrListViewModel : BaseListViewModel<RelationToSubscriber>
     {
-        public override ObservableCollection<RelationToSubscr> Items => _items ?? (_items = DataBaseManager.RelationsToSubscr);
+        public override ObservableCollection<RelationToSubscriber> Items => _items ?? (_items = DataBaseManager.RelationsToSubscriber);
         public override void ExecuteDoneClickCommand()
         {
             if (SelectedItem == null)
             {
                 return;
             }
-            Messenger.Default.Send<RelationToSubscr>(SelectedItem, "CallerRelationToSubscr");
+            Messenger.Default.Send<RelationToSubscriber>(SelectedItem, "CallerRelationToSubscr");
         }
 
         public override ICommand CancelClickCommand
@@ -50,7 +50,7 @@ namespace FirstEvent.ViewModel.ListWindows
             get
             {
                 return _calcelClickCommand ??
-                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<RelationToSubscr>(null, "CallerRelationToSubscr"), () => true));
+                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<RelationToSubscriber>(null, "CallerRelationToSubscr"), () => true));
             }
         }
     }

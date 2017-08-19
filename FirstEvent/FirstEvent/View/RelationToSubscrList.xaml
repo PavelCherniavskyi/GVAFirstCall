@@ -7,7 +7,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="Relation to Subcriber" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Name to Subcriber" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewmodel:RelationToSubscrListViewModel/>
     </Window.DataContext>
@@ -22,7 +22,7 @@
                 <ListView.View >
                     <GridView AllowsColumnReorder="False" >
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="40">Code</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Relation}" Width="166">Name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="166">Name</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

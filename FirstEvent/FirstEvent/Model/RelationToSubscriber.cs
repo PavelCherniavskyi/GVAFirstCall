@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FirstEvent.Model
 {
-    public class RelationToSubscr
+    public class RelationToSubscriber
     {
         public int Id { get; set; }
 
-        public string Relation { get; set; }
+        public string Name { get; set; }
     }
 }

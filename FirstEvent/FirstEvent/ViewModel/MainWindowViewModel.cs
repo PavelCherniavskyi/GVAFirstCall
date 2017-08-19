@@ -12,8 +12,8 @@ namespace FirstEvent.ViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly DataGridView _dataGridView = new DataGridView();
-        
 
+        public ICommand ClosingWindow { get { return new RelayCommand(DataBaseManager.Dispose, () => true); } }
 
         private void ContactsAddBtn_OnClick(object sender, RoutedEventArgs e)
         {

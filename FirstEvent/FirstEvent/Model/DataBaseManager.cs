@@ -7,56 +7,96 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FirstEvent.Model
 {
     public static class DataBaseManager
     {
-        private static readonly DbHandler db;
+        private static readonly DbHandler Db;
 
-        public static ObservableCollection<Doctor> Doctors { get; }
+        public static ObservableCollection<Doctor> Doctors => Db.Doctors.Local;
 
-        public static ObservableCollection<Country> Countries { get; }
+        public static ObservableCollection<Country> Countries => Db.Countries.Local;
 
-        public static ObservableCollection<Region> Regions { get; }
+        public static ObservableCollection<Region> Regions => Db.Regions.Local;
 
-        public static ObservableCollection<City> Cities { get; }
+        public static ObservableCollection<City> Cities => Db.Cities.Local;
 
-        public static ObservableCollection<RelationToSubscr> RelationsToSubscr { get; }
+        public static ObservableCollection<RelationToSubscriber> RelationsToSubscriber => Db.RelationsToSubscriber.Local;
 
         static DataBaseManager()
         {
-            using (db = new DbHandler())
+            try
             {
-                db.Doctors.Load();
-                db.Cities.Load();
-                db.Countries.Load();
-                db.Regions.Load();
-
-                Doctors = db.Doctors.Local;
-                Doctors = db.Doctors.Local;
-                Countries = db.Countries.Local;
-                Regions = db.Regions.Local;
-                Cities = db.Cities.Local;
+                Db = new DbHandler();
+                Db.Doctors.Load();
+                Db.Cities.Load();
+                Db.Regions.Load();
+                Db.Countries.Load();
+                //Db.RelationsToSubscriber.Load();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Problems with DB \n" + e.InnerException);
             }
             
 
-            
-
-            RelationsToSubscr = GetRelationsToSubscriber();
         }
 
-        private static ObservableCollection<RelationToSubscr> GetRelationsToSubscriber()
+        public static Country GetCountryByRegion(Region r)
         {
-            ObservableCollection<RelationToSubscr> relations = new ObservableCollection<RelationToSubscr>();
-            relations.Add(new RelationToSubscr() {Id = 1, Relation = "Caller"});
-            relations.Add(new RelationToSubscr() { Id = 2, Relation = "Subcriber" });
-            relations.Add(new RelationToSubscr() { Id = 3, Relation = "Treating doctor" });
-            relations.Add(new RelationToSubscr() { Id = 4, Relation = "Travel Agency" });
-
-            return relations;
+            var query = from c in Db.Countries
+                where r.CountryId == c.Id
+                select c;
+            return query.First();
         }
 
-        
+        public static void GetCountryAndRegionByCity(City city, out Region region, out Country country)
+        {
+            var queryCountry = from c in Db.Countries
+                where c.Id == city.CountryId
+                select c;
+            country = queryCountry.First();
+
+            var queryRegion = from r in Db.Regions
+                               where r.Id == city.RegionId
+                               select r;
+            region = queryRegion.First();
+        }
+
+        public static void AddDoctor(Doctor d)
+        {
+            Doctors.Add(d);
+            Db.Doctors.AddRange(Doctors);
+            Db.SaveChanges();
+        }
+
+        public static void AddCountry(Country c)
+        {
+            Countries.Add(c);
+            Db.Countries.AddRange(Countries);
+            Db.SaveChanges();
+        }
+
+        public static void AddRegion(Region r)
+        {
+            Regions.Add(r);
+            Db.Regions.AddRange(Regions);
+            Db.SaveChanges();
+        }
+
+        public static void AddCity(City c)
+        {
+            Cities.Add(c);
+            Db.Cities.AddRange(Cities);
+            Db.SaveChanges();
+        }
+
+        public static void Dispose()
+        {
+            Db.Dispose();
+        }
+
     }
 }

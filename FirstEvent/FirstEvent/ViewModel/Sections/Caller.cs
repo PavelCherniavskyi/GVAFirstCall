@@ -16,15 +16,15 @@ namespace FirstEvent.ViewModel.Sections
     {
         private RelayCommand _showRelationToSubscrListCommand;
         private RelayCommand _cancelRelationToSubscrListCommand;
-        private RelationToSubscr _relationToSubscr;
+        private RelationToSubscriber _relationToSubscriber;
         private RelayCommand _enterKeyCommand;
         private Brush _relationToSubscrColorTextBox;
         private bool _isRelToSubscrReadOnly;
 
         public Caller()
         {
-            Messenger.Default.Register(this, "CallerRelationToSubscr", new Action<RelationToSubscr>(CallerMessage));
-            _relationToSubscr = new RelationToSubscr();
+            Messenger.Default.Register(this, "CallerRelationToSubscr", new Action<RelationToSubscriber>(CallerMessage));
+            _relationToSubscriber = new RelationToSubscriber();
         }
 
         public bool IsRelToSubscrReadOnly
@@ -40,10 +40,10 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        public RelationToSubscr RelationToSubscr
+        public RelationToSubscriber RelationToSubscriber
         {
-            get { return _relationToSubscr; }
-            set { _relationToSubscr = value; RaisePropertyChanged("RelationToSubscr"); }
+            get { return _relationToSubscriber; }
+            set { _relationToSubscriber = value; RaisePropertyChanged("RelationToSubscriber"); }
         }
 
         public Brush RelationToSubscrColorTextBox
@@ -81,43 +81,43 @@ namespace FirstEvent.ViewModel.Sections
 
         private void ClearDocFeildExecute()
         {
-            RelationToSubscr = new RelationToSubscr();
+            RelationToSubscriber = new RelationToSubscriber();
             IsRelToSubscrReadOnly = false;
         }
 
         private void EnterKeyCommandExecute()
         {
             int tempId;
-            if (int.TryParse(RelationToSubscr.Relation, out tempId))
+            if (int.TryParse(RelationToSubscriber.Name, out tempId))
             {
-                foreach (var d in DataBaseManager.RelationsToSubscr)
+                foreach (var d in DataBaseManager.RelationsToSubscriber)
                 {
                     if (tempId != d.Id)
                         continue;
-                    RelationToSubscr = d;
+                    RelationToSubscriber = d;
                     IsRelToSubscrReadOnly = true;
                     break;
                 }
             }
             else
             {
-                var strToSrch = RelationToSubscr.Relation.ToUpper();
+                var strToSrch = RelationToSubscriber.Name.ToUpper();
 
-                foreach (var d in DataBaseManager.RelationsToSubscr)
+                foreach (var d in DataBaseManager.RelationsToSubscriber)
                 {
-                    if (!d.Relation.ToUpper().Contains(strToSrch))
+                    if (!d.Name.ToUpper().Contains(strToSrch))
                         continue;
-                    RelationToSubscr = d;
+                    RelationToSubscriber = d;
                     IsRelToSubscrReadOnly = true;
                 }
             }
         }
 
-        private void CallerMessage(RelationToSubscr rel)
+        private void CallerMessage(RelationToSubscriber rel)
         {
             if (rel != null)
             {
-                RelationToSubscr = rel;
+                RelationToSubscriber = rel;
                 IsRelToSubscrReadOnly = true;
             }
             Messenger.Default.Send<string>("SubscrListHide");

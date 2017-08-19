@@ -80,6 +80,8 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.2\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -131,7 +133,7 @@
     <Compile Include="Model\DBHandler.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Georgaphy.cs" />
-    <Compile Include="Model\RelationToSubscr.cs" />
+    <Compile Include="Model\RelationToSubscriber.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

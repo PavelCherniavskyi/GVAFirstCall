@@ -19,5 +19,7 @@ namespace FirstEvent.Model
         public DbSet<Region> Regions { get; set; }
 
         public DbSet<City> Cities { get; set; }
+
+        public DbSet<RelationToSubscriber> RelationsToSubscriber {get; set; }
     }
 }
