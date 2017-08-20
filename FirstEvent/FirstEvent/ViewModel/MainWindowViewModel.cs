@@ -13,8 +13,6 @@ namespace FirstEvent.ViewModel
     {
         private readonly DataGridView _dataGridView = new DataGridView();
 
-        public ICommand ClosingWindow { get { return new RelayCommand(DataBaseManager.Dispose, () => true); } }
-
         private void ContactsAddBtn_OnClick(object sender, RoutedEventArgs e)
         {
             //DataContext = _dataGridView.AddContact("Mother", "Petya", "456", "he is good");

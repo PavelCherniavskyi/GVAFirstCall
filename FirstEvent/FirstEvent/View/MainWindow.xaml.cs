@@ -14,7 +14,10 @@ namespace FirstEvent.View
     {
         
         private readonly DoctorsList _doctorsList = new DoctorsList();
-        private readonly RelationToSubscrList _relationToSubscrListList = new RelationToSubscrList();
+        private readonly RelationToSubscrList _relationToSubscrList = new RelationToSubscrList();
+        private readonly CountryList _countryList = new CountryList();
+        private readonly RegionList _regionList = new RegionList();
+        private readonly CityList _cityList = new CityList();
 
         public MainWindow()
         {
@@ -33,10 +36,28 @@ namespace FirstEvent.View
                     _doctorsList.Hide();
                     break;
                 case "SubscrListShow":
-                    _relationToSubscrListList.ShowDialog();
+                    _relationToSubscrList.ShowDialog();
                     break;
                 case "SubscrListHide":
-                    _relationToSubscrListList.Hide();
+                    _relationToSubscrList.Hide();
+                    break;
+                case "CountryListShow":
+                    _countryList.ShowDialog();
+                    break;
+                case "CountryListHide":
+                    _countryList.Hide();
+                    break;
+                case "RegionListShow":
+                    _regionList.ShowDialog();
+                    break;
+                case "RegionListHide":
+                    _regionList.Hide();
+                    break;
+                case "CityListShow":
+                    _cityList.ShowDialog();
+                    break;
+                case "CityListHide":
+                    _cityList.Hide();
                     break;
             }
         }

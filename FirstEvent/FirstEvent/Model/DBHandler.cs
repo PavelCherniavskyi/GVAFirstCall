@@ -20,6 +20,8 @@ namespace FirstEvent.Model
 
         public DbSet<City> Cities { get; set; }
 
-        public DbSet<RelationToSubscriber> RelationsToSubscriber {get; set; }
+        public DbSet<RelToSub> RelToSubs {get; set; }
+
+        public DbSet<DocView> DocViews { get; set; }
     }
 }

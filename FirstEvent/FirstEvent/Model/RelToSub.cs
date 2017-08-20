@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstEvent.Model
 {
-    public class RelationToSubscriber
+    public class RelToSub
     {
         public int Id { get; set; }
 

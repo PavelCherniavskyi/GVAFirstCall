@@ -133,11 +133,17 @@
     <Compile Include="Model\DBHandler.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Georgaphy.cs" />
-    <Compile Include="Model\RelationToSubscriber.cs" />
+    <Compile Include="Model\RelToSub.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Sections\Caller.cs" />
+    <Compile Include="View\CityList.xaml.cs">
+      <DependentUpon>CityList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CountryList.xaml.cs">
+      <DependentUpon>CountryList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorsList.xaml.cs">
       <DependentUpon>DoctorsList.xaml</DependentUpon>
     </Compile>
@@ -145,12 +151,23 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\Sections\GeneralInfo.cs" />
+    <Compile Include="View\RegionList.xaml.cs">
+      <DependentUpon>RegionList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RelationToSubscrList.xaml.cs">
       <DependentUpon>RelationToSubscrList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\CityList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CountryList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DoctorsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +184,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\RegionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\RelationToSubscrList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

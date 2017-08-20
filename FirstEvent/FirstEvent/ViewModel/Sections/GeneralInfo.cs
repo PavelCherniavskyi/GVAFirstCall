@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -25,7 +26,7 @@ namespace FirstEvent.ViewModel.Sections
 
         public GeneralInfo()
         {
-            Messenger.Default.Register(this, "GeneralInfoDoctor", new Action<Doctor>(DoctorFieldMessage));
+            Messenger.Default.Register(this, "GeneralInfoDoctor", new Action<DocView>(DoctorFieldMessage));
             EventDateTime = DocDateTime = DateTime.Now;
             _dutyDoctor = new Doctor();
             DutyOPS = "Pavel Cherniavskyi";
@@ -113,11 +114,14 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        private void DoctorFieldMessage(Doctor doc)
+        private void DoctorFieldMessage(DocView doc)
         {
             if (doc != null)
             {
-                DutyDoctor = doc;
+                var query = from d in DataBaseManager.Doctors
+                    where doc.Id == d.Id
+                    select d;
+                DutyDoctor = query.First();
                 IsDutyDocReadOnly = true;
             }
             Messenger.Default.Send<string>("DoctorsListHide");
