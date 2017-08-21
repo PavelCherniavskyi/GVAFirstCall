@@ -132,6 +132,7 @@
     <Compile Include="Model\DataBaseManager.cs" />
     <Compile Include="Model\DBHandler.cs" />
     <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\GeographySwitcher.cs" />
     <Compile Include="Model\Georgaphy.cs" />
     <Compile Include="Model\RelToSub.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />

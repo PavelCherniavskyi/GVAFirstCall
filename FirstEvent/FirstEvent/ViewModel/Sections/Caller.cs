@@ -272,75 +272,31 @@ namespace FirstEvent.ViewModel.Sections
         private void ClearCountryFeildExecute()
         {
             Country = new Country();
+            Region = new Region();
+            City = new City();
             IsCountryReadOnly = false;
+            IsRegionReadOnly = false;
+            IsCityReadOnly = false;
+            CallerGeographySwitcher.Country = null;
+            CallerGeographySwitcher.Region = null;
+            CallerGeographySwitcher.City = null;
         }
 
         private void ClearRegionFeildExecute()
         {
             Region = new Region();
+            City = new City();
             IsRegionReadOnly = false;
+            IsCityReadOnly = false;
+            CallerGeographySwitcher.Region = null;
+            CallerGeographySwitcher.City = null;
         }
 
         private void ClearCityFeildExecute()
         {
             City = new City();
             IsCityReadOnly = false;
-        }
-
-        private void RegionEnterKeyCommandExecute()
-        {
-            int tempId;
-            if (int.TryParse(Region.Name, out tempId))
-            {
-                foreach (var r in DataBaseManager.Regions)
-                {
-                    if (tempId != r.Id)
-                        continue;
-                    Region = r;
-                    IsRegionReadOnly = true;
-                    break;
-                }
-            }
-            else
-            {
-                var strToSrch = Region.Name.ToUpper();
-
-                foreach (var r in DataBaseManager.Regions)
-                {
-                    if (!r.Name.ToUpper().Contains(strToSrch))
-                        continue;
-                    Region = r;
-                    IsRegionReadOnly = true;
-                }
-            }
-        }
-
-        private void CityEnterKeyCommandExecute()
-        {
-            int tempId;
-            if (int.TryParse(City.Name, out tempId))
-            {
-                foreach (var c in DataBaseManager.Cities)
-                {
-                    if (tempId != c.Id)
-                        continue;
-                    City = c;
-                    IsCityReadOnly = true;
-                    break;
-                }
-            }
-            else
-            {
-                var strToSrch = City.Name.ToUpper();
-
-                foreach (var c in DataBaseManager.Cities)
-                {
-                    if (!c.Name.ToUpper().Contains(strToSrch))
-                        continue;
-                    City = c;
-                    IsCityReadOnly = true;
-                }
-            }
+            CallerGeographySwitcher.City = null;
         }
 
         private void CountryEnterKeyCommandExecute()
@@ -348,11 +304,12 @@ namespace FirstEvent.ViewModel.Sections
             int tempId;
             if (int.TryParse(Country.Name, out tempId))
             {
-                foreach (var c in DataBaseManager.Countries)
+                foreach (var c in DataBaseManager.AllCountries)
                 {
                     if (tempId != c.Id)
                         continue;
                     Country = c;
+                    CallerGeographySwitcher.Country = c;
                     IsCountryReadOnly = true;
                     break;
                 }
@@ -361,14 +318,102 @@ namespace FirstEvent.ViewModel.Sections
             {
                 var strToSrch = Country.Name.ToUpper();
 
-                foreach (var d in DataBaseManager.Countries)
+                foreach (var d in DataBaseManager.AllCountries)
                 {
                     if (!d.Name.ToUpper().Contains(strToSrch))
                         continue;
                     Country = d;
+                    CallerGeographySwitcher.Country = d;
                     IsCountryReadOnly = true;
                 }
             }
+
+        }
+
+        private void RegionEnterKeyCommandExecute()
+        {
+            int tempId;
+            if (int.TryParse(Region.Name, out tempId))
+            {
+                foreach (var r in DataBaseManager.AllRegions)
+                {
+                    if (tempId != r.Id)
+                        continue;
+                    Region = r;
+                    CallerGeographySwitcher.Region = r;
+                    Country = DataBaseManager.GetCountryByRegion(r);
+                    CallerGeographySwitcher.Country = Country;
+                    IsRegionReadOnly = true;
+                    IsCountryReadOnly = true;
+                    break;
+                }
+            }
+            else
+            {
+                var strToSrch = Region.Name.ToUpper();
+
+                foreach (var r in DataBaseManager.AllRegions)
+                {
+                    if (!r.Name.ToUpper().Contains(strToSrch))
+                        continue;
+                    Region = r;
+                    CallerGeographySwitcher.Region = r;
+                    Country = DataBaseManager.GetCountryByRegion(r);
+                    CallerGeographySwitcher.Country = Country;
+                    IsRegionReadOnly = true;
+                    IsCountryReadOnly = true;
+                }
+            }
+
+        }
+
+        private void CityEnterKeyCommandExecute()
+        {
+            int tempId;
+            if (int.TryParse(City.Name, out tempId))
+            {
+                foreach (var c in DataBaseManager.AllCities)
+                {
+                    if (tempId != c.Id)
+                        continue;
+                    Country country;
+                    Region region;
+                    DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
+                    City = c;
+                    Region = region;
+                    Country = country;
+                    CallerGeographySwitcher.City = c;
+                    CallerGeographySwitcher.Country = Country;
+                    CallerGeographySwitcher.Region = Region;
+                    IsCityReadOnly = true;
+                    IsCountryReadOnly = true;
+                    IsRegionReadOnly = true;
+                    break;
+                }
+            }
+            else
+            {
+                var strToSrch = City.Name.ToUpper();
+
+                foreach (var c in DataBaseManager.AllCities)
+                {
+                    if (!c.Name.ToUpper().Contains(strToSrch))
+                        continue;
+                    Country country;
+                    Region region;
+                    DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
+                    City = c;
+                    Region = region;
+                    Country = country;
+                    CallerGeographySwitcher.City = c;
+                    CallerGeographySwitcher.Country = Country;
+                    CallerGeographySwitcher.Region = Region;
+                    IsCityReadOnly = true;
+                    IsCountryReadOnly = true;
+                    IsRegionReadOnly = true;
+                }
+            }
+
         }
 
         private void RelEnterKeyCommandExecute()
@@ -376,7 +421,7 @@ namespace FirstEvent.ViewModel.Sections
             int tempId;
             if (int.TryParse(RelToSub.Name, out tempId))
             {
-                foreach (var d in DataBaseManager.RelToSubs)
+                foreach (var d in DataBaseManager.AllRelToSubs)
                 {
                     if (tempId != d.Id)
                         continue;
@@ -389,7 +434,7 @@ namespace FirstEvent.ViewModel.Sections
             {
                 var strToSrch = RelToSub.Name.ToUpper();
 
-                foreach (var d in DataBaseManager.RelToSubs)
+                foreach (var d in DataBaseManager.AllRelToSubs)
                 {
                     if (!d.Name.ToUpper().Contains(strToSrch))
                         continue;
@@ -426,7 +471,11 @@ namespace FirstEvent.ViewModel.Sections
             if (r != null)
             {
                 Region = r;
+                CallerGeographySwitcher.Region = r;
+                Country = DataBaseManager.GetCountryByRegion(r);
+                CallerGeographySwitcher.Country = Country;
                 IsRegionReadOnly = true;
+                IsCountryReadOnly = true;
             }
             Messenger.Default.Send<string>("RegionListHide");
 
@@ -437,7 +486,18 @@ namespace FirstEvent.ViewModel.Sections
             if (c != null)
             {
                 City = c;
+                Country country;
+                Region region;
+                DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
+                City = c;
+                Region = region;
+                Country = country;
+                CallerGeographySwitcher.City = c;
+                CallerGeographySwitcher.Country = Country;
+                CallerGeographySwitcher.Region = Region;
                 IsCityReadOnly = true;
+                IsCountryReadOnly = true;
+                IsRegionReadOnly = true;
             }
             Messenger.Default.Send<string>("CityListHide");
 

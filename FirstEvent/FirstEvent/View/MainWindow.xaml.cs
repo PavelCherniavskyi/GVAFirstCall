@@ -42,18 +42,21 @@ namespace FirstEvent.View
                     _relationToSubscrList.Hide();
                     break;
                 case "CountryListShow":
+                    Messenger.Default.Send<byte>(new byte(), "CallerCountryOnLoad");
                     _countryList.ShowDialog();
                     break;
                 case "CountryListHide":
                     _countryList.Hide();
                     break;
                 case "RegionListShow":
+                    Messenger.Default.Send<byte>(new byte(), "CallerRegionOnLoad");
                     _regionList.ShowDialog();
                     break;
                 case "RegionListHide":
                     _regionList.Hide();
                     break;
                 case "CityListShow":
+                    Messenger.Default.Send<byte>(new byte(), "CallerCityOnLoad");
                     _cityList.ShowDialog();
                     break;
                 case "CityListHide":

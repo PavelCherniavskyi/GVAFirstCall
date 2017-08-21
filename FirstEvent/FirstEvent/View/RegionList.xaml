@@ -9,11 +9,11 @@
         mc:Ignorable="d"
         Title="Name to Subcriber" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
-        <viewmodel:RegionListViewModel/>
+        <viewmodel:CallerRegionListViewModel/>
     </Window.DataContext>
     <Grid>
         <StackPanel>
-            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Height="150" Margin="-2,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView ItemsSource="{Binding Items, Mode=TwoWay}" SelectedItem="{Binding SelectedItem}" Height="150" Margin="-2,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
                         <ei:CallMethodAction MethodName="ExecuteDoneClickCommand" TargetObject="{Binding}"/>

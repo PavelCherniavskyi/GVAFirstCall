@@ -14,7 +14,12 @@ namespace FirstEvent.ViewModel.ListWindows
 {
     public class DoctorsListViewModel : BaseListViewModel<DocView>
     {
-        public override ObservableCollection<DocView> Items => _items ?? (_items = DataBaseManager.DocViews);
+        public override ObservableCollection<DocView> Items
+        {
+            get { return _items ?? (_items = DataBaseManager.DocViews); }
+            set { _items = value; RaisePropertyChanged("Items"); }
+        }
+
         public override void ExecuteDoneClickCommand()
         {
             if (SelectedItem == null)
@@ -36,7 +41,12 @@ namespace FirstEvent.ViewModel.ListWindows
 
     public class RelationToSubscrListViewModel : BaseListViewModel<RelToSub>
     {
-        public override ObservableCollection<RelToSub> Items => _items ?? (_items = DataBaseManager.RelToSubs);
+        public override ObservableCollection<RelToSub> Items
+        {
+            get { return _items ?? (_items = DataBaseManager.AllRelToSubs); }
+            set {_items = value; RaisePropertyChanged("Items"); }
+        }
+
         public override void ExecuteDoneClickCommand()
         {
             if (SelectedItem == null)
@@ -56,15 +66,27 @@ namespace FirstEvent.ViewModel.ListWindows
         }
     }
 
-    public class CountryListViewModel : BaseListViewModel<Country>
+    public class CallerCountryListViewModel : BaseListViewModel<Country>
     {
-        public override ObservableCollection<Country> Items => _items ?? (_items = DataBaseManager.Countries);
+        public CallerCountryListViewModel()
+        {
+            Messenger.Default.Register(this, "CallerCountryOnLoad", new Action<byte>(OnLoad));
+        }
+
+        public override ObservableCollection<Country> Items
+        {
+            get { return CallerGeographySwitcher.Countries; }
+            set { _items = value;}
+        }
+
         public override void ExecuteDoneClickCommand()
         {
             if (SelectedItem == null)
             {
+                CallerGeographySwitcher.Country = null;
                 return;
             }
+            CallerGeographySwitcher.Country = SelectedItem;
             Messenger.Default.Send<Country>(SelectedItem, "CallerCountry");
         }
 
@@ -72,21 +94,34 @@ namespace FirstEvent.ViewModel.ListWindows
         {
             get
             {
+                CallerGeographySwitcher.Country = null;
                 return _calcelClickCommand ??
                     (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<Country>(null, "CallerCountry"), () => true));
             }
         }
     }
 
-    public class RegionListViewModel : BaseListViewModel<Region>
+    public class CallerRegionListViewModel : BaseListViewModel<Region>
     {
-        public override ObservableCollection<Region> Items => _items ?? (_items = DataBaseManager.Regions);
+
+        public CallerRegionListViewModel()
+        {
+            Messenger.Default.Register(this, "CallerRegionOnLoad", new Action<byte>(OnLoad));
+        }
+        public override ObservableCollection<Region> Items
+        {
+            get { return CallerGeographySwitcher.Regions; }
+            set { _items = value; }
+        }
+
         public override void ExecuteDoneClickCommand()
         {
             if (SelectedItem == null)
             {
+                CallerGeographySwitcher.Region = null;
                 return;
             }
+            CallerGeographySwitcher.Region = SelectedItem;
             Messenger.Default.Send<Region>(SelectedItem, "CallerRegion");
         }
 
@@ -94,21 +129,34 @@ namespace FirstEvent.ViewModel.ListWindows
         {
             get
             {
+                CallerGeographySwitcher.Region = null;
                 return _calcelClickCommand ??
                     (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<Region>(null, "CallerRegion"), () => true));
             }
         }
     }
 
-    public class CityListViewModel : BaseListViewModel<City>
+    public class CallerCityListViewModel : BaseListViewModel<City>
     {
-        public override ObservableCollection<City> Items => _items ?? (_items = DataBaseManager.Cities);
+        public CallerCityListViewModel()
+        {
+            Messenger.Default.Register(this, "CallerCityOnLoad", new Action<byte>(OnLoad));
+        }
+
+        public override ObservableCollection<City> Items
+        {
+            get { return CallerGeographySwitcher.Cities; }
+            set { _items = value; }
+        }
+
         public override void ExecuteDoneClickCommand()
         {
             if (SelectedItem == null)
             {
+                CallerGeographySwitcher.City = null;
                 return;
             }
+            CallerGeographySwitcher.City = SelectedItem;
             Messenger.Default.Send<City>(SelectedItem, "CallerCity");
         }
 
@@ -116,6 +164,7 @@ namespace FirstEvent.ViewModel.ListWindows
         {
             get
             {
+                CallerGeographySwitcher.City = null;
                 return _calcelClickCommand ??
                     (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<City>(null, "CallerCity"), () => true));
             }

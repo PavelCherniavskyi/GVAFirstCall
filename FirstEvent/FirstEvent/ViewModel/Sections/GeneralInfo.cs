@@ -118,7 +118,7 @@ namespace FirstEvent.ViewModel.Sections
         {
             if (doc != null)
             {
-                var query = from d in DataBaseManager.Doctors
+                var query = from d in DataBaseManager.AllDoctors
                     where doc.Id == d.Id
                     select d;
                 DutyDoctor = query.First();
@@ -133,7 +133,7 @@ namespace FirstEvent.ViewModel.Sections
             int tempId;
             if (int.TryParse(DutyDoctor.FullName, out tempId))
             {
-                foreach (var d in DataBaseManager.Doctors)
+                foreach (var d in DataBaseManager.AllDoctors)
                 {
                     if (tempId != d.Id)
                         continue;
@@ -146,7 +146,7 @@ namespace FirstEvent.ViewModel.Sections
             {
                 var strToSrch = DutyDoctor.FullName.ToUpper();
 
-                foreach (var d in DataBaseManager.Doctors)
+                foreach (var d in DataBaseManager.AllDoctors)
                 {
                     if (!d.FullName.ToUpper().Contains(strToSrch))
                         continue;

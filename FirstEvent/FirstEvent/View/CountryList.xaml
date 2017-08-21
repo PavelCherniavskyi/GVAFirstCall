@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Name to Subcriber" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
-        <viewmodel:CountryListViewModel/>
+        <viewmodel:CallerCountryListViewModel/>
     </Window.DataContext>
     <Grid>
         <StackPanel>
