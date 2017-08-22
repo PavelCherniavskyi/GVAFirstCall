@@ -13,34 +13,38 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace FirstEvent.ViewModel.Sections
 {
-    public class Caller : ViewModelBase
+    class Subscriber : ViewModelBase
     {
-        private RelToSub _relToSub;
+        private HotelView _hotel;
         private Country _country;
         private Region _region;
         private City _city;
 
-        private Brush _relationToSubscrColorTextBox;
+        private Brush _hotelColorTextBox;
         private Brush _countryColorTextBox;
         private Brush _regionColorTextBox;
         private Brush _cityColorTextBox;
 
-        private bool _isRelToSubscrReadOnly;
+        private bool _isHotelReadOnly;
         private bool _isCountryReadOnly;
         private bool _isRegionReadOnly;
         private bool _isCityReadOnly;
+        private DateTime _departure = DateTime.Now;
+        private DateTime _arrival = DateTime.Now;
+        private string _duration;
+        private Brush _departureColor;
 
-        public Caller()
+        public Subscriber()
         {
-            Messenger.Default.Register(this, "CallerRelationToSubscr", new Action<RelToSub>(RelCallerMessage));
-            Messenger.Default.Register(this, "CallerCountry", new Action<Country>(CountryCallerMessage));
-            Messenger.Default.Register(this, "CallerRegion", new Action<Region>(RegionCallerMessage));
-            Messenger.Default.Register(this, "CallerCity", new Action<City>(CityCallerMessage));
-
+            Messenger.Default.Register(this, "SubscriberHotel", new Action<HotelView>(HotelCallerMessage));
+            Messenger.Default.Register(this, "SubscriberCountry", new Action<Country>(CountryCallerMessage));
+            Messenger.Default.Register(this, "SubscriberRegion", new Action<Region>(RegionCallerMessage));
+            Messenger.Default.Register(this, "SubscriberCity", new Action<City>(CityCallerMessage));
             _country = new Country();
             _region = new Region();
             _city = new City();
-            _relToSub = new RelToSub();
+            _hotel = new HotelView();
+            _departureColor = new SolidColorBrush(Color.FromArgb(255, 22, 32, 133));
         }
 
         public string FirstName { get; set; }
@@ -51,22 +55,68 @@ namespace FirstEvent.ViewModel.Sections
 
         public string LocationInfo { get; set; }
 
-        public string PlaceOfStay { get; set; }
-
         public string Room { get; set; }
 
-        public string CallerId { get; set; }
+        public string Age { get; set; }
 
-        public bool IsRelToSubscrReadOnly
+        public DateTime DoB { get; set; }
+
+        public DateTime Arrival
         {
-            get { return _isRelToSubscrReadOnly; }
+            get { return _arrival; }
             set
             {
-                _isRelToSubscrReadOnly = value;
-                RelationToSubscrColorTextBox = _isRelToSubscrReadOnly ?
+                var a = _departure - value;
+                DepartureColor = a.Days > 0 ? new SolidColorBrush(Color.FromArgb(255, 0, 0, 255)) : new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                Duration = a.Days + " Days.";
+                _arrival = value;
+
+            }
+        }
+
+        public Brush DepartureColor
+        {
+            get { return _departureColor; }
+            set
+            {
+                _departureColor = value;
+                RaisePropertyChanged("DepartureColor");
+            }
+            
+        }
+
+        public DateTime Departure
+        {
+            get { return _departure; }
+            set
+            {
+                var a = value - _arrival;
+                DepartureColor = a.Days > 0 ? new SolidColorBrush(Color.FromArgb(255, 0, 0, 255)) : new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                Duration = a.Days + " Days.";
+                _departure = value;
+            }
+        }
+
+        public string Duration
+        {
+            get { return _duration; }
+            set
+            {
+                _duration = value;
+                RaisePropertyChanged("Duration");
+            }
+        }
+
+        public bool IsHotelReadOnly
+        {
+            get { return _isHotelReadOnly; }
+            set
+            {
+                _isHotelReadOnly = value;
+                HotelColorTextBox = _isHotelReadOnly ?
                     new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
                     new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsRelToSubscrReadOnly");
+                RaisePropertyChanged("IsHotelReadOnly");
             }
         }
 
@@ -109,10 +159,10 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        public RelToSub RelToSub
+        public HotelView Hotel
         {
-            get { return _relToSub; }
-            set { _relToSub = value; RaisePropertyChanged("RelToSub"); }
+            get { return _hotel; }
+            set { _hotel = value; RaisePropertyChanged("Hotel"); }
         }
 
         public Country Country
@@ -133,10 +183,10 @@ namespace FirstEvent.ViewModel.Sections
             set { _city = value; RaisePropertyChanged("City"); }
         }
 
-        public Brush RelationToSubscrColorTextBox
+        public Brush HotelColorTextBox
         {
-            get { return _relationToSubscrColorTextBox; }
-            set { _relationToSubscrColorTextBox = value; RaisePropertyChanged("RelationToSubscrColorTextBox"); }
+            get { return _hotelColorTextBox; }
+            set { _hotelColorTextBox = value; RaisePropertyChanged("HotelColorTextBox"); }
         }
 
         public Brush CountryColorTextBox
@@ -157,29 +207,29 @@ namespace FirstEvent.ViewModel.Sections
             set { _cityColorTextBox = value; RaisePropertyChanged("CityColorTextBox"); }
         }
 
-        public RelayCommand ShowRelationToSubscrListWindow { get; } = new RelayCommand(() => new RelationToSubscrList().ShowDialog(), () => true);
+        public RelayCommand ShowHotelListWindow { get; } = new RelayCommand(() => new HotelList().ShowDialog(), () => true);
 
         public RelayCommand ShowCountryListWindow { get; } = new RelayCommand(() => {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             new CountryList().ShowDialog();
         }, () => true);
 
         public RelayCommand ShowRegionListWindow { get; } = new RelayCommand(() => {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             new RegionList().ShowDialog();
         }, () => true);
 
         public RelayCommand ShowCityListWindow { get; } = new RelayCommand(() =>
         {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             new CityList().ShowDialog();
-        }, () => true);
+        }, () => true );
 
-        public ICommand RelEnterKeyCommand
+        public ICommand HotelEnterKeyCommand
         {
             get
             {
-                return new RelayCommand(RelEnterKeyCommandExecute, () => true);
+                return new RelayCommand(HotelEnterKeyCommandExecute, () => true);
             }
         }
 
@@ -207,11 +257,11 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        public ICommand CancelRelationToSubscrListWindow
+        public ICommand CancelHotelListWindow
         {
             get
             {
-                return new RelayCommand(ClearRelToSubFeildExecute, () => true);
+                return new RelayCommand(ClearHotelFeildExecute, () => true);
             }
         }
 
@@ -239,10 +289,10 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        private void ClearRelToSubFeildExecute()
+        private void ClearHotelFeildExecute()
         {
-            RelToSub = new RelToSub();
-            IsRelToSubscrReadOnly = false;
+            Hotel = new HotelView();
+            IsHotelReadOnly = false;
         }
 
         private void ClearCountryFeildExecute()
@@ -253,7 +303,7 @@ namespace FirstEvent.ViewModel.Sections
             IsCountryReadOnly = false;
             IsRegionReadOnly = false;
             IsCityReadOnly = false;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             CallerGeographySwitcher.Country = null;
             CallerGeographySwitcher.Region = null;
             CallerGeographySwitcher.City = null;
@@ -265,7 +315,7 @@ namespace FirstEvent.ViewModel.Sections
             City = new City();
             IsRegionReadOnly = false;
             IsCityReadOnly = false;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             CallerGeographySwitcher.Region = null;
             CallerGeographySwitcher.City = null;
         }
@@ -274,7 +324,7 @@ namespace FirstEvent.ViewModel.Sections
         {
             City = new City();
             IsCityReadOnly = false;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             CallerGeographySwitcher.City = null;
         }
 
@@ -288,7 +338,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (tempId != c.Id)
                         continue;
                     Country = c;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
                     CallerGeographySwitcher.Country = c;
                     IsCountryReadOnly = true;
                     break;
@@ -303,7 +353,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (!d.Name.ToUpper().Contains(strToSrch))
                         continue;
                     Country = d;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
                     CallerGeographySwitcher.Country = d;
                     IsCountryReadOnly = true;
                 }
@@ -321,7 +371,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (tempId != r.Id)
                         continue;
                     Region = r;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
                     CallerGeographySwitcher.Region = r;
                     Country = DataBaseManager.GetCountryByRegion(r);
                     CallerGeographySwitcher.Country = Country;
@@ -339,7 +389,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (!r.Name.ToUpper().Contains(strToSrch))
                         continue;
                     Region = r;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
                     CallerGeographySwitcher.Region = r;
                     Country = DataBaseManager.GetCountryByRegion(r);
                     CallerGeographySwitcher.Country = Country;
@@ -365,7 +415,7 @@ namespace FirstEvent.ViewModel.Sections
                     City = c;
                     Region = region;
                     Country = country;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
                     CallerGeographySwitcher.City = c;
                     CallerGeographySwitcher.Country = Country;
                     CallerGeographySwitcher.Region = Region;
@@ -389,7 +439,7 @@ namespace FirstEvent.ViewModel.Sections
                     City = c;
                     Region = region;
                     Country = country;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
                     CallerGeographySwitcher.City = c;
                     CallerGeographySwitcher.Country = Country;
                     CallerGeographySwitcher.Region = Region;
@@ -401,81 +451,85 @@ namespace FirstEvent.ViewModel.Sections
 
         }
 
-        private void RelEnterKeyCommandExecute()
+        private void HotelEnterKeyCommandExecute()
         {
             int tempId;
-            if (int.TryParse(RelToSub.Name, out tempId))
+            if (int.TryParse(Hotel.Name, out tempId))
             {
-                foreach (var d in DataBaseManager.AllRelToSubs)
+                foreach (var d in DataBaseManager.HotelViews)
                 {
                     if (tempId != d.Id)
                         continue;
-                    RelToSub = d;
-                    IsRelToSubscrReadOnly = true;
+                    Hotel = d;
+                    IsHotelReadOnly = true;
                     break;
                 }
             }
             else
             {
-                var strToSrch = RelToSub.Name.ToUpper();
+                var strToSrch = Hotel.Name.ToUpper();
 
-                foreach (var d in DataBaseManager.AllRelToSubs)
+                foreach (var d in DataBaseManager.HotelViews)
                 {
                     if (!d.Name.ToUpper().Contains(strToSrch))
                         continue;
-                    RelToSub = d;
-                    IsRelToSubscrReadOnly = true;
+                    Hotel = d;
+                    IsHotelReadOnly = true;
                 }
             }
         }
 
-        private void RelCallerMessage(RelToSub rel)
+        private void HotelCallerMessage(HotelView h)
         {
-            if (rel == null)
-                return;
-            RelToSub = rel;
-            IsRelToSubscrReadOnly = true;
+            if (h != null)
+            {
+                Hotel = h;
+                IsHotelReadOnly = true;
+            }
         }
 
         private void CountryCallerMessage(Country c)
         {
-            if (c == null)
-                return;
-            Country = c;
-            IsCountryReadOnly = true;
+            if (c != null)
+            {
+                Country = c;
+                IsCountryReadOnly = true;
+            }
         }
 
         private void RegionCallerMessage(Region r)
         {
-            if (r == null)
-                return;
-            Region = r;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
-            CallerGeographySwitcher.Region = r;
-            Country = DataBaseManager.GetCountryByRegion(r);
-            CallerGeographySwitcher.Country = Country;
-            IsRegionReadOnly = true;
-            IsCountryReadOnly = true;
+            if (r != null)
+            {
+                Region = r;
+                CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
+                CallerGeographySwitcher.Region = r;
+                Country = DataBaseManager.GetCountryByRegion(r);
+                CallerGeographySwitcher.Country = Country;
+                IsRegionReadOnly = true;
+                IsCountryReadOnly = true;
+            }
         }
 
         private void CityCallerMessage(City c)
         {
-            if (c == null)
-                return;
-            City = c;
-            Country country;
-            Region region;
-            DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
-            City = c;
-            Region = region;
-            Country = country;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
-            CallerGeographySwitcher.City = c;
-            CallerGeographySwitcher.Country = Country;
-            CallerGeographySwitcher.Region = Region;
-            IsCityReadOnly = true;
-            IsCountryReadOnly = true;
-            IsRegionReadOnly = true;
+            if (c != null)
+            {
+                City = c;
+                Country country;
+                Region region;
+                DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
+                City = c;
+                Region = region;
+                Country = country;
+                CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
+                CallerGeographySwitcher.City = c;
+                CallerGeographySwitcher.Country = Country;
+                CallerGeographySwitcher.Region = Region;
+                IsCityReadOnly = true;
+                IsCountryReadOnly = true;
+                IsRegionReadOnly = true;
+            }
         }
     }
 }

@@ -23,5 +23,9 @@ namespace FirstEvent.Model
         public DbSet<RelToSub> RelToSubs {get; set; }
 
         public DbSet<DocView> DocViews { get; set; }
+
+        public DbSet<Hotel> Hotels { get; set; }
+
+        public DbSet<HotelView> HotelViews { get; set; }
     }
 }

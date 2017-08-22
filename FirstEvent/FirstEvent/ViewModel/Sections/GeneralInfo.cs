@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using FirstEvent.Model;
+using FirstEvent.View;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -91,8 +92,7 @@ namespace FirstEvent.ViewModel.Sections
         {
             get
             {
-                return _showDocListWindowCommand ?? 
-                    (_showDocListWindowCommand = new RelayCommand(() => Messenger.Default.Send<string>("DoctorsListShow"), () => true));
+                return new RelayCommand(() => new DoctorsList().ShowDialog(), () => true);
             }
         }
 
@@ -116,16 +116,13 @@ namespace FirstEvent.ViewModel.Sections
 
         private void DoctorFieldMessage(DocView doc)
         {
-            if (doc != null)
-            {
-                var query = from d in DataBaseManager.AllDoctors
-                    where doc.Id == d.Id
-                    select d;
-                DutyDoctor = query.First();
-                IsDutyDocReadOnly = true;
-            }
-            Messenger.Default.Send<string>("DoctorsListHide");
-
+            if (doc == null)
+                return;
+            var query = from d in DataBaseManager.AllDoctors
+                where doc.Id == d.Id
+                select d;
+            DutyDoctor = query.First();
+            IsDutyDocReadOnly = true;
         }
 
         private void EnterKeyCommandExecute()

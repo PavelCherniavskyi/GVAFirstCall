@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace FirstEvent.View
 {
     /// <summary>
-    /// Interaction logic for CountryList.xaml
+    /// Interaction logic for HotelList.xaml
     /// </summary>
-    public partial class CountryList : Window
+    public partial class HotelList : Window
     {
-        public CountryList()
+        public HotelList()
         {
             InitializeComponent();
         }

@@ -28,6 +28,10 @@ namespace FirstEvent.Model
 
         public static ObservableCollection<DocView> DocViews { get; private set; }
 
+        public static ObservableCollection<Hotel> AllHotels { get; private set; }
+
+        public static ObservableCollection<HotelView> HotelViews { get; private set; }
+
         static DataBaseManager()
         {
             try
@@ -39,6 +43,8 @@ namespace FirstEvent.Model
                 Db.Countries.Load();
                 Db.RelToSubs.Load();
                 Db.DocViews.Load();
+                Db.Hotels.Load();
+                Db.HotelViews.Load();
 
                 AllDoctors = Db.Doctors.Local;
                 AllCountries = Db.Countries.Local;
@@ -46,20 +52,13 @@ namespace FirstEvent.Model
                 AllCities = Db.Cities.Local;
                 AllRelToSubs = Db.RelToSubs.Local;
                 DocViews = Db.DocViews.Local;
+                AllHotels = Db.Hotels.Local;
+                HotelViews = Db.HotelViews.Local;
             }
             catch (Exception e)
             {
-                MessageBox.Show("Problems with DB \nDetails: " + e.InnerException);
+                MessageBox.Show("Problems with DB \nMessage: " + e.Message + '\n' + "Inner message: " + e.InnerException);
             }
-
-
-            //_mDbConnection = new SQLiteConnection("Data Source=.\\Model\\DataBase.sqlite; Version=3;");
-            //_mDbConnection.Open();
-
-            //string sql = "SELECT * FROM AllDoctors";
-            //SQLiteCommand command = new SQLiteCommand(sql, _mDbConnection);
-            //SQLiteDataReader reader = command.ExecuteReader();
-            //var a = reader["Id"];
 
         }
 

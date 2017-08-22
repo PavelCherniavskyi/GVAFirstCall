@@ -1,36 +1,35 @@
-﻿<Window x:Class="FirstEvent.View.DoctorsList"
-        x:Name="DoctorWindow"
+﻿<Window x:Class="FirstEvent.View.HotelList"
+        x:Name="HotelWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:FirstEvent.ViewModel.ListWindows"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-        xmlns:listWindows="clr-namespace:FirstEvent.ViewModel.ListWindows"
         mc:Ignorable="d"
-        Title="List of doctors" Height="216.164" Width="327.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Hotels" Height="216.164" Width="327.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
-        <listWindows:DoctorsListViewModel/>
+        <viewmodel:HotelListViewModel/>
     </Window.DataContext>
     <Grid>
         <StackPanel>
             <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Height="150" Margin="-2,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=DoctorWindow}"/>
+                        <i:InvokeCommandAction Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=HotelWindow}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <ListView.View >
                     <GridView AllowsColumnReorder="False" >
                         <GridViewColumn DisplayMemberBinding="{Binding Id}" Width="40">Code</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding FullName}" Width="145">Name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="145">Name</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding City}" Width="70">City</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Country}" Width="60">Country</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Content="Ok" Width="50" IsDefault="True" Height="20" DockPanel.Dock="Right" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=DoctorWindow}" Margin="251,4,0,0" />
+            <Button Content="Ok" Width="50" IsDefault="True" Height="20" DockPanel.Dock="Right" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=HotelWindow}" Margin="251,4,0,0" />
         </StackPanel>
-        
+
     </Grid>
 </Window>

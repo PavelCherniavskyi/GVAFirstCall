@@ -134,11 +134,13 @@
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\GeographySwitcher.cs" />
     <Compile Include="Model\Georgaphy.cs" />
+    <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\RelToSub.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Sections\Caller.cs" />
+    <Compile Include="ViewModel\Sections\Subscriber.cs" />
     <Compile Include="View\CityList.xaml.cs">
       <DependentUpon>CityList.xaml</DependentUpon>
     </Compile>
@@ -147,6 +149,9 @@
     </Compile>
     <Compile Include="View\DoctorsList.xaml.cs">
       <DependentUpon>DoctorsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HotelList.xaml.cs">
+      <DependentUpon>HotelList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MarginSetter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -170,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HotelList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

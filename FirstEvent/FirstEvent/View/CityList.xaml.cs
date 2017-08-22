@@ -19,24 +19,10 @@ namespace FirstEvent.View
     /// </summary>
     public partial class CityList : Window
     {
-        private const int GwlStyle = -16;
-        private const int WsSysmenu = 0x80000;
-        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
         public CityList()
         {
             InitializeComponent();
-            Loaded += ToolWindow_Loaded;
         }
 
-        void ToolWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Code to remove close box from window
-            var hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
-            SetWindowLong(hwnd, GwlStyle, GetWindowLong(hwnd, GwlStyle) & ~WsSysmenu);
-        }
     }
 }

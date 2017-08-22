@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using FirstEvent.Model;
 using GalaSoft.MvvmLight.Command;
@@ -20,22 +21,11 @@ namespace FirstEvent.ViewModel.ListWindows
             set { _items = value; RaisePropertyChanged("Items"); }
         }
 
-        public override void ExecuteDoneClickCommand()
+        protected override void OkWindow(Window window)
         {
-            if (SelectedItem == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<DocView>(SelectedItem, "GeneralInfoDoctor");
-        }
-
-        public override ICommand CancelClickCommand
-        {
-            get
-            {
-                return _calcelClickCommand ??
-                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<DocView>(null, "GeneralInfoDoctor"), () => true));
-            }
+            if (SelectedItem != null)
+                Messenger.Default.Send<DocView>(SelectedItem, "GeneralInfoDoctor");
+            CloseWindow(window);
         }
     }
 
@@ -47,31 +37,17 @@ namespace FirstEvent.ViewModel.ListWindows
             set {_items = value; RaisePropertyChanged("Items"); }
         }
 
-        public override void ExecuteDoneClickCommand()
+        protected override void OkWindow(Window window)
         {
-            if (SelectedItem == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<RelToSub>(SelectedItem, "CallerRelationToSubscr");
+            if (SelectedItem != null)
+                Messenger.Default.Send<RelToSub>(SelectedItem, "CallerRelationToSubscr");
+            CloseWindow(window);
         }
 
-        public override ICommand CancelClickCommand
-        {
-            get
-            {
-                return _calcelClickCommand ??
-                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<RelToSub>(null, "CallerRelationToSubscr"), () => true));
-            }
-        }
     }
 
     public class CallerCountryListViewModel : BaseListViewModel<Country>
     {
-        public CallerCountryListViewModel()
-        {
-            Messenger.Default.Register(this, "CallerCountryOnLoad", new Action<byte>(OnLoad));
-        }
 
         public override ObservableCollection<Country> Items
         {
@@ -79,95 +55,126 @@ namespace FirstEvent.ViewModel.ListWindows
             set { _items = value;}
         }
 
-        public override void ExecuteDoneClickCommand()
+        protected override void OkWindow(Window window)
         {
             if (SelectedItem == null)
             {
                 CallerGeographySwitcher.Country = null;
-                return;
             }
-            CallerGeographySwitcher.Country = SelectedItem;
-            Messenger.Default.Send<Country>(SelectedItem, "CallerCountry");
-        }
-
-        public override ICommand CancelClickCommand
-        {
-            get
+            else
             {
-                CallerGeographySwitcher.Country = null;
-                return _calcelClickCommand ??
-                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<Country>(null, "CallerCountry"), () => true));
+                CallerGeographySwitcher.Country = SelectedItem;
+                switch (CallerGeographySwitcher.WhoIsRunning)
+                {
+                    case GeographyWhoIsRunning.Caller:
+                        Messenger.Default.Send<Country>(SelectedItem, "CallerCountry");
+                        break;
+                    case GeographyWhoIsRunning.Subcriber:
+                        Messenger.Default.Send<Country>(SelectedItem, "SubscriberCountry");
+                        break;
+                    case GeographyWhoIsRunning.Doctor:
+                        Messenger.Default.Send<Country>(SelectedItem, "DoctorCountry");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
+            
+            CloseWindow(window);
         }
     }
 
     public class CallerRegionListViewModel : BaseListViewModel<Region>
     {
 
-        public CallerRegionListViewModel()
-        {
-            Messenger.Default.Register(this, "CallerRegionOnLoad", new Action<byte>(OnLoad));
-        }
         public override ObservableCollection<Region> Items
         {
             get { return CallerGeographySwitcher.Regions; }
             set { _items = value; }
         }
 
-        public override void ExecuteDoneClickCommand()
+        protected override void OkWindow(Window window)
         {
             if (SelectedItem == null)
             {
                 CallerGeographySwitcher.Region = null;
-                return;
             }
-            CallerGeographySwitcher.Region = SelectedItem;
-            Messenger.Default.Send<Region>(SelectedItem, "CallerRegion");
+            else
+            {
+                CallerGeographySwitcher.Region = SelectedItem;
+                switch (CallerGeographySwitcher.WhoIsRunning)
+                {
+                    case GeographyWhoIsRunning.Caller:
+                        Messenger.Default.Send<Region>(SelectedItem, "CallerRegion");
+                        break;
+                    case GeographyWhoIsRunning.Subcriber:
+                        Messenger.Default.Send<Region>(SelectedItem, "SubscriberRegion");
+                        break;
+                    case GeographyWhoIsRunning.Doctor:
+                        Messenger.Default.Send<Region>(SelectedItem, "DoctorRegion");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            CloseWindow(window);
         }
 
-        public override ICommand CancelClickCommand
-        {
-            get
-            {
-                CallerGeographySwitcher.Region = null;
-                return _calcelClickCommand ??
-                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<Region>(null, "CallerRegion"), () => true));
-            }
-        }
     }
 
     public class CallerCityListViewModel : BaseListViewModel<City>
     {
-        public CallerCityListViewModel()
-        {
-            Messenger.Default.Register(this, "CallerCityOnLoad", new Action<byte>(OnLoad));
-        }
-
         public override ObservableCollection<City> Items
         {
             get { return CallerGeographySwitcher.Cities; }
             set { _items = value; }
         }
 
-        public override void ExecuteDoneClickCommand()
+        protected override void OkWindow(Window window)
         {
             if (SelectedItem == null)
             {
                 CallerGeographySwitcher.City = null;
-                return;
             }
-            CallerGeographySwitcher.City = SelectedItem;
-            Messenger.Default.Send<City>(SelectedItem, "CallerCity");
+            else
+            {
+                CallerGeographySwitcher.City = SelectedItem;
+                switch (CallerGeographySwitcher.WhoIsRunning)
+                {
+                    case GeographyWhoIsRunning.Caller:
+                        Messenger.Default.Send<City>(SelectedItem, "CallerCity");
+                        break;
+                    case GeographyWhoIsRunning.Subcriber:
+                        Messenger.Default.Send<City>(SelectedItem, "SubscriberCity");
+                        break;
+                    case GeographyWhoIsRunning.Doctor:
+                        Messenger.Default.Send<City>(SelectedItem, "DoctorCity");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            CloseWindow(window);
         }
 
-        public override ICommand CancelClickCommand
+    }
+
+    public class HotelListViewModel : BaseListViewModel<HotelView>
+    {
+        public override ObservableCollection<HotelView> Items
         {
-            get
-            {
-                CallerGeographySwitcher.City = null;
-                return _calcelClickCommand ??
-                    (_calcelClickCommand = new RelayCommand(() => Messenger.Default.Send<City>(null, "CallerCity"), () => true));
-            }
+            get { return _items ?? (_items = DataBaseManager.HotelViews); }
+            set { _items = value; RaisePropertyChanged("Items"); }
         }
+
+        protected override void OkWindow(Window window)
+        {
+            if (SelectedItem != null)
+                Messenger.Default.Send<HotelView>(SelectedItem, "SubscriberHotel");
+            CloseWindow(window);
+        }
+
     }
 }

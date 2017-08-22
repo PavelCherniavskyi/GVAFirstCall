@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using FirstEvent.Model;
 using GalaSoft.MvvmLight;
@@ -10,29 +11,30 @@ namespace FirstEvent.ViewModel.ListWindows
 {
     public abstract class BaseListViewModel<T> : ViewModelBase
     {
-        protected RelayCommand _okClickCommand;
-        protected RelayCommand _calcelClickCommand;
+        protected RelayCommand OkClickCommand;
+        protected RelayCommand CalcelClickCommand;
         protected ObservableCollection<T> _items;
+
+        protected BaseListViewModel()
+        {
+            CloseWindowCommand = new RelayCommand<Window>(CloseWindow);
+            OkWindowCommand = new RelayCommand<Window>(OkWindow);
+        }
 
         public abstract ObservableCollection<T> Items { get; set; }
 
         public T SelectedItem { set; get; }
 
-        public ICommand DoneClickCommand
+        public RelayCommand<Window> CloseWindowCommand { get; protected set; }
+
+        public RelayCommand<Window> OkWindowCommand { get; protected set; }
+
+        protected void CloseWindow(Window window)
         {
-            get
-            {
-                return _okClickCommand ?? (_okClickCommand = new RelayCommand(ExecuteDoneClickCommand, () => true));
-            }
+            window?.Close();
         }
 
-        public void OnLoad(byte str)
-        {
-            RaisePropertyChanged("Items");
-        }
+        protected abstract void OkWindow(Window window);
 
-        public abstract void ExecuteDoneClickCommand();
-
-        public abstract ICommand CancelClickCommand { get; }
     }
 }
