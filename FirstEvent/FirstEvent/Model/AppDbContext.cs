@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FirstEvent.Model
 {
-    public class DbHandler : DbContext
+    public class AppDbContext : DbContext
     {
-        public DbHandler():base("DefaultConnection")
+        public AppDbContext():base("DefaultConnection")
         {
         }
         public DbSet<Doctor> Doctors { get; set; }
@@ -27,5 +27,17 @@ namespace FirstEvent.Model
         public DbSet<Hotel> Hotels { get; set; }
 
         public DbSet<HotelView> HotelViews { get; set; }
+
+        public DbSet<Insurance> Insurances { set; get; }
+
+        public DbSet<Office> Offices { set; get; }
+
+        public  DbSet<InsuranceView> InsuranceViews { set; get; }
+
+        public DbSet<StatusOfCall> StatusOfCalls { set; get; }
+
+        public DbSet<TreatingDoctor> TreatingDocs { get; set; }
+
+        public DbSet<TreatingDoctorView> TreatDocViews { get; set; }
     }
 }

@@ -13,60 +13,52 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace FirstEvent.ViewModel.Sections
 {
-    public class Caller : ViewModelBase
+    public class TreatDoctor : ViewModelBase
     {
-        private RelToSub _relToSub;
+        private TreatingDoctorView _treatingDoctorView;
         private Country _country;
         private Region _region;
         private City _city;
 
-        private Brush _relationToSubscrColorTextBox;
+        private Brush _treatingDoctorColorTextBox;
         private Brush _countryColorTextBox;
         private Brush _regionColorTextBox;
         private Brush _cityColorTextBox;
 
-        private bool _isRelToSubscrReadOnly;
+        private bool _istreatingDoctorReadOnly;
         private bool _isCountryReadOnly;
         private bool _isRegionReadOnly;
         private bool _isCityReadOnly;
 
-        public Caller()
+        public TreatDoctor()
         {
-            Messenger.Default.Register(this, "CallerRelationToSubscr", new Action<RelToSub>(RelCallerMessage));
-            Messenger.Default.Register(this, "CallerCountry", new Action<Country>(CountryCallerMessage));
-            Messenger.Default.Register(this, "CallerRegion", new Action<Region>(RegionCallerMessage));
-            Messenger.Default.Register(this, "CallerCity", new Action<City>(CityCallerMessage));
+            Messenger.Default.Register(this, "TreatDoctorTreatingDoctorView", new Action<TreatingDoctorView>(TreatDoctorMessage));
+            Messenger.Default.Register(this, "TreatDoctorCountry", new Action<Country>(CountryCallerMessage));
+            Messenger.Default.Register(this, "TreatDoctorRegion", new Action<Region>(RegionCallerMessage));
+            Messenger.Default.Register(this, "TreatDoctorCity", new Action<City>(CityCallerMessage));
 
             _country = new Country();
             _region = new Region();
             _city = new City();
-            _relToSub = new RelToSub();
+            _treatingDoctorView = new TreatingDoctorView();
         }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string MiddleName { get; set; }
 
         public string LocationInfo { get; set; }
 
-        public string PlaceOfStay { get; set; }
+        public bool IsDoctor { get; set; }
 
-        public string Room { get; set; }
+        public bool IsFacility { get; set; }
 
-        public string CallerId { get; set; }
-
-        public bool IsRelToSubscrReadOnly
+        public bool IstreatingDoctorReadOnly
         {
-            get { return _isRelToSubscrReadOnly; }
+            get { return _istreatingDoctorReadOnly; }
             set
             {
-                _isRelToSubscrReadOnly = value;
-                RelationToSubscrColorTextBox = _isRelToSubscrReadOnly ?
+                _istreatingDoctorReadOnly = value;
+                TreatingDoctorColorTextBox = _istreatingDoctorReadOnly ?
                     new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
                     new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsRelToSubscrReadOnly");
+                RaisePropertyChanged("IstreatingDoctorReadOnly");
             }
         }
 
@@ -109,10 +101,10 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        public RelToSub RelToSub
+        public TreatingDoctorView TreatingDoctorView
         {
-            get { return _relToSub; }
-            set { _relToSub = value; RaisePropertyChanged("RelToSub"); }
+            get { return _treatingDoctorView; }
+            set { _treatingDoctorView = value; RaisePropertyChanged("TreatingDoctorView"); }
         }
 
         public Country Country
@@ -133,10 +125,10 @@ namespace FirstEvent.ViewModel.Sections
             set { _city = value; RaisePropertyChanged("City"); }
         }
 
-        public Brush RelationToSubscrColorTextBox
+        public Brush TreatingDoctorColorTextBox
         {
-            get { return _relationToSubscrColorTextBox; }
-            set { _relationToSubscrColorTextBox = value; RaisePropertyChanged("RelationToSubscrColorTextBox"); }
+            get { return _treatingDoctorColorTextBox; }
+            set { _treatingDoctorColorTextBox = value; RaisePropertyChanged("TreatingDoctorColorTextBox"); }
         }
 
         public Brush CountryColorTextBox
@@ -157,29 +149,29 @@ namespace FirstEvent.ViewModel.Sections
             set { _cityColorTextBox = value; RaisePropertyChanged("CityColorTextBox"); }
         }
 
-        public RelayCommand ShowRelationToSubscrListWindow { get; } = new RelayCommand(() => new RelationToSubscrList().ShowDialog(), () => true);
+        public RelayCommand ShowTreatDocListWindow { get; } = new RelayCommand(() => new TreatDocListWindow().ShowDialog(), () => true);
 
         public RelayCommand ShowCountryListWindow { get; } = new RelayCommand(() => {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             new CountryList().ShowDialog();
         }, () => true);
 
         public RelayCommand ShowRegionListWindow { get; } = new RelayCommand(() => {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             new RegionList().ShowDialog();
         }, () => true);
 
         public RelayCommand ShowCityListWindow { get; } = new RelayCommand(() =>
         {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             new CityList().ShowDialog();
         }, () => true);
 
-        public ICommand RelEnterKeyCommand
+        public ICommand DocEnterKeyCommand
         {
             get
             {
-                return new RelayCommand(RelEnterKeyCommandExecute, () => true);
+                return new RelayCommand(DocEnterKeyCommandExecute, () => true);
             }
         }
 
@@ -207,11 +199,11 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        public ICommand CancelRelationToSubscrListWindow
+        public ICommand CancelDocTreatListWindow
         {
             get
             {
-                return new RelayCommand(ClearRelToSubFeildExecute, () => true);
+                return new RelayCommand(ClearDocTreatFeildExecute, () => true);
             }
         }
 
@@ -239,10 +231,10 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        private void ClearRelToSubFeildExecute()
+        private void ClearDocTreatFeildExecute()
         {
-            RelToSub = new RelToSub();
-            IsRelToSubscrReadOnly = false;
+            TreatingDoctorView = new TreatingDoctorView();
+            IstreatingDoctorReadOnly = false;
         }
 
         private void ClearCountryFeildExecute()
@@ -253,7 +245,7 @@ namespace FirstEvent.ViewModel.Sections
             IsCountryReadOnly = false;
             IsRegionReadOnly = false;
             IsCityReadOnly = false;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.Country = null;
             CallerGeographySwitcher.Region = null;
             CallerGeographySwitcher.City = null;
@@ -265,7 +257,7 @@ namespace FirstEvent.ViewModel.Sections
             City = new City();
             IsRegionReadOnly = false;
             IsCityReadOnly = false;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.Region = null;
             CallerGeographySwitcher.City = null;
         }
@@ -274,13 +266,13 @@ namespace FirstEvent.ViewModel.Sections
         {
             City = new City();
             IsCityReadOnly = false;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.City = null;
         }
 
         private void CountryEnterKeyCommandExecute()
         {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             int tempId;
             var isNumber = int.TryParse(Country.Name, out tempId);
             var strToSearch = Country.Name.ToUpper();
@@ -297,7 +289,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (!c.Name.ToUpper().Contains(strToSearch))
                         continue;
                 }
-                
+
                 Country = c;
                 CallerGeographySwitcher.Country = c;
                 IsCountryReadOnly = true;
@@ -308,7 +300,7 @@ namespace FirstEvent.ViewModel.Sections
 
         private void RegionEnterKeyCommandExecute()
         {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             int tempId;
             var isNumber = int.TryParse(Region.Name, out tempId);
             var strToSearch = Region.Name.ToUpper();
@@ -338,7 +330,7 @@ namespace FirstEvent.ViewModel.Sections
 
         private void CityEnterKeyCommandExecute()
         {
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
 
             int tempId;
             var isNumber = int.TryParse(City.Name, out tempId);
@@ -371,16 +363,15 @@ namespace FirstEvent.ViewModel.Sections
                 IsRegionReadOnly = true;
                 break;
             }
-
         }
 
-        private void RelEnterKeyCommandExecute()
+        private void DocEnterKeyCommandExecute()
         {
             int tempId;
-            var isNumber = int.TryParse(RelToSub.Name, out tempId);
-            var strToSrch = RelToSub.Name.ToUpper();
+            var isNumber = int.TryParse(TreatingDoctorView.Name, out tempId);
+            var strToSrch = TreatingDoctorView.Name.ToUpper();
 
-            foreach (var d in DataBaseManager.AllRelToSubs)
+            foreach (var d in DataBaseManager.TreatDocViews)
             {
                 if (isNumber)
                 {
@@ -392,18 +383,18 @@ namespace FirstEvent.ViewModel.Sections
                     if (!d.Name.ToUpper().Contains(strToSrch))
                         continue;
                 }
-                RelToSub = d;
-                IsRelToSubscrReadOnly = true;
+                TreatingDoctorView = d;
+                IstreatingDoctorReadOnly = true;
                 break;
             }
         }
 
-        private void RelCallerMessage(RelToSub rel)
+        private void TreatDoctorMessage(TreatingDoctorView doc)
         {
-            if (rel == null)
+            if (doc == null)
                 return;
-            RelToSub = rel;
-            IsRelToSubscrReadOnly = true;
+            TreatingDoctorView = doc;
+            IstreatingDoctorReadOnly = true;
         }
 
         private void CountryCallerMessage(Country c)
@@ -419,7 +410,7 @@ namespace FirstEvent.ViewModel.Sections
             if (r == null)
                 return;
             Region = r;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.Region = r;
             Country = DataBaseManager.GetCountryByRegion(r);
             CallerGeographySwitcher.Country = Country;
@@ -438,7 +429,7 @@ namespace FirstEvent.ViewModel.Sections
             City = c;
             Region = region;
             Country = country;
-            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Caller;
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.City = c;
             CallerGeographySwitcher.Country = Country;
             CallerGeographySwitcher.Region = Region;

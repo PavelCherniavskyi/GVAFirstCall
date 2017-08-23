@@ -14,7 +14,6 @@ namespace FirstEvent.ViewModel.Sections
 {
     public class GeneralInfo : ViewModelBase
     {
-        private RelayCommand _showDocListWindowCommand;
         private RelayCommand _cancelDocTextFieldCommand;
         private RelayCommand _enterKeyCommand;
         private DateTime _docDateTime;

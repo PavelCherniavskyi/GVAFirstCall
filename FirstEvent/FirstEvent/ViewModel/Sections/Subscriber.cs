@@ -13,7 +13,7 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace FirstEvent.ViewModel.Sections
 {
-    class Subscriber : ViewModelBase
+    public class Subscriber : ViewModelBase
     {
         private HotelView _hotel;
         private Country _country;
@@ -47,6 +47,8 @@ namespace FirstEvent.ViewModel.Sections
             _departureColor = new SolidColorBrush(Color.FromArgb(255, 22, 32, 133));
         }
 
+        public string HomeAdress { set; get; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -59,7 +61,7 @@ namespace FirstEvent.ViewModel.Sections
 
         public string Age { get; set; }
 
-        public DateTime DoB { get; set; }
+        public DateTime DoB { get; set; } = DateTime.Now;
 
         public DateTime Arrival
         {
@@ -330,123 +332,96 @@ namespace FirstEvent.ViewModel.Sections
 
         private void CountryEnterKeyCommandExecute()
         {
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             int tempId;
-            if (int.TryParse(Country.Name, out tempId))
+            var isNumber = int.TryParse(Country.Name, out tempId);
+            var strToSearch = Country.Name.ToUpper();
+
+            foreach (var c in DataBaseManager.AllCountries)
             {
-                foreach (var c in DataBaseManager.AllCountries)
+                if (isNumber)
                 {
                     if (tempId != c.Id)
                         continue;
-                    Country = c;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
-                    CallerGeographySwitcher.Country = c;
-                    IsCountryReadOnly = true;
-                    break;
                 }
-            }
-            else
-            {
-                var strToSrch = Country.Name.ToUpper();
-
-                foreach (var d in DataBaseManager.AllCountries)
+                else
                 {
-                    if (!d.Name.ToUpper().Contains(strToSrch))
+                    if (!c.Name.ToUpper().Contains(strToSearch))
                         continue;
-                    Country = d;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
-                    CallerGeographySwitcher.Country = d;
-                    IsCountryReadOnly = true;
                 }
+
+                Country = c;
+                CallerGeographySwitcher.Country = c;
+                IsCountryReadOnly = true;
+                break;
             }
 
         }
 
         private void RegionEnterKeyCommandExecute()
         {
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
             int tempId;
-            if (int.TryParse(Region.Name, out tempId))
+            var isNumber = int.TryParse(Region.Name, out tempId);
+            var strToSearch = Region.Name.ToUpper();
+
+            foreach (var r in CallerGeographySwitcher.Regions)
             {
-                foreach (var r in DataBaseManager.AllRegions)
+                if (isNumber)
                 {
                     if (tempId != r.Id)
                         continue;
-                    Region = r;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
-                    CallerGeographySwitcher.Region = r;
-                    Country = DataBaseManager.GetCountryByRegion(r);
-                    CallerGeographySwitcher.Country = Country;
-                    IsRegionReadOnly = true;
-                    IsCountryReadOnly = true;
-                    break;
                 }
-            }
-            else
-            {
-                var strToSrch = Region.Name.ToUpper();
-
-                foreach (var r in DataBaseManager.AllRegions)
+                else
                 {
-                    if (!r.Name.ToUpper().Contains(strToSrch))
+                    if (!r.Name.ToUpper().Contains(strToSearch))
                         continue;
-                    Region = r;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
-                    CallerGeographySwitcher.Region = r;
-                    Country = DataBaseManager.GetCountryByRegion(r);
-                    CallerGeographySwitcher.Country = Country;
-                    IsRegionReadOnly = true;
-                    IsCountryReadOnly = true;
                 }
-            }
 
+                Region = r;
+                CallerGeographySwitcher.Region = r;
+                Country = DataBaseManager.GetCountryByRegion(r);
+                CallerGeographySwitcher.Country = Country;
+                IsRegionReadOnly = true;
+                IsCountryReadOnly = true;
+                break;
+            }
         }
 
         private void CityEnterKeyCommandExecute()
         {
+            CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
+
             int tempId;
-            if (int.TryParse(City.Name, out tempId))
+            var isNumber = int.TryParse(City.Name, out tempId);
+            var strToSearch = City.Name.ToUpper();
+
+            foreach (var c in CallerGeographySwitcher.Cities)
             {
-                foreach (var c in DataBaseManager.AllCities)
+                if (isNumber)
                 {
                     if (tempId != c.Id)
                         continue;
-                    Country country;
-                    Region region;
-                    DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
-                    City = c;
-                    Region = region;
-                    Country = country;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
-                    CallerGeographySwitcher.City = c;
-                    CallerGeographySwitcher.Country = Country;
-                    CallerGeographySwitcher.Region = Region;
-                    IsCityReadOnly = true;
-                    IsCountryReadOnly = true;
-                    IsRegionReadOnly = true;
-                    break;
                 }
-            }
-            else
-            {
-                var strToSrch = City.Name.ToUpper();
-
-                foreach (var c in DataBaseManager.AllCities)
+                else
                 {
-                    if (!c.Name.ToUpper().Contains(strToSrch))
+                    if (!c.Name.ToUpper().Contains(strToSearch))
                         continue;
-                    Country country;
-                    Region region;
-                    DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
-                    City = c;
-                    Region = region;
-                    Country = country;
-                    CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Subcriber;
-                    CallerGeographySwitcher.City = c;
-                    CallerGeographySwitcher.Country = Country;
-                    CallerGeographySwitcher.Region = Region;
-                    IsCityReadOnly = true;
-                    IsCountryReadOnly = true;
-                    IsRegionReadOnly = true;
                 }
+
+                Country country;
+                Region region;
+                DataBaseManager.GetCountryAndRegionByCity(c, out region, out country);
+                City = c;
+                Region = region;
+                Country = country;
+                CallerGeographySwitcher.City = c;
+                CallerGeographySwitcher.Country = Country;
+                CallerGeographySwitcher.Region = Region;
+                IsCityReadOnly = true;
+                IsCountryReadOnly = true;
+                IsRegionReadOnly = true;
+                break;
             }
 
         }
@@ -454,28 +429,24 @@ namespace FirstEvent.ViewModel.Sections
         private void HotelEnterKeyCommandExecute()
         {
             int tempId;
-            if (int.TryParse(Hotel.Name, out tempId))
+            var isNumber = int.TryParse(Hotel.Name, out tempId);
+            var strToSearch = Hotel.Name.ToUpper();
+
+            foreach (var d in DataBaseManager.HotelViews)
             {
-                foreach (var d in DataBaseManager.HotelViews)
+                if (isNumber)
                 {
                     if (tempId != d.Id)
                         continue;
-                    Hotel = d;
-                    IsHotelReadOnly = true;
-                    break;
                 }
-            }
-            else
-            {
-                var strToSrch = Hotel.Name.ToUpper();
-
-                foreach (var d in DataBaseManager.HotelViews)
+                else
                 {
-                    if (!d.Name.ToUpper().Contains(strToSrch))
+                    if (!d.Name.ToUpper().Contains(strToSearch))
                         continue;
-                    Hotel = d;
-                    IsHotelReadOnly = true;
                 }
+                Hotel = d;
+                IsHotelReadOnly = true;
+                break;
             }
         }
 

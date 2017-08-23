@@ -14,7 +14,7 @@ namespace FirstEvent.Model
 {
     public static class DataBaseManager
     {
-        private static readonly DbHandler Db;
+        private static readonly AppDbContext AppDb;
 
         public static ObservableCollection<Doctor> AllDoctors { get; private set; }
 
@@ -32,28 +32,52 @@ namespace FirstEvent.Model
 
         public static ObservableCollection<HotelView> HotelViews { get; private set; }
 
+        public static ObservableCollection<Insurance> AllInsurances { get; private set; }
+
+        public static ObservableCollection<InsuranceView> InsuranceViews { get; private set; }
+
+        public static ObservableCollection<Office> AllOffices { get; private set; }
+
+        public static ObservableCollection<StatusOfCall> StatusOfCalls { get; private set; }
+
+        public static ObservableCollection<TreatingDoctor> TreatingDocs { get; private set; }
+
+        public static ObservableCollection<TreatingDoctorView> TreatDocViews { get; private set; }
+
         static DataBaseManager()
         {
             try
             {
-                Db = new DbHandler();
-                Db.Doctors.Load();
-                Db.Cities.Load();
-                Db.Regions.Load();
-                Db.Countries.Load();
-                Db.RelToSubs.Load();
-                Db.DocViews.Load();
-                Db.Hotels.Load();
-                Db.HotelViews.Load();
+                AppDb = new AppDbContext();
+                AppDb.Doctors.Load();
+                AppDb.Cities.Load();
+                AppDb.Regions.Load();
+                AppDb.Countries.Load();
+                AppDb.RelToSubs.Load();
+                AppDb.DocViews.Load();
+                AppDb.Hotels.Load();
+                AppDb.HotelViews.Load();
+                AppDb.Insurances.Load();
+                AppDb.InsuranceViews.Load();
+                AppDb.Offices.Load();
+                AppDb.StatusOfCalls.Load();
+                AppDb.TreatingDocs.Load();
+                AppDb.TreatDocViews.Load();
 
-                AllDoctors = Db.Doctors.Local;
-                AllCountries = Db.Countries.Local;
-                AllRegions = Db.Regions.Local;
-                AllCities = Db.Cities.Local;
-                AllRelToSubs = Db.RelToSubs.Local;
-                DocViews = Db.DocViews.Local;
-                AllHotels = Db.Hotels.Local;
-                HotelViews = Db.HotelViews.Local;
+                AllDoctors = AppDb.Doctors.Local;
+                AllCountries = AppDb.Countries.Local;
+                AllRegions = AppDb.Regions.Local;
+                AllCities = AppDb.Cities.Local;
+                AllRelToSubs = AppDb.RelToSubs.Local;
+                DocViews = AppDb.DocViews.Local;
+                AllHotels = AppDb.Hotels.Local;
+                HotelViews = AppDb.HotelViews.Local;
+                AllInsurances = AppDb.Insurances.Local;
+                InsuranceViews = AppDb.InsuranceViews.Local;
+                AllOffices = AppDb.Offices.Local;
+                StatusOfCalls = AppDb.StatusOfCalls.Local;
+                TreatingDocs = AppDb.TreatingDocs.Local;
+                TreatDocViews = AppDb.TreatDocViews.Local;
             }
             catch (Exception e)
             {
@@ -68,6 +92,16 @@ namespace FirstEvent.Model
                 where r.CountryId == c.Id
                 select c;
             return query.First();
+        }
+
+        public static ObservableCollection<InsuranceView> GetInsurancesByOffice(Office o)
+        {
+            var query = from i in AllInsurances
+                join f in AllOffices on i.OfficeId equals f.Id
+                where i.OfficeId == o.Id
+                select new InsuranceView() {Id = i.Id, Name = i.Name, Office = f.Name};
+
+            return new ObservableCollection<InsuranceView>(query.ToList());
         }
 
         public static void GetCountryAndRegionByCity(City city, out Region region, out Country country)
@@ -113,15 +147,15 @@ namespace FirstEvent.Model
         public static void AddDoctor(Doctor d)
         {
             AllDoctors.Add(d);
-            Db.Doctors.Add(d);
-            Db.SaveChanges();
+            AppDb.Doctors.Add(d);
+            AppDb.SaveChanges();
         }
 
         public static void AddCountry(Country c)
         {
             AllCountries.Add(c);
-            Db.Countries.Add(c);
-            Db.SaveChanges();
+            AppDb.Countries.Add(c);
+            AppDb.SaveChanges();
         }
 
         public static void SetRegions(ObservableCollection<Region> regions)
@@ -132,15 +166,15 @@ namespace FirstEvent.Model
         public static void AddRegion(Region r)
         {
             AllRegions.Add(r);
-            Db.Regions.Add(r);
-            Db.SaveChanges();
+            AppDb.Regions.Add(r);
+            AppDb.SaveChanges();
         }
 
         public static void AddCity(City c)
         {
             AllCities.Add(c);
-            Db.Cities.Add(c);
-            Db.SaveChanges();
+            AppDb.Cities.Add(c);
+            AppDb.SaveChanges();
         }
     }
 }

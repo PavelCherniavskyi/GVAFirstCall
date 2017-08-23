@@ -73,7 +73,7 @@ namespace FirstEvent.ViewModel.ListWindows
                         Messenger.Default.Send<Country>(SelectedItem, "SubscriberCountry");
                         break;
                     case GeographyWhoIsRunning.Doctor:
-                        Messenger.Default.Send<Country>(SelectedItem, "DoctorCountry");
+                        Messenger.Default.Send<Country>(SelectedItem, "TreatDoctorCountry");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -111,7 +111,7 @@ namespace FirstEvent.ViewModel.ListWindows
                         Messenger.Default.Send<Region>(SelectedItem, "SubscriberRegion");
                         break;
                     case GeographyWhoIsRunning.Doctor:
-                        Messenger.Default.Send<Region>(SelectedItem, "DoctorRegion");
+                        Messenger.Default.Send<Region>(SelectedItem, "TreatDoctorRegion");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -149,7 +149,7 @@ namespace FirstEvent.ViewModel.ListWindows
                         Messenger.Default.Send<City>(SelectedItem, "SubscriberCity");
                         break;
                     case GeographyWhoIsRunning.Doctor:
-                        Messenger.Default.Send<City>(SelectedItem, "DoctorCity");
+                        Messenger.Default.Send<City>(SelectedItem, "TreatDoctorCity");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -176,5 +176,57 @@ namespace FirstEvent.ViewModel.ListWindows
             CloseWindow(window);
         }
 
+    }
+
+    public class InsurancelListViewModel : BaseListViewModel<InsuranceView>
+    {
+        private ObservableCollection<Office> _offices;
+        private Office _office;
+        public override ObservableCollection<InsuranceView> Items
+        {
+            get { return _items ?? (_items = DataBaseManager.InsuranceViews); }
+            set { _items = value; RaisePropertyChanged("Items"); }
+        }
+
+        public Office OfficeSelected
+        {
+            get { return _office ?? (_office = new Office()); }
+            set
+            {
+                Items = DataBaseManager.GetInsurancesByOffice(value);
+                _office = value;
+                RaisePropertyChanged("OfficeSelected");
+            }
+        }
+
+        public ObservableCollection<Office> Offices
+        {
+            get { return _offices ?? (_offices = DataBaseManager.AllOffices); }
+            set { _offices = value; RaisePropertyChanged("Offices"); }
+        }
+
+        protected override void OkWindow(Window window)
+        {
+            if (SelectedItem != null)
+                Messenger.Default.Send<InsuranceView>(SelectedItem, "MembershipInsurance");
+            CloseWindow(window);
+        }
+
+    }
+
+    public class TreatDocListViewModel : BaseListViewModel<TreatingDoctorView>
+    {
+        public override ObservableCollection<TreatingDoctorView> Items
+        {
+            get { return _items ?? (_items = DataBaseManager.TreatDocViews); }
+            set { _items = value; RaisePropertyChanged("Items"); }
+        }
+
+        protected override void OkWindow(Window window)
+        {
+            if (SelectedItem != null)
+                Messenger.Default.Send<TreatingDoctorView>(SelectedItem, "TreatDoctorTreatingDoctorView");
+            CloseWindow(window);
+        }
     }
 }

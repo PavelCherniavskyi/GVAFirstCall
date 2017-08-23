@@ -130,17 +130,24 @@
     </ApplicationDefinition>
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\DataBaseManager.cs" />
-    <Compile Include="Model\DBHandler.cs" />
+    <Compile Include="Model\AppDbContext.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\GeographySwitcher.cs" />
     <Compile Include="Model\Georgaphy.cs" />
     <Compile Include="Model\Hotel.cs" />
+    <Compile Include="Model\Insurance.cs" />
+    <Compile Include="Model\Office.cs" />
     <Compile Include="Model\RelToSub.cs" />
+    <Compile Include="Model\StatusOfCall.cs" />
+    <Compile Include="Model\TreatingDoctor.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Sections\Caller.cs" />
+    <Compile Include="ViewModel\Sections\CallInfo.cs" />
+    <Compile Include="ViewModel\Sections\Membership.cs" />
     <Compile Include="ViewModel\Sections\Subscriber.cs" />
+    <Compile Include="ViewModel\Sections\TreatDoctor.cs" />
     <Compile Include="View\CityList.xaml.cs">
       <DependentUpon>CityList.xaml</DependentUpon>
     </Compile>
@@ -153,6 +160,9 @@
     <Compile Include="View\HotelList.xaml.cs">
       <DependentUpon>HotelList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Insurance Companies.xaml.cs">
+      <DependentUpon>Insurance Companies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MarginSetter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -162,6 +172,9 @@
     </Compile>
     <Compile Include="View\RelationToSubscrList.xaml.cs">
       <DependentUpon>RelationToSubscrList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TreatDocListWindow.xaml.cs">
+      <DependentUpon>TreatDocListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
@@ -182,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Insurance Companies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -199,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RelationToSubscrList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TreatDocListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

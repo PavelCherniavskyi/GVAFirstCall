@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.Windows.Input;
 using FirstEvent.Model;
+using FirstEvent.ViewModel.Sections;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -12,6 +13,28 @@ namespace FirstEvent.ViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly DataGridView _dataGridView = new DataGridView();
+
+        public Caller Caller { get; set; }
+
+        public GeneralInfo GeneralInfo { get; set; }
+
+        public  Membership Membership { get; set; }
+
+        public Subscriber Subscriber { get; set; }
+
+        public CallInfo CallInfo { get; set; }
+
+        public TreatDoctor TreatDoctor { get; set; }
+
+        public MainWindowViewModel()
+        {
+            Caller = new Caller();
+            GeneralInfo = new GeneralInfo();
+            Membership = new Membership();
+            Subscriber = new Subscriber();
+            CallInfo = new CallInfo();
+            TreatDoctor = new TreatDoctor();
+        }
 
         private void ContactsAddBtn_OnClick(object sender, RoutedEventArgs e)
         {
