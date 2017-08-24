@@ -44,6 +44,8 @@ namespace FirstEvent.Model
 
         public static ObservableCollection<TreatingDoctorView> TreatDocViews { get; private set; }
 
+        public static ObservableCollection<TypeOfContact> TypeOfContacts { get; private set; }
+
         static DataBaseManager()
         {
             try
@@ -63,6 +65,7 @@ namespace FirstEvent.Model
                 AppDb.StatusOfCalls.Load();
                 AppDb.TreatingDocs.Load();
                 AppDb.TreatDocViews.Load();
+                AppDb.TypeOfContacts.Load();
 
                 AllDoctors = AppDb.Doctors.Local;
                 AllCountries = AppDb.Countries.Local;
@@ -78,6 +81,7 @@ namespace FirstEvent.Model
                 StatusOfCalls = AppDb.StatusOfCalls.Local;
                 TreatingDocs = AppDb.TreatingDocs.Local;
                 TreatDocViews = AppDb.TreatDocViews.Local;
+                TypeOfContacts = AppDb.TypeOfContacts.Local;
             }
             catch (Exception e)
             {

@@ -21,7 +21,7 @@ namespace FirstEvent.ViewModel.Sections
         private bool _isDutyDocReadOnly;
         private Doctor _dutyDoctor;
         private Brush _dutyDocColorTextBox;
-        private string _dutyOPS;
+        private string _dutyOps;
 
 
         public GeneralInfo()
@@ -29,17 +29,17 @@ namespace FirstEvent.ViewModel.Sections
             Messenger.Default.Register(this, "GeneralInfoDoctor", new Action<DocView>(DoctorFieldMessage));
             EventDateTime = DocDateTime = DateTime.Now;
             _dutyDoctor = new Doctor();
-            DutyOPS = "Pavel Cherniavskyi";
+            DutyOps = "Pavel Cherniavskyi";
             DocInSearchList = new ObservableCollection<Doctor>();
         }
 
         public ObservableCollection<Doctor> DocInSearchList { get; set; }
 
 
-        public string DutyOPS
+        public string DutyOps
         {
-            set { _dutyOPS = value; RaisePropertyChanged("DutyOPS"); }
-            get { return _dutyOPS; }
+            set { _dutyOps = value; RaisePropertyChanged("DutyOps"); }
+            get { return _dutyOps; }
         }
 
         public bool IsDutyDocReadOnly

@@ -41,7 +41,7 @@
                     </DockPanel>
                     <DockPanel VerticalAlignment="Center" LastChildFill="False">
                         <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                        <TextBox Text="{Binding GeneralInfo.DutyOPS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" DockPanel.Dock="Right" Width="150" IsReadOnly="True" Background="#FFF0F0F0" />
+                        <TextBox Text="{Binding GeneralInfo.DutyOps, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" DockPanel.Dock="Right" Width="150" IsReadOnly="True" Background="#FFF0F0F0" />
                     </DockPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
@@ -456,18 +456,18 @@
             </Expander.Header>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" view:MarginSetter.Margin="3" Margin="10,0">
-                    <Button Name="ContactsAddBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" >
-                        <Image Source="add1.ico"/>
+                    <Button Name="ContactsAddBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.AddButtonCommand}">
+                        <Image Source="Images/add1.ico"/>
                     </Button>
-                    <Button Name="ContactsCopyBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" >
-                        <Image Source="copy.ico"/>
+                    <Button Name="ContactsCopyBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.CopyButtonCommand}">
+                        <Image Source="Images/copy.ico"/>
                     </Button>
-                    <Button Name="ContactsDeleteBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" >
-                        <Image Source="delete.ico"/>
+                    <Button Name="ContactsDeleteBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.DeleteButtonCommand}">
+                        <Image Source="Images/delete.ico"/>
                     </Button>
                 </StackPanel>
-                <DataGrid Name="DataGridContacts" Margin="10,0" CanUserResizeRows="False" 
-                          ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFF0F0F0" VerticalGridLinesBrush="#FFF0F0F0" 
+                <DataGrid Margin="10,0" CanUserResizeRows="False" SelectedIndex="{Binding ContactSection.SelectedIndex}"
+                          ItemsSource="{Binding ContactSection.ContactViewInForm, Mode=TwoWay}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFF0F0F0" VerticalGridLinesBrush="#FFF0F0F0" 
                           CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" RowHeaderWidth="0" CanUserAddRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridCell}">
@@ -478,21 +478,40 @@
                             </Style.Triggers>
                         </Style>
                     </DataGrid.Resources>
-                    <!--<DataGrid.DataContext>
-                        mai
-                    </DataGrid.DataContext>-->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Id }" Header="№" Width="23"/>
-                        <DataGridTextColumn Binding="{Binding Path=RelationToSubscr}" Header="Name to Subscriber" Width="130"/>
+                        <DataGridTextColumn Binding="{Binding  Path=Id}" Header="№" Width="23"/>
+                        <DataGridComboBoxColumn Header="Relation to Subscriber" Width="130"
+                                                SelectedItemBinding="{Binding SelectedRelToSub, UpdateSourceTrigger=PropertyChanged}"
+                                                DisplayMemberPath="Name">
+                            <DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.RelToSubs, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.RelToSubs, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+
+                        </DataGridComboBoxColumn>
                         <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" Width="150"/>
-                        <DataGridTemplateColumn  x:Name="ContactsTypeOfContact" Header="Type of contact" Width="120">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding TypeOfContact}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding Path=ContactNumber}" Header="Contact" Width="100"/>
+                        <DataGridComboBoxColumn Header="Type of contact" Width="120"
+                                                SelectedItemBinding="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged}"
+                                                DisplayMemberPath="Name">
+                            <DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.TypeOfContacts, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.TypeOfContacts, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+
+                        </DataGridComboBoxColumn>
+                        <DataGridTextColumn Binding="{Binding Path=ContactNum}" Header="Contact" Width="100"/>
                         <DataGridTextColumn Binding="{Binding Path=Info}" Header="Info" Width="225"/>
                     </DataGrid.Columns>
                     
@@ -500,6 +519,11 @@
                 </DataGrid>
             </StackPanel>
         </Expander>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+            <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}"/>
+            <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" />
+            <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="Close" Command="{Binding CancelButtonCommand}"/>
+        </StackPanel>
         
     </StackPanel>
         

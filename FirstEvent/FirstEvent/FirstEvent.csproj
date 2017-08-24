@@ -132,6 +132,7 @@
     <Compile Include="Model\DataBaseManager.cs" />
     <Compile Include="Model\AppDbContext.cs" />
     <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\FirstCall.cs" />
     <Compile Include="Model\GeographySwitcher.cs" />
     <Compile Include="Model\Georgaphy.cs" />
     <Compile Include="Model\Hotel.cs" />
@@ -140,11 +141,13 @@
     <Compile Include="Model\RelToSub.cs" />
     <Compile Include="Model\StatusOfCall.cs" />
     <Compile Include="Model\TreatingDoctor.cs" />
+    <Compile Include="Model\TypeOfContact.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Sections\Caller.cs" />
     <Compile Include="ViewModel\Sections\CallInfo.cs" />
+    <Compile Include="ViewModel\Sections\ContactSection.cs" />
     <Compile Include="ViewModel\Sections\Membership.cs" />
     <Compile Include="ViewModel\Sections\Subscriber.cs" />
     <Compile Include="ViewModel\Sections\TreatDoctor.cs" />
@@ -260,9 +263,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\add1.ico" />
-    <Resource Include="View\copy.ico" />
-    <Resource Include="View\delete.ico" />
+    <Resource Include="View\Images\add1.ico" />
+    <Resource Include="View\Images\copy.ico" />
+    <Resource Include="View\Images\delete.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
