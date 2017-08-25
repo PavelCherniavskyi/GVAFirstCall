@@ -76,17 +76,6 @@ namespace FirstEvent.ViewModel.Sections
             }
         }
 
-        public Brush DepartureColor
-        {
-            get { return _departureColor; }
-            set
-            {
-                _departureColor = value;
-                RaisePropertyChanged("DepartureColor");
-            }
-            
-        }
-
         public DateTime Departure
         {
             get { return _departure; }
@@ -97,6 +86,17 @@ namespace FirstEvent.ViewModel.Sections
                 Duration = a.Days + " Days.";
                 _departure = value;
             }
+        }
+
+        public Brush DepartureColor
+        {
+            get { return _departureColor; }
+            set
+            {
+                _departureColor = value;
+                RaisePropertyChanged("DepartureColor");
+            }
+
         }
 
         public string Duration

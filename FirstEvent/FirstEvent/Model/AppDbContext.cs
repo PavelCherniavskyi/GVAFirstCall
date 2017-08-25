@@ -41,5 +41,10 @@ namespace FirstEvent.Model
         public DbSet<TreatingDoctorView> TreatDocViews { get; set; }
 
         public DbSet<TypeOfContact> TypeOfContacts { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<FirstCall> FirstCalls { get; set; }
+
     }
 }

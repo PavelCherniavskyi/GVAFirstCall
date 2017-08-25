@@ -8,9 +8,9 @@ namespace FirstEvent.Model
 
         public string FullName { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
     }
 
     public class DocView

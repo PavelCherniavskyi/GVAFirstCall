@@ -12,9 +12,9 @@ namespace FirstEvent.Model
 
         public string Name { set; get; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
     }
 
     public class HotelView

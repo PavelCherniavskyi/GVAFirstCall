@@ -142,6 +142,7 @@
     <Compile Include="Model\StatusOfCall.cs" />
     <Compile Include="Model\TreatingDoctor.cs" />
     <Compile Include="Model\TypeOfContact.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

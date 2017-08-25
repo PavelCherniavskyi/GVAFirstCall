@@ -68,11 +68,11 @@ namespace FirstEvent.ViewModel.Sections
                 return;
             if (SelectedIndex == ContactViewInForm.Count - 1)
             {
-                ContactViewInForm.Add(ContactViewInForm[SelectedIndex]);
+                ContactViewInForm.Add((ContactViewInForm)ContactViewInForm[SelectedIndex].Clone());
             }
             else
             {
-                ContactViewInForm.Insert(SelectedIndex + 1, ContactViewInForm[SelectedIndex]);
+                ContactViewInForm.Insert(SelectedIndex + 1, (ContactViewInForm)ContactViewInForm[SelectedIndex].Clone());
             }
             
         }

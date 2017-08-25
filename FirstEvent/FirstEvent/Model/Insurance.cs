@@ -12,7 +12,7 @@ namespace FirstEvent.Model
 
         public string Name { set; get; }
 
-        public int OfficeId { set; get; }
+        public int? OfficeId { set; get; }
     }
 
     public class InsuranceView

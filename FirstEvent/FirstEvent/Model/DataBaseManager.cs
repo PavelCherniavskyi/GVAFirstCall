@@ -46,6 +46,10 @@ namespace FirstEvent.Model
 
         public static ObservableCollection<TypeOfContact> TypeOfContacts { get; private set; }
 
+        public static ObservableCollection<Contact> Contacts { get; private set; }
+
+        public static ObservableCollection<FirstCall> FirstCalls { get; private set; }
+
         static DataBaseManager()
         {
             try
@@ -66,6 +70,8 @@ namespace FirstEvent.Model
                 AppDb.TreatingDocs.Load();
                 AppDb.TreatDocViews.Load();
                 AppDb.TypeOfContacts.Load();
+                AppDb.Contacts.Load();
+                AppDb.FirstCalls.Load();
 
                 AllDoctors = AppDb.Doctors.Local;
                 AllCountries = AppDb.Countries.Local;
@@ -82,12 +88,38 @@ namespace FirstEvent.Model
                 TreatingDocs = AppDb.TreatingDocs.Local;
                 TreatDocViews = AppDb.TreatDocViews.Local;
                 TypeOfContacts = AppDb.TypeOfContacts.Local;
+                Contacts = AppDb.Contacts.Local;
+                FirstCalls = AppDb.FirstCalls.Local;
+                //MessageBox.Show(Tests.Count.ToString());
             }
             catch (Exception e)
             {
                 MessageBox.Show("Problems with DB \nMessage: " + e.Message + '\n' + "Inner message: " + e.InnerException);
             }
 
+        }
+
+        public static void AddFirstCall(FirstCall f)
+        {
+            AppDb.FirstCalls.Add(f);
+            AppDb.SaveChanges();
+        }
+
+        public static FirstCall SearchfFirstCall(FirstCall firstCall)
+        {
+            AppDb.FirstCalls.Load();
+            FirstCalls = AppDb.FirstCalls.Local;
+
+            var query = from f in FirstCalls
+                        where f.DocDateTime == firstCall.DocDateTime
+                        select f;
+            return query.First();
+        }
+
+        public static void AddContacts(IEnumerable<Contact> c)
+        {
+            AppDb.Contacts.AddRange(c);
+            AppDb.SaveChanges();
         }
 
         public static Country GetCountryByRegion(Region r)

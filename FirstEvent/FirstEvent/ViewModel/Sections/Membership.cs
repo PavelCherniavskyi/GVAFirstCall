@@ -92,7 +92,7 @@ namespace FirstEvent.ViewModel.Sections
 
         public InsuranceView Insurance
         {
-            get { return _insurance; }
+            get { return _insurance ?? (_insurance = new InsuranceView()); }
             set { _insurance = value; RaisePropertyChanged("Insurance"); }
         }
 

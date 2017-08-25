@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.Windows.Input;
@@ -48,7 +51,8 @@ namespace FirstEvent.ViewModel
 
         private void OkButtonCommandExecute()
         {
-            
+            SaveButtonCommandExecute();
+            Application.Current.Shutdown();
         }
 
         public ICommand CancelButtonCommand
@@ -61,7 +65,7 @@ namespace FirstEvent.ViewModel
 
         private void CancelButtonCommandExecute()
         {
-            
+            Application.Current.Shutdown();
         }
 
         public ICommand SaveButtonCommand
@@ -74,7 +78,82 @@ namespace FirstEvent.ViewModel
 
         private void SaveButtonCommandExecute()
         {
+            var firstCall = new FirstCall();
 
+            firstCall.DutyOperator = GeneralInfo.DutyOps;
+            firstCall.DutyDoctorId = GeneralInfo.DutyDoctor.Id;
+            firstCall.DocDateTime = GeneralInfo.DocDateTime.ToString(CultureInfo.CurrentCulture);
+            firstCall.EventDateTime = GeneralInfo.EventDateTime.ToString(CultureInfo.CurrentCulture);
+
+            firstCall.CalFirstName = Caller.FirstName;
+            firstCall.CalLastName = Caller.LastName;
+            firstCall.CalMiddleName = Caller.MiddleName;
+            firstCall.CalLocationInfo = Caller.LocationInfo;
+            firstCall.PlaceOfStay = Caller.PlaceOfStay;
+            firstCall.CalRoom = Caller.Room;
+            firstCall.CallerId = Caller.CallerId;
+            firstCall.CalRelToSubId = Caller.RelToSub.Id;
+            firstCall.CalCountryId = Caller.Country.Id;
+            firstCall.CalRegionId = Caller.Region.Id;
+            firstCall.CalCityId = Caller.City.Id;
+
+            firstCall.InsuranceId = Membership.Insurance.Id;
+            firstCall.PolicyNum = Membership.PolicyNum;
+            firstCall.LetterCode = Membership.LetterCode;
+            firstCall.InsuredDays = Membership.InsuredDays;
+            firstCall.InsuredProgramm = Membership.InsuredProgramm;
+            firstCall.Deductable = Membership.Deductable;
+            firstCall.ValidFrom = Membership.ValidFrom.ToString(CultureInfo.CurrentCulture);
+            firstCall.ValidTo = Membership.ValidTo.ToString(CultureInfo.CurrentCulture);
+
+            firstCall.HomeAdress = Subscriber.HomeAdress;
+            firstCall.SubFirstName = Subscriber.FirstName;
+            firstCall.SubLastName = Subscriber.LastName;
+            firstCall.SubMiddleName = Subscriber.MiddleName;
+            firstCall.SubLocationInfo = Subscriber.LocationInfo;
+            firstCall.SubRoom = Subscriber.Room;
+            firstCall.Age = Subscriber.Age;
+            firstCall.DoB = Subscriber.DoB.ToString(CultureInfo.CurrentCulture);
+            firstCall.Arrival = Subscriber.Arrival.ToString(CultureInfo.CurrentCulture);
+            firstCall.Departure = Subscriber.Departure.ToString(CultureInfo.CurrentCulture);
+            firstCall.HotelId = Subscriber.Hotel.Id;
+            firstCall.SubCountryId = Subscriber.Country.Id;
+            firstCall.SubRegionId = Subscriber.Region.Id;
+            firstCall.SubCityId = Subscriber.City.Id;
+
+            firstCall.StatusOfCallId = CallInfo.StatusSelected.Id;
+            firstCall.ReasonForCall = CallInfo.ReasonForCall;
+            firstCall.IsChronical = CallInfo.IsChronical ? 1 : 0;
+            firstCall.IsAlcohol = CallInfo.IsAlcohol ? 1 : 0;
+
+            firstCall.DocLocationInfo = TreatDoctor.LocationInfo;
+            firstCall.IsDoctor = TreatDoctor.IsDoctor ? 1 : 0;
+            firstCall.IsFacility = TreatDoctor.IsFacility ? 1 : 0;
+            firstCall.DocCountryId = TreatDoctor.Country.Id;
+            firstCall.DocRegionId = TreatDoctor.Region.Id;
+            firstCall.DocCityId = TreatDoctor.City.Id;
+            firstCall.TreatingDoctorId = TreatDoctor.TreatingDoctorView.Id;
+
+            DataBaseManager.AddFirstCall(firstCall);
+
+            var lastFirstCall = DataBaseManager.SearchfFirstCall(firstCall);
+            var listOfConacts = new List<Contact> ();
+            foreach (var c in ContactSection.ContactViewInForm)
+            {
+                var contact = new Contact()
+                {
+                    FirstCallId = lastFirstCall.Id,
+                    RelToSubId = c.SelectedRelToSub.Id,
+                    TypeOfContactId = c.SelectedContact.Id,
+                    Name = c.Name,
+                    ContactNum = c.ContactNum,
+                    Info = c.Info
+                };
+
+                listOfConacts.Add(contact);
+            }
+
+            DataBaseManager.AddContacts(listOfConacts);
 
         }
 
