@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Animation;
+using FirstEvent.ViewModel.Sections;
 
 namespace FirstEvent.Model
 {
@@ -185,6 +187,114 @@ namespace FirstEvent.Model
             AllDoctors.Add(d);
             AppDb.Doctors.Add(d);
             AppDb.SaveChanges();
+        }
+
+        public static Doctor GetDoctorById(int? id)
+        {
+            if(id == null)
+                return new Doctor();
+
+            var query = from d in AllDoctors
+                        where d.Id == id
+                        select d;
+
+            return query.First();
+        }
+
+        public static Country GetCountryById(int? id)
+        {
+            if (id == null)
+                return new Country();
+
+            var query = from c in AllCountries
+                        where c.Id == id
+                        select c;
+
+            return query.First();
+        }
+
+        public static Region GetRegionById(int? id)
+        {
+            if (id == null)
+                return new Region();
+
+            var query = from r in AllRegions
+                        where r.Id == id
+                        select r;
+
+            return query.First();
+        }
+
+        public static City GetCityById(int? id)
+        {
+            if (id == null)
+                return new City();
+
+            var query = from c in AllCities
+                        where c.Id == id
+                        select c;
+
+            return query.First();
+        }
+
+        public static Hotel GetHotelById(int? id)
+        {
+            if (id == null)
+                return new Hotel();
+
+            var query = from h in AllHotels
+                        where h.Id == id
+                        select h;
+
+            return query.First();
+        }
+
+        public static TreatingDoctor GetTreatDocById(int? id)
+        {
+            if (id == null)
+                return new TreatingDoctor();
+
+            var query = from t in TreatingDocs
+                        where t.Id == id
+                        select t;
+
+            return query.First();
+        }
+
+        public static RelToSub GetRelToSubById(int? id)
+        {
+            if (id == null)
+                return new RelToSub();
+
+            var query = from r in AllRelToSubs
+                        where r.Id == id
+                        select r;
+
+            return query.First();
+        }
+
+        public static Insurance GetInsuranceById(int? id)
+        {
+            if (id == null)
+                return new Insurance();
+
+            var query = from m in AllInsurances
+                        where m.Id == id
+                        select m;
+
+            return query.First();
+        }
+
+        public static StatusOfCall GetStatusOfCallById(int? id)
+        {
+            if (id == null)
+                return new StatusOfCall();
+
+            var query = from s in StatusOfCalls
+                        where s.Id == id
+                        select s;
+
+            return query.First();
         }
 
         public static void AddCountry(Country c)

@@ -29,6 +29,17 @@ namespace FirstEvent.ViewModel
 
         public ContactSection ContactSection { get; set; }
 
+        public MainWindowViewModel(Caller c, GeneralInfo g, Membership m, Subscriber s, CallInfo cl, TreatDoctor td, ContactSection cs)
+        {
+            Caller = c;
+            GeneralInfo = g;
+            Membership = m;
+            Subscriber = s;
+            CallInfo = cl;
+            TreatDoctor = td;
+            ContactSection = cs;
+        }
+
         public MainWindowViewModel()
         {
             Caller = new Caller();

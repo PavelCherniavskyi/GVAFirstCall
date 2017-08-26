@@ -161,6 +161,9 @@
     <Compile Include="View\DoctorsList.xaml.cs">
       <DependentUpon>DoctorsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FEList.xaml.cs">
+      <DependentUpon>FEList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HotelList.xaml.cs">
       <DependentUpon>HotelList.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FEList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

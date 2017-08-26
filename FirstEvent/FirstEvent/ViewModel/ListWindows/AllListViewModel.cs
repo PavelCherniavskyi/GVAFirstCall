@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using FirstEvent.Model;
+using FirstEvent.View;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -173,6 +174,23 @@ namespace FirstEvent.ViewModel.ListWindows
         {
             if (SelectedItem != null)
                 Messenger.Default.Send<HotelView>(SelectedItem, "SubscriberHotel");
+            CloseWindow(window);
+        }
+
+    }
+
+    public class FeListViewModel : BaseListViewModel<FirstCall>
+    {
+        public override ObservableCollection<FirstCall> Items
+        {
+            get { return _items ?? (_items = DataBaseManager.FirstCalls); }
+            set { _items = value; RaisePropertyChanged("Items"); }
+        }
+
+        protected override void OkWindow(Window window)
+        {
+            if (SelectedItem != null)
+                new MainWindow(SelectedItem.BuildViewModel()).Show();
             CloseWindow(window);
         }
 

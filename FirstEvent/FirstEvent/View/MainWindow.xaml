@@ -11,9 +11,9 @@
         xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Title="MainWindow" Height="950" Width="800" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     
     <StackPanel Orientation="Vertical">
 

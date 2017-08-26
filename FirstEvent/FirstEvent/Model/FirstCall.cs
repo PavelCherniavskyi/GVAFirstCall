@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FirstEvent.ViewModel;
+using FirstEvent.ViewModel.Sections;
 
 namespace FirstEvent.Model
 {
@@ -12,6 +14,25 @@ namespace FirstEvent.Model
         public FirstCall()
         {
             ContactList = new ObservableCollection<Contact>();
+        }
+
+        public MainWindowViewModel BuildViewModel()
+        {
+            GeneralInfo generalInfo = new GeneralInfo();
+            generalInfo.DutyOps = DutyOperator;
+            generalInfo.DutyDoctor = DataBaseManager.GetDoctorById(DutyDoctorId);
+            generalInfo.DocDateTime = DateTime.Parse(DocDateTime);
+            generalInfo.EventDateTime = DateTime.Parse(EventDateTime);
+
+            Caller caller = new Caller();
+            caller.FirstName = CalFirstName;
+            caller.LastName = CalLastName;
+            caller.MiddleName = CalMiddleName;
+            caller.LocationInfo = CalLocationInfo;
+            caller.PlaceOfStay = PlaceOfStay;
+            caller.Room = CalRoom;
+            caller.CallerId = CallerId;
+
         }
 
         public ObservableCollection<Contact> ContactList { get; set; }

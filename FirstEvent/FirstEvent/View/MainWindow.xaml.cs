@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 using FirstEvent.Model;
+using FirstEvent.ViewModel;
+using FirstEvent.ViewModel.Sections;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace FirstEvent.View
@@ -16,6 +18,13 @@ namespace FirstEvent.View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
+        }
+
+        public MainWindow(MainWindowViewModel vm)
+        {
+            InitializeComponent();
+            DataContext = vm;
         }
     }
 }
