@@ -32,6 +32,69 @@ namespace FirstEvent.Model
             caller.PlaceOfStay = PlaceOfStay;
             caller.Room = CalRoom;
             caller.CallerId = CallerId;
+            caller.RelToSub = DataBaseManager.GetRelToSubById(CalRelToSubId);
+            caller.Country = DataBaseManager.GetCountryById(CalCountryId);
+            caller.Region = DataBaseManager.GetRegionById(CalRegionId);
+            caller.City = DataBaseManager.GetCityById(CalCityId);
+
+            Membership membership = new Membership();
+            membership.Insurance = DataBaseManager.GetInsuranceViewById(InsuranceId);
+            membership.PolicyNum = PolicyNum;
+            membership.LetterCode = LetterCode;
+            membership.InsuredDays = InsuredDays;
+            membership.InsuredProgramm = InsuredProgramm;
+            membership.Deductable = Deductable;
+            membership.ValidFrom = DateTime.Parse(ValidFrom);
+            membership.ValidTo = DateTime.Parse(ValidTo);
+
+            Subscriber subscriber = new Subscriber();
+            subscriber.HomeAdress = HomeAdress;
+            subscriber.FirstName = SubFirstName;
+            subscriber.LastName = SubLastName;
+            subscriber.MiddleName = SubMiddleName;
+            subscriber.LocationInfo = SubLocationInfo;
+            subscriber.Room = SubRoom;
+            subscriber.Age = Age;
+            subscriber.DoB = DateTime.Parse(DoB);
+            subscriber.Arrival = DateTime.Parse(Arrival);
+            subscriber.Departure = DateTime.Parse(Departure);
+            subscriber.Hotel = DataBaseManager.GetHotelViewById(HotelId);
+            subscriber.Country = DataBaseManager.GetCountryById(SubCountryId);
+            subscriber.Region = DataBaseManager.GetRegionById(SubRegionId);
+            subscriber.City = DataBaseManager.GetCityById(SubCityId);
+
+            CallInfo callInfo = new CallInfo();
+            callInfo.StatusSelected = DataBaseManager.GetStatusOfCallById(StatusOfCallId);
+            callInfo.ReasonForCall = ReasonForCall;
+            callInfo.IsChronical = IsChronical == 1;
+            callInfo.IsAlcohol = IsAlcohol == 1;
+
+            TreatDoctor treatDoctor = new TreatDoctor();
+            treatDoctor.LocationInfo = DocLocationInfo;
+            treatDoctor.IsDoctor = IsDoctor == 1;
+            treatDoctor.IsFacility = IsFacility == 1;
+            treatDoctor.TreatingDoctorView = DataBaseManager.GetTreatDocById(TreatingDoctorId);
+            treatDoctor.Country = DataBaseManager.GetCountryById(DocCountryId);
+            treatDoctor.Region = DataBaseManager.GetRegionById(DocRegionId);
+            treatDoctor.City = DataBaseManager.GetCityById(DocCityId);
+
+            ContactSection contactSection = new ContactSection();
+            ObservableCollection<ContactViewInForm> contactView = new ObservableCollection<ContactViewInForm>();
+            foreach (var c in ContactList)
+            {
+                contactView.Add(new ContactViewInForm()
+                {
+                    ContactNum = c.ContactNum,
+                    Info = c.Info,
+                    Name = c.Name,
+                    SelectedContact = DataBaseManager.GetTypeOfContactById(c.TypeOfContactId),
+                    SelectedRelToSub = DataBaseManager.GetRelToSubById(c.RelToSubId)
+                });
+            }
+            contactSection.ContactViewInForm = contactView;
+            
+
+            return new MainWindowViewModel(caller, generalInfo, membership, subscriber, callInfo, treatDoctor, contactSection);
 
         }
 

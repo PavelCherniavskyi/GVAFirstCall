@@ -191,7 +191,7 @@ namespace FirstEvent.Model
 
         public static Doctor GetDoctorById(int? id)
         {
-            if(id == null)
+            if(id == 0)
                 return new Doctor();
 
             var query = from d in AllDoctors
@@ -203,7 +203,7 @@ namespace FirstEvent.Model
 
         public static Country GetCountryById(int? id)
         {
-            if (id == null)
+            if (id == 0)
                 return new Country();
 
             var query = from c in AllCountries
@@ -215,7 +215,7 @@ namespace FirstEvent.Model
 
         public static Region GetRegionById(int? id)
         {
-            if (id == null)
+            if (id == 0)
                 return new Region();
 
             var query = from r in AllRegions
@@ -227,7 +227,7 @@ namespace FirstEvent.Model
 
         public static City GetCityById(int? id)
         {
-            if (id == null)
+            if (id == 0)
                 return new City();
 
             var query = from c in AllCities
@@ -237,24 +237,24 @@ namespace FirstEvent.Model
             return query.First();
         }
 
-        public static Hotel GetHotelById(int? id)
+        public static HotelView GetHotelViewById(int? id)
         {
-            if (id == null)
-                return new Hotel();
+            if (id == 0)
+                return new HotelView();
 
-            var query = from h in AllHotels
+            var query = from h in HotelViews
                         where h.Id == id
                         select h;
 
             return query.First();
         }
 
-        public static TreatingDoctor GetTreatDocById(int? id)
+        public static TreatingDoctorView GetTreatDocById(int? id)
         {
-            if (id == null)
-                return new TreatingDoctor();
+            if (id == 0)
+                return new TreatingDoctorView();
 
-            var query = from t in TreatingDocs
+            var query = from t in TreatDocViews
                         where t.Id == id
                         select t;
 
@@ -263,7 +263,7 @@ namespace FirstEvent.Model
 
         public static RelToSub GetRelToSubById(int? id)
         {
-            if (id == null)
+            if (id == 0)
                 return new RelToSub();
 
             var query = from r in AllRelToSubs
@@ -273,26 +273,38 @@ namespace FirstEvent.Model
             return query.First();
         }
 
-        public static Insurance GetInsuranceById(int? id)
+        public static InsuranceView GetInsuranceViewById(int? id)
         {
-            if (id == null)
-                return new Insurance();
+            if (id == 0)
+                return new InsuranceView();
 
-            var query = from m in AllInsurances
-                        where m.Id == id
-                        select m;
+            var query = from i in InsuranceViews
+                        where i.Id == id
+                        select i;
 
             return query.First();
         }
 
         public static StatusOfCall GetStatusOfCallById(int? id)
         {
-            if (id == null)
+            if (id == 0)
                 return new StatusOfCall();
 
             var query = from s in StatusOfCalls
                         where s.Id == id
                         select s;
+
+            return query.First();
+        }
+
+        public static TypeOfContact GetTypeOfContactById(int? id)
+        {
+            if (id == 0)
+                return new TypeOfContact();
+
+            var query = from c in TypeOfContacts
+                        where c.Id == id
+                        select c;
 
             return query.First();
         }
