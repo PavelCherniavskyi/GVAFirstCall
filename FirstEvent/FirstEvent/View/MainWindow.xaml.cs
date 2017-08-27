@@ -15,10 +15,10 @@ namespace FirstEvent.View
     public partial class MainWindow : Window
     {
         
-        public MainWindow()
+        public MainWindow(string dutyOps, bool isExam)
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowViewModel(dutyOps, isExam);
         }
 
         public MainWindow(MainWindowViewModel vm)

@@ -46,5 +46,7 @@ namespace FirstEvent.Model
 
         public DbSet<FirstCall> FirstCalls { get; set; }
 
+        public DbSet<Password> Passwords { get; set; }
+
     }
 }

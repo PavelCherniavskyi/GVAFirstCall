@@ -8,7 +8,7 @@
         xmlns:listWindows="clr-namespace:FirstEvent.ViewModel.ListWindows"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="FEList" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="FEList" Height="216.164" Width="274" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <listWindows:FeListViewModel/>
     </Window.DataContext>
@@ -22,12 +22,19 @@
                 </i:Interaction.Triggers>
                 <ListView.View >
                     <GridView AllowsColumnReorder="False" >
-                        <GridViewColumn DisplayMemberBinding="{Binding DutyOperator}" Width="40">Name</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding DocDateTime}" Width="166">FE Date time</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding DutyOperator}" Width="124">Name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding DocDateTime}" Width="143">First Event date</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Content="Ok" Width="50" IsDefault="True" Height="20" DockPanel.Dock="Right" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}" Margin="140,4,0,0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Button Content="Back" Width="50" Height="20" Margin="5,5,78,5"/>
+                <Button Content="Delete" Width="50" Height="20" Margin="5" Command="{Binding DeleteCommand}"/>
+                <Button Content="Ok" Width="50" IsDefault="True" Height="20" DockPanel.Dock="Right" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}" Margin="5"  />
+                
+            </StackPanel>
+            
+            
         </StackPanel>
 
     </Grid>

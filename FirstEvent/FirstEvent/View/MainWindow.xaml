@@ -521,7 +521,7 @@
         </Expander>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
             <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}"/>
-            <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" />
+            <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" IsEnabled="{Binding SaveButttonEnabled}"/>
             <Button BorderBrush="Coral" BorderThickness="2" Margin="5" Width="40" Content="Close" Command="{Binding CancelButtonCommand}"/>
         </StackPanel>
         

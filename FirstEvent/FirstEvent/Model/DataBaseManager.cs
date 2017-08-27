@@ -52,6 +52,8 @@ namespace FirstEvent.Model
 
         public static ObservableCollection<FirstCall> FirstCalls { get; private set; }
 
+        public static ObservableCollection<Password> Passwords { get; private set; }
+
         static DataBaseManager()
         {
             try
@@ -74,6 +76,7 @@ namespace FirstEvent.Model
                 AppDb.TypeOfContacts.Load();
                 AppDb.Contacts.Load();
                 AppDb.FirstCalls.Load();
+                AppDb.Passwords.Load();
 
                 AllDoctors = AppDb.Doctors.Local;
                 AllCountries = AppDb.Countries.Local;
@@ -92,6 +95,7 @@ namespace FirstEvent.Model
                 TypeOfContacts = AppDb.TypeOfContacts.Local;
                 Contacts = AppDb.Contacts.Local;
                 FirstCalls = AppDb.FirstCalls.Local;
+                Passwords = AppDb.Passwords.Local;
                 //MessageBox.Show(Tests.Count.ToString());
             }
             catch (Exception e)
@@ -103,8 +107,24 @@ namespace FirstEvent.Model
 
         public static void AddFirstCall(FirstCall f)
         {
-            AppDb.FirstCalls.Add(f);
-            AppDb.SaveChanges();
+            try
+            {
+                AppDb.FirstCalls.Add(f);
+                AppDb.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + '\n' + e.InnerException);
+            }
+            
+        }
+
+        public static Password GetPassByName(string name)
+        {
+            var query = from p in Passwords
+                        where p.Name == name
+                        select p;
+            return query.First();
         }
 
         public static FirstCall SearchfFirstCall(FirstCall firstCall)
@@ -120,8 +140,16 @@ namespace FirstEvent.Model
 
         public static void AddContacts(IEnumerable<Contact> c)
         {
-            AppDb.Contacts.AddRange(c);
-            AppDb.SaveChanges();
+            try
+            {
+                AppDb.Contacts.AddRange(c);
+                AppDb.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + '\n' + e.InnerException);
+            }
+            
         }
 
         public static Country GetCountryByRegion(Region r)
@@ -332,6 +360,13 @@ namespace FirstEvent.Model
         {
             AllCities.Add(c);
             AppDb.Cities.Add(c);
+            AppDb.SaveChanges();
+        }
+
+        public static void RemoveFirstCall(FirstCall fc)
+        {
+            FirstCalls.Remove(fc);
+            AppDb.FirstCalls.Remove(fc);
             AppDb.SaveChanges();
         }
     }

@@ -194,6 +194,22 @@ namespace FirstEvent.ViewModel.ListWindows
             CloseWindow(window);
         }
 
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(DeleteCommandExecute, () => true);
+            }
+        }
+
+        private void DeleteCommandExecute()
+        {
+            if(SelectedItem == null)
+                return;
+            DataBaseManager.RemoveFirstCall(SelectedItem);
+            Items = DataBaseManager.FirstCalls;
+        }
+
     }
 
     public class InsurancelListViewModel : BaseListViewModel<InsuranceView>

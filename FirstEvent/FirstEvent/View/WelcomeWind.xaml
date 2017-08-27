@@ -1,0 +1,39 @@
+﻿<Window x:Class="FirstEvent.View.WelcomeWind"
+        x:Name="This"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstEvent.ViewModel"
+        mc:Ignorable="d"
+        Title="Authorization" Width="285" Height="200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:WelcomeViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <GroupBox Width="130" BorderBrush="#FFACCEE2" BorderThickness="2">
+                <GroupBox.Header>
+                    <TextBlock Text="User" FontWeight="Bold" FontSize="14"/>
+                </GroupBox.Header>
+                <StackPanel>
+                    <TextBlock Text="Name" Margin="10,10,5,5" />
+                    <TextBox Width="110" Text="{Binding UserName}"/>
+                    <RadioButton Content="Training" Margin="5" IsChecked="True"/>
+                    <RadioButton Content="Exam" Margin="5,-3,5,5" IsChecked="{Binding IsExam}"/>
+                    <Button Content="Login" Width="50" Margin="5,10,5,5" Command="{Binding UserLoginCommand}" CommandParameter="{Binding ElementName=This}"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Width="130" BorderBrush="#FFACCEE2" BorderThickness="2">
+                <GroupBox.Header>
+                    <TextBlock Text="Admin" FontWeight="Bold" FontSize="14"/>
+                </GroupBox.Header>
+                <StackPanel>
+                    <TextBlock Text="Password" Margin="10,10,5,5" />
+                    <PasswordBox x:Name="AdminPassword" Width="110" />
+                    <Button Content="Login" Width="50" Margin="5,52,5,5" Command="{Binding AdminLoginCommand}" CommandParameter="{Binding ElementName=This}"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>

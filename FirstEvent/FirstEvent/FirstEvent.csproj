@@ -138,6 +138,7 @@
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\Insurance.cs" />
     <Compile Include="Model\Office.cs" />
+    <Compile Include="Model\Password.cs" />
     <Compile Include="Model\RelToSub.cs" />
     <Compile Include="Model\StatusOfCall.cs" />
     <Compile Include="Model\TreatingDoctor.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="ViewModel\Sections\Membership.cs" />
     <Compile Include="ViewModel\Sections\Subscriber.cs" />
     <Compile Include="ViewModel\Sections\TreatDoctor.cs" />
+    <Compile Include="ViewModel\WelcomeViewModel.cs" />
     <Compile Include="View\CityList.xaml.cs">
       <DependentUpon>CityList.xaml</DependentUpon>
     </Compile>
@@ -183,8 +185,8 @@
     <Compile Include="View\TreatDocListWindow.xaml.cs">
       <DependentUpon>TreatDocListWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Welcome.xaml.cs">
-      <DependentUpon>Welcome.xaml</DependentUpon>
+    <Compile Include="View\WelcomeWind.xaml.cs">
+      <DependentUpon>WelcomeWind.xaml</DependentUpon>
     </Compile>
     <Page Include="View\CityList.xaml">
       <SubType>Designer</SubType>
@@ -234,7 +236,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Welcome.xaml">
+    <Page Include="View\WelcomeWind.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

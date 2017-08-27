@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,23 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FirstEvent
+namespace FirstEvent.View
 {
-    /// <summary>
-    /// Interaction logic for Welcome.xaml
-    /// </summary>
-    public partial class Welcome : Window
+    public interface IHavePassword
     {
-        public Welcome()
+        SecureString Password { get; }
+    }
+    /// <summary>
+    /// Interaction logic for WelcomeWind.xaml
+    /// </summary>
+    public partial class WelcomeWind : Window, IHavePassword
+    {
+        public WelcomeWind()
         {
             InitializeComponent();
         }
 
-        private void Accept_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = true;
-        }
-
-        public string Password => PasswordBox.Text;
+        public SecureString Password => AdminPassword.SecurePassword;
     }
 }

@@ -15,6 +15,9 @@ namespace FirstEvent.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private bool _isAdmin;
+        private bool _isExam;
+        private bool _saveButttonEnabled = true;
         public Caller Caller { get; set; }
 
         public GeneralInfo GeneralInfo { get; set; }
@@ -29,6 +32,16 @@ namespace FirstEvent.ViewModel
 
         public ContactSection ContactSection { get; set; }
 
+        public bool SaveButttonEnabled
+        {
+            get { return _saveButttonEnabled; }
+            set
+            {
+                _saveButttonEnabled = value;
+                RaisePropertyChanged("SaveButttonEnabled");
+            }
+        }
+
         public MainWindowViewModel(Caller c, GeneralInfo g, Membership m, Subscriber s, CallInfo cl, TreatDoctor td, ContactSection cs)
         {
             Caller = c;
@@ -38,17 +51,22 @@ namespace FirstEvent.ViewModel
             CallInfo = cl;
             TreatDoctor = td;
             ContactSection = cs;
+
+            _isAdmin = true;
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(string dutyOps, bool isExam)
         {
             Caller = new Caller();
-            GeneralInfo = new GeneralInfo();
+            GeneralInfo = new GeneralInfo {DutyOps = dutyOps};
             Membership = new Membership();
             Subscriber = new Subscriber();
             CallInfo = new CallInfo();
             TreatDoctor = new TreatDoctor();
             ContactSection = new ContactSection();
+
+            _isAdmin = false;
+            _isExam = isExam;
         }
 
 
@@ -62,7 +80,11 @@ namespace FirstEvent.ViewModel
 
         private void OkButtonCommandExecute()
         {
-            SaveButtonCommandExecute();
+            if (SaveButttonEnabled)
+            {
+                SaveButtonCommandExecute();
+            }
+                
             Application.Current.Shutdown();
         }
 
@@ -165,6 +187,7 @@ namespace FirstEvent.ViewModel
             }
 
             DataBaseManager.AddContacts(listOfConacts);
+            SaveButttonEnabled = false;
 
         }
 
