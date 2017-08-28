@@ -146,7 +146,9 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\ListWindows\AllListViewModel.cs" />
     <Compile Include="ViewModel\ListWindows\BaseListViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MainAdminViewModel.cs" />
+    <Compile Include="ViewModel\MainExamViewModel.cs" />
+    <Compile Include="ViewModel\MainTestViewModel.cs" />
     <Compile Include="ViewModel\Sections\Caller.cs" />
     <Compile Include="ViewModel\Sections\CallInfo.cs" />
     <Compile Include="ViewModel\Sections\ContactSection.cs" />
@@ -172,9 +174,13 @@
     <Compile Include="View\Insurance Companies.xaml.cs">
       <DependentUpon>Insurance Companies.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainWindows\MainAdminWindow.xaml.cs">
+      <DependentUpon>MainAdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindows\MainTestWindow.xaml.cs">
+      <DependentUpon>MainTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MarginSetter.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\Sections\GeneralInfo.cs" />
     <Compile Include="View\RegionList.xaml.cs">
       <DependentUpon>RegionList.xaml</DependentUpon>
@@ -212,7 +218,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\MainWindows\MainAdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindows\MainExamWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -220,10 +230,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\MainWindows\MainExamWindow.xaml.cs">
+      <DependentUpon>MainExamWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\MainWindows\MainTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\RegionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -29,7 +29,6 @@ namespace FirstEvent.ViewModel.Sections
             Messenger.Default.Register(this, "GeneralInfoDoctor", new Action<DocView>(DoctorFieldMessage));
             EventDateTime = DocDateTime = DateTime.Now;
             _dutyDoctor = new Doctor();
-            DutyOps = "Pavel Cherniavskyi";
             DocInSearchList = new ObservableCollection<Doctor>();
         }
 

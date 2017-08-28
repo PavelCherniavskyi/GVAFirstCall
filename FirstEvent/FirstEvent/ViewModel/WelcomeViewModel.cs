@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using FirstEvent.Model;
 using FirstEvent.View;
+using FirstEvent.View.MainWindows;
 using GalaSoft.MvvmLight.Command;
 
 namespace FirstEvent.ViewModel
@@ -61,7 +62,10 @@ namespace FirstEvent.ViewModel
             }
             else
             {
-                new MainWindow(UserName, IsExam).Show();
+                if(IsExam)
+                    new MainExamWindow(UserName).Show();
+                else
+                    new MainTestWindow().Show();
                 wind.Close();
             }
             

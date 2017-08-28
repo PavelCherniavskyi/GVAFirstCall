@@ -13,10 +13,8 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace FirstEvent.ViewModel
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainExamViewModel : ViewModelBase
     {
-        private bool _isAdmin;
-        private bool _isExam;
         private bool _saveButttonEnabled = true;
         public Caller Caller { get; set; }
 
@@ -32,6 +30,8 @@ namespace FirstEvent.ViewModel
 
         public ContactSection ContactSection { get; set; }
 
+        public bool DeleteFeButtonEnabled { get; set; } = false;
+
         public bool SaveButttonEnabled
         {
             get { return _saveButttonEnabled; }
@@ -42,20 +42,7 @@ namespace FirstEvent.ViewModel
             }
         }
 
-        public MainWindowViewModel(Caller c, GeneralInfo g, Membership m, Subscriber s, CallInfo cl, TreatDoctor td, ContactSection cs)
-        {
-            Caller = c;
-            GeneralInfo = g;
-            Membership = m;
-            Subscriber = s;
-            CallInfo = cl;
-            TreatDoctor = td;
-            ContactSection = cs;
-
-            _isAdmin = true;
-        }
-
-        public MainWindowViewModel(string dutyOps, bool isExam)
+        public MainExamViewModel(string dutyOps)
         {
             Caller = new Caller();
             GeneralInfo = new GeneralInfo {DutyOps = dutyOps};
@@ -64,9 +51,6 @@ namespace FirstEvent.ViewModel
             CallInfo = new CallInfo();
             TreatDoctor = new TreatDoctor();
             ContactSection = new ContactSection();
-
-            _isAdmin = false;
-            _isExam = isExam;
         }
 
 
@@ -84,7 +68,8 @@ namespace FirstEvent.ViewModel
             {
                 SaveButtonCommandExecute();
             }
-                
+
+            MessageBox.Show("Your results has been saved successfully.\nPlease ask Senior operator to check it.");
             Application.Current.Shutdown();
         }
 
@@ -98,6 +83,7 @@ namespace FirstEvent.ViewModel
 
         private void CancelButtonCommandExecute()
         {
+            MessageBox.Show("Your results wasn't saved.");
             Application.Current.Shutdown();
         }
 

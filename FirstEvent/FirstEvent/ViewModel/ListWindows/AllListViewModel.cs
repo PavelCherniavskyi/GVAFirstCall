@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using FirstEvent.Model;
 using FirstEvent.View;
+using FirstEvent.View.MainWindows;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -194,7 +195,7 @@ namespace FirstEvent.ViewModel.ListWindows
         protected override void OkWindow(Window window)
         {
             if (SelectedItem != null)
-                new MainWindow(SelectedItem.BuildViewModel()).Show();
+                new MainAdminWindow(SelectedItem.BuildAdminViewModel()).Show();
             CloseWindow(window);
         }
 

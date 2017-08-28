@@ -16,7 +16,7 @@ namespace FirstEvent.Model
             ContactList = new ObservableCollection<Contact>();
         }
 
-        public MainWindowViewModel BuildViewModel()
+        public MainAdminViewModel BuildAdminViewModel()
         {
             GeneralInfo generalInfo = new GeneralInfo();
             generalInfo.DutyOps = DutyOperator;
@@ -94,7 +94,7 @@ namespace FirstEvent.Model
             contactSection.ContactViewInForm = contactView;
             
 
-            return new MainWindowViewModel(caller, generalInfo, membership, subscriber, callInfo, treatDoctor, contactSection);
+            return new MainAdminViewModel(caller, generalInfo, membership, subscriber, callInfo, treatDoctor, contactSection);
 
         }
 

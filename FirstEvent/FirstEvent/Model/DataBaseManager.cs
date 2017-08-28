@@ -138,6 +138,16 @@ namespace FirstEvent.Model
             return query.First();
         }
 
+        public static void DeleteFirstCallByDocTime(string docTime)
+        {
+
+            var query = from f in FirstCalls
+                        where f.DocDateTime == docTime
+                        select f;
+            AppDb.FirstCalls.Remove(query.First());
+            FirstCalls = AppDb.FirstCalls.Local;
+        }
+
         public static void AddContacts(IEnumerable<Contact> c)
         {
             try

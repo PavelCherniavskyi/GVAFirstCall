@@ -11,26 +11,19 @@ using GalaSoft.MvvmLight.Messaging;
 namespace FirstEvent.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainExamWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainExamWindow : Window
     {
-        public MainWindow()
+        public MainExamWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel("Testing", false);
         }
         
-        public MainWindow(string dutyOps, bool isExam)
+        public MainExamWindow(string dutyOps)
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel(dutyOps, isExam);
-        }
-
-        public MainWindow(MainWindowViewModel vm)
-        {
-            InitializeComponent();
-            DataContext = vm;
+            DataContext = new MainExamViewModel(dutyOps);
         }
 
         private void Expander_OnExpanded(object sender, RoutedEventArgs e)
