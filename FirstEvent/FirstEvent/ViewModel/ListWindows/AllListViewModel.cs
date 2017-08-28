@@ -181,6 +181,10 @@ namespace FirstEvent.ViewModel.ListWindows
 
     public class FeListViewModel : BaseListViewModel<FirstCall>
     {
+        public FeListViewModel()
+        {
+            BackCommand = new RelayCommand<Window>(BackCommandExecute);
+        }
         public override ObservableCollection<FirstCall> Items
         {
             get { return _items ?? (_items = DataBaseManager.FirstCalls); }
@@ -208,6 +212,14 @@ namespace FirstEvent.ViewModel.ListWindows
                 return;
             DataBaseManager.RemoveFirstCall(SelectedItem);
             Items = DataBaseManager.FirstCalls;
+        }
+
+        public RelayCommand<Window> BackCommand { get; set; }
+
+        private void BackCommandExecute(Window w)
+        {
+            new WelcomeWind().Show();
+            w.Close();
         }
 
     }

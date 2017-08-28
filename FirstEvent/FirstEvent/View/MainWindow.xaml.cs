@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using FirstEvent.Model;
 using FirstEvent.ViewModel;
@@ -14,6 +15,11 @@ namespace FirstEvent.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow()
+        {
+            InitializeComponent();
+            DataContext = new MainWindowViewModel("Testing", false);
+        }
         
         public MainWindow(string dutyOps, bool isExam)
         {
@@ -25,6 +31,12 @@ namespace FirstEvent.View
         {
             InitializeComponent();
             DataContext = vm;
+        }
+
+        private void Expander_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            var ex = sender as Expander;
+            ex?.BringIntoView();
         }
     }
 }

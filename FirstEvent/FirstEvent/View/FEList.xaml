@@ -28,7 +28,7 @@
                 </ListView.View>
             </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
-                <Button Content="Back" Width="50" Height="20" Margin="5,5,78,5"/>
+                <Button Content="Back" Width="50" Height="20" Margin="5,5,78,5" Command="{Binding BackCommand}" CommandParameter="{Binding ElementName=FeListWindow}"/>
                 <Button Content="Delete" Width="50" Height="20" Margin="5" Command="{Binding DeleteCommand}"/>
                 <Button Content="Ok" Width="50" IsDefault="True" Height="20" DockPanel.Dock="Right" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}" Margin="5"  />
                 
