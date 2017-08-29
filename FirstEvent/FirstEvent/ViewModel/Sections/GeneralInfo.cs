@@ -18,9 +18,8 @@ namespace FirstEvent.ViewModel.Sections
         private RelayCommand _enterKeyCommand;
         private DateTime _docDateTime;
         private DateTime _eventDateTime;
-        private bool _isDutyDocReadOnly;
+        private bool _isDutyDocEnabled = true;
         private Doctor _dutyDoctor;
-        private Brush _dutyDocColorTextBox;
         private string _dutyOps;
 
 
@@ -41,16 +40,13 @@ namespace FirstEvent.ViewModel.Sections
             get { return _dutyOps; }
         }
 
-        public bool IsDutyDocReadOnly
+        public bool IsDutyDocEnabled
         {
-            get { return _isDutyDocReadOnly; }
+            get { return _isDutyDocEnabled; }
             set
             {
-                _isDutyDocReadOnly = value;
-                DutyDocColorTextBox = _isDutyDocReadOnly ? 
-                    new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) : 
-                    new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsDutyDocReadOnly");
+                _isDutyDocEnabled = value;
+                RaisePropertyChanged("IsDutyDocEnabled");
             }
         }
 
@@ -58,12 +54,6 @@ namespace FirstEvent.ViewModel.Sections
         {
             get { return _dutyDoctor; }
             set { _dutyDoctor = value; RaisePropertyChanged("DutyDoctor"); }
-        }
-
-        public Brush DutyDocColorTextBox
-        {
-            get { return _dutyDocColorTextBox;}
-            set { _dutyDocColorTextBox = value; RaisePropertyChanged("DutyDocColorTextBox"); }
         }
 
         public DateTime DocDateTime
@@ -120,7 +110,7 @@ namespace FirstEvent.ViewModel.Sections
                 where doc.Id == d.Id
                 select d;
             DutyDoctor = query.First();
-            IsDutyDocReadOnly = true;
+            IsDutyDocEnabled = false;
         }
 
         private void EnterKeyCommandExecute()
@@ -133,7 +123,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (tempId != d.Id)
                         continue;
                     DutyDoctor = d;
-                    IsDutyDocReadOnly = true;
+                    IsDutyDocEnabled = false;
                     break;
                 }
             }
@@ -146,7 +136,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (!d.FullName.ToUpper().Contains(strToSrch))
                         continue;
                     DutyDoctor = d;
-                    IsDutyDocReadOnly = true;
+                    IsDutyDocEnabled = false;
                 }
             }
             
@@ -155,7 +145,7 @@ namespace FirstEvent.ViewModel.Sections
         private void ClearDocFeildExecute()
         {
             DutyDoctor = new Doctor();
-            IsDutyDocReadOnly = false;
+            IsDutyDocEnabled = true;
         }
     }
 }

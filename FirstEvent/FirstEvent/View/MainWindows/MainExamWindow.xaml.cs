@@ -18,6 +18,7 @@ namespace FirstEvent.View
         public MainExamWindow()
         {
             InitializeComponent();
+            DataContext = new MainExamViewModel("Default constructor.");
         }
         
         public MainExamWindow(string dutyOps)

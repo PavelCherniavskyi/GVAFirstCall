@@ -16,6 +16,7 @@ namespace FirstEvent.ViewModel
     public class MainExamViewModel : ViewModelBase
     {
         private bool _saveButttonEnabled = true;
+
         public Caller Caller { get; set; }
 
         public GeneralInfo GeneralInfo { get; set; }
@@ -29,8 +30,6 @@ namespace FirstEvent.ViewModel
         public TreatDoctor TreatDoctor { get; set; }
 
         public ContactSection ContactSection { get; set; }
-
-        public bool DeleteFeButtonEnabled { get; set; } = false;
 
         public bool SaveButttonEnabled
         {
@@ -83,7 +82,11 @@ namespace FirstEvent.ViewModel
 
         private void CancelButtonCommandExecute()
         {
-            MessageBox.Show("Your results wasn't saved.");
+            if (SaveButttonEnabled)
+            {
+                MessageBox.Show("Your results wasn't saved.");
+            }
+            
             Application.Current.Shutdown();
         }
 

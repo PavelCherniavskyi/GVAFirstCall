@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FirstEvent.ViewModel;
 
 namespace FirstEvent.View.MainWindows
 {
@@ -22,6 +23,19 @@ namespace FirstEvent.View.MainWindows
         public MainTestWindow()
         {
             InitializeComponent();
+            DataContext = new MainTestViewModel("Defaulf constructor.");
+        }
+
+        public MainTestWindow(string dutyOps)
+        {
+            InitializeComponent();
+            DataContext = new MainTestViewModel(dutyOps);
+        }
+
+        private void Expander_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            var ex = sender as Expander;
+            ex?.BringIntoView();
         }
     }
 }

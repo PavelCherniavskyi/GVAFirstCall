@@ -16,8 +16,7 @@ namespace FirstEvent.ViewModel.Sections
     public class Membership : ViewModelBase
     {
         private InsuranceView _insurance;
-        private Brush _insuranceColorTextBox;
-        private bool _isInsuranceReadOnly;
+        private bool _isInsuranceEnabled = true;
 
         public Membership()
         {
@@ -66,7 +65,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (tempId != i.Id)
                         continue;
                     Insurance = i;
-                    IsInsuranceReadOnly = true;
+                    IsInsuranceEnabled = false;
                     break;
                 }
             }
@@ -79,7 +78,7 @@ namespace FirstEvent.ViewModel.Sections
                     if (!i.Name.ToUpper().Contains(strToSrch))
                         continue;
                     Insurance = i;
-                    IsInsuranceReadOnly = true;
+                    IsInsuranceEnabled = false;
                 }
             }
         }
@@ -87,7 +86,7 @@ namespace FirstEvent.ViewModel.Sections
         private void ClearInsuranceFeildExecute()
         {
             Insurance = new InsuranceView();
-            IsInsuranceReadOnly = false;
+            IsInsuranceEnabled = true;
         }
 
         public InsuranceView Insurance
@@ -96,22 +95,13 @@ namespace FirstEvent.ViewModel.Sections
             set { _insurance = value; RaisePropertyChanged("Insurance"); }
         }
 
-        public Brush InsuranceColorTextBox
+        public bool IsInsuranceEnabled
         {
-            get { return _insuranceColorTextBox; }
-            set { _insuranceColorTextBox = value; RaisePropertyChanged("InsuranceColorTextBox"); }
-        }
-
-        public bool IsInsuranceReadOnly
-        {
-            get { return _isInsuranceReadOnly; }
+            get { return _isInsuranceEnabled; }
             set
             {
-                _isInsuranceReadOnly = value;
-                InsuranceColorTextBox = _isInsuranceReadOnly ?
-                    new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
-                    new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsInsuranceReadOnly");
+                _isInsuranceEnabled = value;
+                RaisePropertyChanged("IsInsuranceEnabled");
             }
         }
 
@@ -120,7 +110,7 @@ namespace FirstEvent.ViewModel.Sections
             if (i != null)
             {
                 Insurance = i;
-                IsInsuranceReadOnly = true;
+                IsInsuranceEnabled = false;
             }
         }
     }

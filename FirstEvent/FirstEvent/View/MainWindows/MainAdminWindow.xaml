@@ -357,7 +357,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Width="273"  Height="33" Margin="0,0,0,64">
                         <TextBlock Text="Status of call:" DockPanel.Dock="Left" Margin="26,0,0,0"  Height="22"/>
-                        <ComboBox IsEnabled="False" DockPanel.Dock="Right" Width="160" Height="22" Padding="4, 2, 2, 2" Margin="17,0,0,0" ItemsSource="{Binding CallInfo.StatusOfCalls}" SelectedItem="{Binding CallInfo.StatusSelected}" DisplayMemberPath="Name" UseLayoutRounding="False"/>
+                        <ComboBox IsEnabled="False" DockPanel.Dock="Right" Width="160" Height="22" Padding="6, 3, 0, 0" Margin="17,0,0,0" ItemsSource="{Binding CallInfo.StatusOfCalls}" SelectedItem="{Binding CallInfo.StatusSelected}" DisplayMemberPath="Name" UseLayoutRounding="False"/>
                     </StackPanel>
                 </StackPanel>
             </Expander>

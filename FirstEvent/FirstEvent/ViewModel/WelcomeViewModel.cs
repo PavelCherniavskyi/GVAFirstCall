@@ -65,7 +65,7 @@ namespace FirstEvent.ViewModel
                 if(IsExam)
                     new MainExamWindow(UserName).Show();
                 else
-                    new MainTestWindow().Show();
+                    new MainTestWindow(UserName).Show();
                 wind.Close();
             }
             

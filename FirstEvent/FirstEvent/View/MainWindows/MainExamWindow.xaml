@@ -5,12 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:view="clr-namespace:FirstEvent.View"
-        xmlns:local="clr-namespace:FirstEvent.ViewModel"
-        xmlns:sections="clr-namespace:FirstEvent.ViewModel.Sections"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Title="MainExamWindow" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        Title="Exam" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding CancelButtonCommand}" />
@@ -26,7 +23,7 @@
                     <StackPanel Orientation="Vertical" view:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <TextBox  DockPanel.Dock="Right" Width="150" Height="20" Text="M-369524" IsReadOnly="True" Background="#FFF0F0F0" />
+                            <TextBox  DockPanel.Dock="Right" Width="150" Height="20" Text="M-369524" IsEnabled="False" />
                         </DockPanel>
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
@@ -37,12 +34,12 @@
                     <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Doc Date:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <wpfTool:DateTimePicker DockPanel.Dock="Right" IsReadOnly="True" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" Background="#FFF0F0F0" 
+                            <wpfTool:DateTimePicker DockPanel.Dock="Right" IsEnabled="False" Width="150" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" Background="#FFF0F0F0" 
                                                 Value="{Binding GeneralInfo.DocDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DockPanel>
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Duty OPS:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <TextBox Text="{Binding GeneralInfo.DutyOps, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" DockPanel.Dock="Right" Width="150" IsReadOnly="True" Background="#FFF0F0F0" />
+                            <TextBox Text="{Binding GeneralInfo.DutyOps, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" DockPanel.Dock="Right" Width="150" IsEnabled="False" />
                         </DockPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="21,10,0,0" Width="230">
@@ -56,9 +53,8 @@
                             <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding GeneralInfo.CancelDocTextField}" />
                             <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-25,0,9,0" Panel.ZIndex="1" Content="..." Command="{Binding GeneralInfo.ShowDocListWindow}"/>
                             <TextBox DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,0,0" 
-                                 IsReadOnly="{Binding GeneralInfo.IsDutyDocReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding GeneralInfo.DutyDoctor.FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding GeneralInfo.DutyDocColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding GeneralInfo.IsDutyDocEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding GeneralInfo.DutyDoctor.FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding GeneralInfo.EnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -90,9 +86,8 @@
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Caller.CancelRelationToSubscrListWindow}" />
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Caller.ShowRelationToSubscrListWindow}" />
                             <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"  
-                                 IsReadOnly="{Binding Caller.IsRelToSubscrReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Caller.RelToSub.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Caller.RelationToSubscrColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding Caller.IsRelToSubscrEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Caller.RelToSub.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding Caller.RelEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -105,9 +100,8 @@
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Caller.CancelCountryListWindow}" />
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Caller.ShowCountryListWindow}" />
                             <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
-                                  IsReadOnly="{Binding Caller.IsCountryReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Caller.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Caller.CountryColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Caller.IsCountryEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Caller.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding Caller.CountryEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -118,9 +112,8 @@
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Caller.CancelRegionListWindow}" />
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Caller.ShowRegionListWindow}" />
                             <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
-                                  IsReadOnly="{Binding Caller.IsRegionReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Caller.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Caller.RegionColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Caller.IsRegionEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Caller.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding Caller.RegionEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -131,9 +124,8 @@
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Caller.CancelCityListWindow}" />
                             <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Caller.ShowCityListWindow}" />
                             <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
-                                  IsReadOnly="{Binding Caller.IsCityReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Caller.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Caller.CityColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Caller.IsCityEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Caller.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding Caller.CityEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -173,9 +165,8 @@
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-32,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Membership.ShowHotelListWindow}" />
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-9,0,-4,0" Panel.ZIndex="1" Content="O" />
                             <TextBox  DockPanel.Dock="Right" Width="150" Height="20" Margin="0,0,3,0" 
-                                  IsReadOnly="{Binding Membership.IsInsuranceReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Membership.Insurance.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Membership.InsuranceColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Membership.IsInsuranceEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Membership.Insurance.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding Membership.InsuranceEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -226,9 +217,8 @@
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Subscriber.CancelCountryListWindow}" />
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowCountryListWindow}" />
                                 <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
-                                  IsReadOnly="{Binding Subscriber.IsCountryReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Subscriber.CountryColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Subscriber.IsCountryEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Subscriber.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.CountryEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
@@ -239,9 +229,8 @@
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Subscriber.CancelRegionListWindow}" />
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowRegionListWindow}" />
                                 <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
-                                  IsReadOnly="{Binding Subscriber.IsRegionReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Subscriber.RegionColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Subscriber.IsRegionEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Subscriber.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.RegionEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
@@ -252,9 +241,8 @@
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-23,0,10,0" Panel.ZIndex="1" Content="X" Command="{Binding Subscriber.CancelCityListWindow}" />
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowCityListWindow}" />
                                 <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
-                                  IsReadOnly="{Binding Subscriber.IsCityReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Subscriber.CityColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  IsEnabled="{Binding Subscriber.IsCityEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Subscriber.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.CityEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
@@ -271,9 +259,8 @@
                                 <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-22,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding Subscriber.CancelHotelListWindow}" />
                                 <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-34,0,9,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowHotelListWindow}"/>
                                 <TextBox DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,12,0" 
-                                 IsReadOnly="{Binding Subscriber.IsHotelReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.Hotel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding Subscriber.HotelColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding Subscriber.IsHotelEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding Subscriber.Hotel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.HotelEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
@@ -371,7 +358,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Width="273"  Height="33" Margin="0,0,0,64">
                         <TextBlock Text="Status of call:" DockPanel.Dock="Left" Margin="26,0,0,0"  Height="22"/>
-                        <ComboBox DockPanel.Dock="Right" Width="160" Height="22" Padding="2" Margin="17,0,0,0" ItemsSource="{Binding CallInfo.StatusOfCalls}" SelectedItem="{Binding CallInfo.StatusSelected}" DisplayMemberPath="Name"/>
+                        <ComboBox DockPanel.Dock="Right" Width="160" Height="22"  Margin="17,0,0,0" ItemsSource="{Binding CallInfo.StatusOfCalls}" SelectedItem="{Binding CallInfo.StatusSelected}" DisplayMemberPath="Name" Padding="6, 3, 0, 0"/>
                     </StackPanel>
                 </StackPanel>
             </Expander>
@@ -393,9 +380,8 @@
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-36,0,26,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowTreatDocListWindow}"/>
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
                             <TextBox  DockPanel.Dock="Right" Height="20" Width="294" Margin="0,0,4,0"  
-                                 IsReadOnly="{Binding TreatDoctor.IstreatingDoctorReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.TreatingDoctorView.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding TreatDoctor.TreatingDoctorColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding TreatDoctor.IstreatingDoctorEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding TreatDoctor.TreatingDoctorView.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.DocEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -408,9 +394,8 @@
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding TreatDoctor.CancelCountryListWindow}"/>
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowCountryListWindow}"/>
                             <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0"
-                                 IsReadOnly="{Binding TreatDoctor.IsCountryReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding TreatDoctor.CountryColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding TreatDoctor.IsCountryEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding TreatDoctor.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.CountryEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -421,9 +406,8 @@
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding TreatDoctor.CancelRegionListWindow}"/>
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowRegionListWindow}"/>
                             <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0"
-                                 IsReadOnly="{Binding TreatDoctor.IsRegionReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding TreatDoctor.RegionColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding TreatDoctor.IsRegionEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding TreatDoctor.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.RegionEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -436,9 +420,8 @@
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="X" Command="{Binding TreatDoctor.CancelCityListWindow}"/>
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowCityListWindow}"/>
                             <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0"
-                                 IsReadOnly="{Binding TreatDoctor.IsCityReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="{Binding TreatDoctor.CityColorTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 IsEnabled="{Binding TreatDoctor.IsCityEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding TreatDoctor.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.CityEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
@@ -458,13 +441,13 @@
                 <StackPanel HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal" view:MarginSetter.Margin="3" Margin="10,0" >
                         <Button Name="ContactsAddBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.AddButtonCommand}">
-                            <Image Source="Images/add1.ico"/>
+                            <Image Source="../Images/add1.ico"/>
                         </Button>
                         <Button Name="ContactsCopyBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.CopyButtonCommand}">
-                            <Image Source="Images/copy.ico"/>
+                            <Image Source="../Images/copy.ico"/>
                         </Button>
                         <Button Name="ContactsDeleteBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.DeleteButtonCommand}">
-                            <Image Source="Images/delete.ico"/>
+                            <Image Source="../Images/delete.ico"/>
                         </Button>
                     </StackPanel>
                     <DataGrid Margin="10,0" CanUserResizeRows="False" SelectedIndex="{Binding ContactSection.SelectedIndex}"
@@ -474,7 +457,7 @@
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Style.Triggers>
                                     <Trigger Property="DataGridCell.IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#FFA0A0A0" />
+                                        <Setter Property="Background" Value="#FFACCEE2" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -521,10 +504,9 @@
                 </StackPanel>
             </Expander>
             <DockPanel  HorizontalAlignment="Stretch" Margin="0,0,10,0" LastChildFill="False">
-                <Button DockPanel.Dock="Left" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="8,5,5,5" Width="100" HorizontalAlignment="Center" Content="Delete First Even" Command="{Binding OkButtonCommand}" IsEnabled="{Binding DeleteFeButtonEnabled}"/>
                 <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Close" Command="{Binding CancelButtonCommand}"/>
                 <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" IsEnabled="{Binding SaveButttonEnabled}"/>
-                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}" IsEnabled="{Binding OkButttonEnabled}"/>
+                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}"/>
             </DockPanel>
         </StackPanel>
     </ScrollViewer>

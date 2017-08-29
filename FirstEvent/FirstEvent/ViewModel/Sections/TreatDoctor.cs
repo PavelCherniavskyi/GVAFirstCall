@@ -20,15 +20,10 @@ namespace FirstEvent.ViewModel.Sections
         private Region _region;
         private City _city;
 
-        private Brush _treatingDoctorColorTextBox;
-        private Brush _countryColorTextBox;
-        private Brush _regionColorTextBox;
-        private Brush _cityColorTextBox;
-
-        private bool _istreatingDoctorReadOnly;
-        private bool _isCountryReadOnly;
-        private bool _isRegionReadOnly;
-        private bool _isCityReadOnly;
+        private bool _istreatingDoctorEnabled = true;
+        private bool _isCountryEnabled = true;
+        private bool _isRegionEnabled = true;
+        private bool _isCityEnabled = true;
 
         public TreatDoctor()
         {
@@ -49,55 +44,43 @@ namespace FirstEvent.ViewModel.Sections
 
         public bool IsFacility { get; set; }
 
-        public bool IstreatingDoctorReadOnly
+        public bool IstreatingDoctorEnabled
         {
-            get { return _istreatingDoctorReadOnly; }
+            get { return _istreatingDoctorEnabled; }
             set
             {
-                _istreatingDoctorReadOnly = value;
-                TreatingDoctorColorTextBox = _istreatingDoctorReadOnly ?
-                    new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
-                    new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IstreatingDoctorReadOnly");
+                _istreatingDoctorEnabled = value;
+                RaisePropertyChanged("IstreatingDoctorEnabled");
             }
         }
 
-        public bool IsCountryReadOnly
+        public bool IsCountryEnabled
         {
-            get { return _isCountryReadOnly; }
+            get { return _isCountryEnabled; }
             set
             {
-                _isCountryReadOnly = value;
-                CountryColorTextBox = _isCountryReadOnly ?
-                    new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
-                    new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsCountryReadOnly");
+                _isCountryEnabled = value;
+                RaisePropertyChanged("IsCountryEnabled");
             }
         }
 
-        public bool IsRegionReadOnly
+        public bool IsRegionEnabled
         {
-            get { return _isRegionReadOnly; }
+            get { return _isRegionEnabled; }
             set
             {
-                _isRegionReadOnly = value;
-                RegionColorTextBox = _isRegionReadOnly ?
-                    new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
-                    new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsRegionReadOnly");
+                _isRegionEnabled = value;
+                RaisePropertyChanged("IsRegionEnabled");
             }
         }
 
-        public bool IsCityReadOnly
+        public bool IsCityEnabled
         {
-            get { return _isCityReadOnly; }
+            get { return _isCityEnabled; }
             set
             {
-                _isCityReadOnly = value;
-                CityColorTextBox = _isCityReadOnly ?
-                    new SolidColorBrush(Color.FromArgb(255, 240, 240, 240)) :
-                    new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                RaisePropertyChanged("IsCityReadOnly");
+                _isCityEnabled = value;
+                RaisePropertyChanged("IsCityEnabled");
             }
         }
 
@@ -125,30 +108,6 @@ namespace FirstEvent.ViewModel.Sections
             set { _city = value; RaisePropertyChanged("City"); }
         }
 
-        public Brush TreatingDoctorColorTextBox
-        {
-            get { return _treatingDoctorColorTextBox; }
-            set { _treatingDoctorColorTextBox = value; RaisePropertyChanged("TreatingDoctorColorTextBox"); }
-        }
-
-        public Brush CountryColorTextBox
-        {
-            get { return _countryColorTextBox; }
-            set { _countryColorTextBox = value; RaisePropertyChanged("CountryColorTextBox"); }
-        }
-
-        public Brush RegionColorTextBox
-        {
-            get { return _regionColorTextBox; }
-            set { _regionColorTextBox = value; RaisePropertyChanged("RegionColorTextBox"); }
-        }
-
-        public Brush CityColorTextBox
-        {
-            get { return _cityColorTextBox; }
-            set { _cityColorTextBox = value; RaisePropertyChanged("CityColorTextBox"); }
-        }
-
         public RelayCommand ShowTreatDocListWindow { get; } = new RelayCommand(() => new TreatDocListWindow().ShowDialog(), () => true);
 
         public RelayCommand ShowCountryListWindow { get; } = new RelayCommand(() => {
@@ -167,74 +126,26 @@ namespace FirstEvent.ViewModel.Sections
             new CityList().ShowDialog();
         }, () => true);
 
-        public ICommand DocEnterKeyCommand
-        {
-            get
-            {
-                return new RelayCommand(DocEnterKeyCommandExecute, () => true);
-            }
-        }
+        public ICommand DocEnterKeyCommand => new RelayCommand(DocEnterKeyCommandExecute, () => true);
 
-        public ICommand CountryEnterKeyCommand
-        {
-            get
-            {
-                return new RelayCommand(CountryEnterKeyCommandExecute, () => true);
-            }
-        }
+        public ICommand CountryEnterKeyCommand => new RelayCommand(CountryEnterKeyCommandExecute, () => true);
 
-        public ICommand RegionEnterKeyCommand
-        {
-            get
-            {
-                return new RelayCommand(RegionEnterKeyCommandExecute, () => true);
-            }
-        }
+        public ICommand RegionEnterKeyCommand => new RelayCommand(RegionEnterKeyCommandExecute, () => true);
 
-        public ICommand CityEnterKeyCommand
-        {
-            get
-            {
-                return new RelayCommand(CityEnterKeyCommandExecute, () => true);
-            }
-        }
+        public ICommand CityEnterKeyCommand => new RelayCommand(CityEnterKeyCommandExecute, () => true);
 
-        public ICommand CancelDocTreatListWindow
-        {
-            get
-            {
-                return new RelayCommand(ClearDocTreatFeildExecute, () => true);
-            }
-        }
+        public ICommand CancelDocTreatListWindow => new RelayCommand(ClearDocTreatFeildExecute, () => true);
 
-        public ICommand CancelCountryListWindow
-        {
-            get
-            {
-                return new RelayCommand(ClearCountryFeildExecute, () => true);
-            }
-        }
+        public ICommand CancelCountryListWindow => new RelayCommand(ClearCountryFeildExecute, () => true);
 
-        public ICommand CancelRegionListWindow
-        {
-            get
-            {
-                return new RelayCommand(ClearRegionFeildExecute, () => true);
-            }
-        }
+        public ICommand CancelRegionListWindow => new RelayCommand(ClearRegionFeildExecute, () => true);
 
-        public ICommand CancelCityListWindow
-        {
-            get
-            {
-                return new RelayCommand(ClearCityFeildExecute, () => true);
-            }
-        }
+        public ICommand CancelCityListWindow => new RelayCommand(ClearCityFeildExecute, () => true);
 
         private void ClearDocTreatFeildExecute()
         {
             TreatingDoctorView = new TreatingDoctorView();
-            IstreatingDoctorReadOnly = false;
+            IstreatingDoctorEnabled = true;
         }
 
         private void ClearCountryFeildExecute()
@@ -242,9 +153,9 @@ namespace FirstEvent.ViewModel.Sections
             Country = new Country();
             Region = new Region();
             City = new City();
-            IsCountryReadOnly = false;
-            IsRegionReadOnly = false;
-            IsCityReadOnly = false;
+            IsCountryEnabled = true;
+            IsRegionEnabled = true;
+            IsCityEnabled = true;
             CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.Country = null;
             CallerGeographySwitcher.Region = null;
@@ -255,8 +166,8 @@ namespace FirstEvent.ViewModel.Sections
         {
             Region = new Region();
             City = new City();
-            IsRegionReadOnly = false;
-            IsCityReadOnly = false;
+            IsRegionEnabled = true;
+            IsCityEnabled = true;
             CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.Region = null;
             CallerGeographySwitcher.City = null;
@@ -265,7 +176,7 @@ namespace FirstEvent.ViewModel.Sections
         private void ClearCityFeildExecute()
         {
             City = new City();
-            IsCityReadOnly = false;
+            IsCityEnabled = true;
             CallerGeographySwitcher.WhoIsRunning = GeographyWhoIsRunning.Doctor;
             CallerGeographySwitcher.City = null;
         }
@@ -292,7 +203,7 @@ namespace FirstEvent.ViewModel.Sections
 
                 Country = c;
                 CallerGeographySwitcher.Country = c;
-                IsCountryReadOnly = true;
+                IsCountryEnabled = false;
                 break;
             }
 
@@ -322,8 +233,8 @@ namespace FirstEvent.ViewModel.Sections
                 CallerGeographySwitcher.Region = r;
                 Country = DataBaseManager.GetCountryByRegion(r);
                 CallerGeographySwitcher.Country = Country;
-                IsRegionReadOnly = true;
-                IsCountryReadOnly = true;
+                IsRegionEnabled = false;
+                IsCountryEnabled = false;
                 break;
             }
         }
@@ -358,9 +269,9 @@ namespace FirstEvent.ViewModel.Sections
                 CallerGeographySwitcher.City = c;
                 CallerGeographySwitcher.Country = Country;
                 CallerGeographySwitcher.Region = Region;
-                IsCityReadOnly = true;
-                IsCountryReadOnly = true;
-                IsRegionReadOnly = true;
+                IsCityEnabled = false;
+                IsCountryEnabled = false;
+                IsRegionEnabled = false;
                 break;
             }
         }
@@ -384,7 +295,7 @@ namespace FirstEvent.ViewModel.Sections
                         continue;
                 }
                 TreatingDoctorView = d;
-                IstreatingDoctorReadOnly = true;
+                IstreatingDoctorEnabled = false;
                 break;
             }
         }
@@ -394,7 +305,7 @@ namespace FirstEvent.ViewModel.Sections
             if (doc == null)
                 return;
             TreatingDoctorView = doc;
-            IstreatingDoctorReadOnly = true;
+            IstreatingDoctorEnabled = false;
         }
 
         private void CountryCallerMessage(Country c)
@@ -402,7 +313,7 @@ namespace FirstEvent.ViewModel.Sections
             if (c == null)
                 return;
             Country = c;
-            IsCountryReadOnly = true;
+            IsCountryEnabled = false;
         }
 
         private void RegionCallerMessage(Region r)
@@ -414,8 +325,8 @@ namespace FirstEvent.ViewModel.Sections
             CallerGeographySwitcher.Region = r;
             Country = DataBaseManager.GetCountryByRegion(r);
             CallerGeographySwitcher.Country = Country;
-            IsRegionReadOnly = true;
-            IsCountryReadOnly = true;
+            IsRegionEnabled = false;
+            IsCountryEnabled = false;
         }
 
         private void CityCallerMessage(City c)
@@ -433,9 +344,9 @@ namespace FirstEvent.ViewModel.Sections
             CallerGeographySwitcher.City = c;
             CallerGeographySwitcher.Country = Country;
             CallerGeographySwitcher.Region = Region;
-            IsCityReadOnly = true;
-            IsCountryReadOnly = true;
-            IsRegionReadOnly = true;
+            IsCityEnabled = false;
+            IsCountryEnabled = false;
+            IsRegionEnabled = false;
         }
     }
 }
