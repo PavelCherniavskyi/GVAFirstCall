@@ -17,6 +17,11 @@ namespace FirstEvent.Model
 
     public class InsuranceView
     {
+        public InsuranceView()
+        {
+            Name = string.Empty;
+            Office = string.Empty;
+        }
         public int Id { set; get; }
 
         public string Name { set; get; }

@@ -61,7 +61,9 @@ namespace FirstEvent.ViewModel
         {
             if (SaveButttonEnabled)
                 SaveButtonCommandExecute();
-            Application.Current.Shutdown();
+
+            if (!SaveButttonEnabled)
+                Application.Current.Shutdown();
         }
 
         public ICommand CancelButtonCommand
@@ -84,9 +86,57 @@ namespace FirstEvent.ViewModel
 
         private void SaveButtonCommandExecute()
         {
+            if (CheckMembership() && CheckSubscriber() && CheckResonForCall() && CheckCheckContacts())
+            {
+                MessageBox.Show("Everything looks right.\nWell done!!!");
+                SaveButttonEnabled = false;
+            }
+            
+        }
 
-            MessageBox.Show("Everything looks right.\nWell done!!!");
-            SaveButttonEnabled = false;
+        private bool CheckMembership()
+        {
+            if (Membership.Insurance.Name == string.Empty)
+            {
+                MessageBox.Show("How do you think we will validate policy \nif we don't know name of an insurance company?");
+                return false;
+            }
+            if (Membership.ValidFrom == DateTime.MinValue || Membership.ValidTo == DateTime.MinValue)
+            {
+                MessageBox.Show("Forgot to put insurance valid terms?");
+                return false;
+            }
+            if (Membership.FindSubByPolInfoPressed == false)
+            {
+                MessageBox.Show("Forgot to press \"Find Subsriber by Policy info\" button?");
+                return false;
+            }
+            if (Membership.PolicyNum == string.Empty)
+            {
+                MessageBox.Show("How about policy number? \nIt will be very useful for you if you will not find subsciber in database.");
+                return false;
+            }
+            if (int.Parse(Membership.InsuredDays) <= 0)
+            {
+                MessageBox.Show("Don't you think count of insured days looks suspicious?");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckSubscriber()
+        {
+            return true;
+        }
+
+        private bool CheckResonForCall()
+        {
+            return true;
+        }
+
+        private bool CheckCheckContacts()
+        {
+            return true;
         }
     }
 }

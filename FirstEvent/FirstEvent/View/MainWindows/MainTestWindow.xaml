@@ -23,11 +23,11 @@
                     <StackPanel Orientation="Vertical" view:MarginSetter.Margin="4" Margin="31,10,0,0" Width="230">
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Number:" DockPanel.Dock="Left" Margin="0,0,0,0"/>
-                            <TextBox  DockPanel.Dock="Right" Width="150" Height="20" IsEnabled="False" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                            <TextBox  DockPanel.Dock="Right" Width="150" Text="400245" Height="20" IsEnabled="False" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <TextBox.ToolTip>
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold">Case number</TextBlock>
-                                        <TextBlock Text="When first event will be created this field gets unique number in database.&#x0a;Format: M-123456&#x0a;For now it is empty and you can't modify it."/>
+                                        <TextBlock FontWeight="Bold">Inner case number</TextBlock>
+                                        <TextBlock Text="This is inner case number in database.&#x0a;Do not pay attention on it. For most of the cases you will need case reference number below."/>
                                     </StackPanel>
                                 </TextBox.ToolTip>
                             </TextBox>
@@ -35,7 +35,15 @@
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Case:" DockPanel.Dock="Left" Margin="0,0,0,0" />
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Actual case number</TextBlock>
+                                        <TextBlock Text="When first event will be created this field gets unique number in database.&#x0a;Format: M-123456&#x0a;For now it is empty."/>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DockPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="17,10,0,0" Width="232">
@@ -190,7 +198,7 @@
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
-                                            <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to found country automaticaly." FontStyle="Italic"/>
+                                            <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to find country automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </TextBox.ToolTip>
@@ -214,7 +222,7 @@
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
-                                            <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to found region automaticaly." FontStyle="Italic"/>
+                                            <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to find region automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </TextBox.ToolTip>
@@ -238,7 +246,7 @@
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
-                                            <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to found it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly." FontStyle="Italic"/>
+                                            <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to find it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly (you can save your time)." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </TextBox.ToolTip>
@@ -285,7 +293,15 @@
                         <DockPanel LastChildFill="True" VerticalAlignment="Center" Height="20" ></DockPanel>
                         <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                             <TextBlock Text="Caler ID:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Caller.CallerId, UpdateSourceTrigger=LostFocus}" />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Caller.CallerId, UpdateSourceTrigger=LostFocus}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Identity number</TextBlock>
+                                        <TextBlock Text="If necessary."/>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DockPanel>
                     </StackPanel>
                 </StackPanel>
@@ -303,22 +319,50 @@
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-9,0,-4,0" Panel.ZIndex="1" Content="O" />
                             <TextBox  DockPanel.Dock="Right" Width="150" Height="20" Margin="0,0,3,0" 
                                   IsEnabled="{Binding Membership.IsInsuranceEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Membership.Insurance.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Membership.Insurance.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding Membership.InsuranceEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Membership</TextBlock>
+                                        <TextBlock Text="You should select insurance company of subscriber."/>
+                                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
+                                            <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
                             </TextBox>
                         </DockPanel>
                         <DockPanel LastChildFill="False" VerticalAlignment="Center" Width="241">
                             <TextBlock Text="M.O. Case№:" DockPanel.Dock="Left" Margin="14,0,0,0" />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,-4,0"  />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,-4,0"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Outer reference number</TextBlock>
+                                        <TextBlock Text="In this is a request from another company you should indicate here their reference number on that case"/>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DockPanel>
                         <DockPanel LastChildFill="False" VerticalAlignment="Center" Width="241">
                             <TextBlock Text="Valid Subscr." DockPanel.Dock="Left" Margin="25,0,0,0" />
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-5,0,-8,0" Panel.ZIndex="1" Content="X" />
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-14,0,4,0" Panel.ZIndex="1" Content="..." />
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="9,0,-22,0" Panel.ZIndex="1" Content="O" />
-                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="11,0,9,0"  />
+                            <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="11,0,9,0"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Subscriber validation</TextBlock>
+                                        <TextBlock Text="Some of insurance company sends us lists of insured people.&#x0a;In some cases you can find subscriber here and save time for policy validation.&#x0a;This field doesn't work in testing mode."/>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DockPanel>
                     </StackPanel>
                     <Separator HorizontalAlignment="Stretch" Height="1"/>
@@ -326,23 +370,77 @@
                         <StackPanel view:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
                             <DockPanel VerticalAlignment="Center" LastChildFill="False">
                                 <TextBlock Text="Last Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.LastName}"/>
+                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.LastName}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Last name</TextBlock>
+                                            <TextBlock Text="Last name of subscriber"/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
+                                                <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                                 <TextBlock Text="First Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.FirstName}" />
+                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.FirstName}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">First name</TextBlock>
+                                            <TextBlock Text="First name of subscriber"/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
+                                                <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                                 <TextBlock Text="Middle Name:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.MiddleName}" />
+                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.MiddleName}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Middle name</TextBlock>
+                                            <TextBlock Text="Middle name of subscriber"/>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel >
                                 <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Left" Margin="0">
                                     <TextBlock Text="Date of Birth:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                    <DatePicker DockPanel.Dock="Right" Margin="8,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" SelectedDate="{Binding Subscriber.DoB}" />
+                                    <DatePicker DockPanel.Dock="Right" Margin="8,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" SelectedDate="{Binding Subscriber.DoB}">
+                                        <DatePicker.ToolTip>
+                                            <StackPanel>
+                                                <TextBlock FontWeight="Bold">Date of birth</TextBlock>
+                                                <TextBlock Text="Date of birth of subscriber"/>
+                                                <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
+                                                    <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </DatePicker.ToolTip>
+                                    </DatePicker>
                                 </DockPanel>
                                 <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Right" >
-                                    <TextBox DockPanel.Dock="Right" Width="20" Margin="0,0,10,0" Height="22" Text="{Binding Subscriber.Age}"/>
+                                    <TextBox DockPanel.Dock="Right" Width="20" Margin="0,0,10,0" Height="22" Text="{Binding Subscriber.Age, Mode=TwoWay}" IsEnabled="False"
+                                             ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                        <TextBox.ToolTip>
+                                            <StackPanel>
+                                                <TextBlock FontWeight="Bold">Age</TextBlock>
+                                                <TextBlock Text="Age of subscriber. Automaticaly sets when from date of birth."/>
+                                            </StackPanel>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
                                     <TextBlock Text="Age:" DockPanel.Dock="Right" Margin="0,0,3,0" />
                                 </DockPanel>
                             </DockPanel>
@@ -355,10 +453,22 @@
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowCountryListWindow}" />
                                 <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
                                   IsEnabled="{Binding Subscriber.IsCountryEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Subscriber.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.CountryEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Country</TextBlock>
+                                            <TextBlock Text="Indicates where the subscriber is."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to find country automaticaly." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
                                 </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" VerticalAlignment="Center" >
@@ -367,10 +477,22 @@
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowRegionListWindow}" />
                                 <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
                                   IsEnabled="{Binding Subscriber.IsRegionEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Subscriber.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.RegionEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Region</TextBlock>
+                                            <TextBlock Text="Indicates where the subscriber is."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to find region automaticaly." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
                                 </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" VerticalAlignment="Center" >
@@ -379,15 +501,45 @@
                                 <Button DockPanel.Dock="Right" MinWidth="10" Margin="-35,0,22,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowCityListWindow}" />
                                 <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0"
                                   IsEnabled="{Binding Subscriber.IsCityEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Subscriber.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.CityEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">City</TextBlock>
+                                            <TextBlock Text="Indicates where the caller is."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to find it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly (you can save your time)." FontStyle="Italic"/>
+                                            </StackPanel>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="  This field is required! If subscriber is not in the city you should indicate here closet one and write additional information in field below." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
                                 </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                                 <TextBlock Text="Location info:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.LocationInfo}" />
+                                <TextBox  DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,10,0" Text="{Binding Subscriber.LocationInfo}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Location information</TextBlock>
+                                            <TextBlock Text="You can clarify exactly where the caller is, if he is located not is the city. &#x0a;Any orientation on terrain, village name, name of this area?"/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <TextBlock Text="This field is required if subscriber is not in selected city. We need to know exactly where the subscribe is." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                         </StackPanel>
                         <StackPanel view:MarginSetter.Margin="3" Orientation="Vertical" MinWidth="250" MinHeight="110" HorizontalAlignment="Left">
@@ -397,29 +549,67 @@
                                 <Button DockPanel.Dock="Right" Width="12" Height="20" Margin="-34,0,9,0" Panel.ZIndex="1" Content="..." Command="{Binding Subscriber.ShowHotelListWindow}"/>
                                 <TextBox DockPanel.Dock="Right" MinWidth="150" MinHeight="20" MaxWidth="150" Margin="0,0,12,0" 
                                  IsEnabled="{Binding Subscriber.IsHotelEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding Subscriber.Hotel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Subscriber.Hotel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding Subscriber.HotelEnterKeyCommand}"/>
                                     </TextBox.InputBindings>
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Hotel information</TextBlock>
+                                            <TextBlock Text="If hotel is in database you can choose it.&#x0a;If not leave it empty and make sure you indicate location in additional info."/>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
                                 </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" VerticalAlignment="Center" >
                                 <TextBlock Text="Room:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                <TextBox  DockPanel.Dock="Right" Height="20" Width="157" Margin="0,0,5,0" Text="{Binding Subscriber.Room}" />
+                                <TextBox  DockPanel.Dock="Right" Height="20" Width="157" Margin="0,0,5,0" Text="{Binding Subscriber.Room}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Room number</TextBlock>
+                                            <TextBlock Text="Number of appartments or room if any."/>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel >
                                 <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Left" Margin="0">
                                     <TextBlock Text="Arrival:" DockPanel.Dock="Left" Margin="7,2,0,0" />
-                                    <DatePicker DockPanel.Dock="Right" Margin="39,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" SelectedDate="{Binding Subscriber.Arrival}"/>
+                                    <DatePicker DockPanel.Dock="Right" Margin="39,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" SelectedDate="{Binding Subscriber.Arrival}"
+                                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                        <DatePicker.ToolTip>
+                                            <StackPanel>
+                                                <TextBlock FontWeight="Bold">Arrival time</TextBlock>
+                                                <TextBlock Text="What day subscriber has crossed the border of a country?"/>
+                                            </StackPanel>
+                                        </DatePicker.ToolTip>
+                                    </DatePicker>
                                 </DockPanel>
                                 <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Right" >
-                                    <TextBlock Text="Duration:" DockPanel.Dock="Right" Margin="0,0,7,0" />
+                                    <TextBlock Text="Duration:" DockPanel.Dock="Right" Margin="0,0,7,0">
+                                        <TextBlock.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Duration time</TextBlock>
+                                                <TextBlock Text="In some cases, the insurance covers a certain number of days in the half year interval, or a year. &#x0a;For example, insurance can work half a year, but only if a person will stay no more than 90 days outside the country. If now is 91 day from the date of crossing the border, the insurance will not work, even though the final date of the policy has not yet come. &#x0a;This information can be found on the stamps in the passport. In such cases, we ask subscriber to send a copy of them."/>
+                                        </StackPanel>
+                                    </TextBlock.ToolTip>
+                                    </TextBlock>
                                 </DockPanel>
                             </DockPanel>
                             <DockPanel >
                                 <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Left" Margin="0">
                                     <TextBlock Text="Departure:" DockPanel.Dock="Left" Margin="7,0,0,0" />
-                                    <DatePicker DockPanel.Dock="Right" Margin="19,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" SelectedDate="{Binding Subscriber.Departure}"/>
+                                    <DatePicker DockPanel.Dock="Right" Margin="19,0,0,0" Height="22" Width="90" FontSize="10" VerticalContentAlignment="Center" SelectedDate="{Binding Subscriber.Departure}"
+                                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                        <DatePicker.ToolTip>
+                                            <StackPanel>
+                                                <TextBlock FontWeight="Bold">Departure time</TextBlock>
+                                                <TextBlock Text="What day subscriber is going to go back?"/>
+                                            </StackPanel>
+                                        </DatePicker.ToolTip>
+                                    </DatePicker>
                                 </DockPanel>
                                 <DockPanel LastChildFill="False" VerticalAlignment="Center" Dock="Right" >
                                     <TextBlock DockPanel.Dock="Right" Margin="0,0,7,0" Text="{Binding Subscriber.Duration, Mode=TwoWay}" FontWeight="Bold" Foreground="{Binding Subscriber.DepartureColor}" />
@@ -430,47 +620,134 @@
                     <Separator HorizontalAlignment="Stretch" Height="1" Margin="0,9,0,0"/>
                     <StackPanel Margin="8,0,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
                         <TextBlock DockPanel.Dock="Left" Text="Home Adrs:" Margin="0,10,10,0" Width="74"/>
-                        <TextBox DockPanel.Dock="Right" Height="20" Width="498" Margin="-7,10,153,0" Text="{Binding Subscriber.HomeAdress}"/>
+                        <TextBox DockPanel.Dock="Right" Height="20" Width="498" Margin="-7,10,153,0" Text="{Binding Subscriber.HomeAdress}"
+                                 ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                            <TextBox.ToolTip>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Home adress</TextBlock>
+                                    <TextBlock Text="In some cases we need contacts of subscriber after medical help."/>
+                                </StackPanel>
+                            </TextBox.ToolTip>
+                        </TextBox>
                     </StackPanel>
                     <Separator HorizontalAlignment="Stretch" Height="1" Margin="0,9,0,0"/>
                     <StackPanel Orientation="Horizontal" Margin="-10,7,0,0" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" view:MarginSetter.Margin="5" Margin="16,0,0,0">
                             <DockPanel LastChildFill="False">
                                 <TextBlock Text="Policy Num." DockPanel.Dock="Left" Margin="0" />
-                                <TextBox  DockPanel.Dock="Right" Width="100" Height="21" MaxWidth="150" Margin="15,0,0,0" Text="{Binding Membership.PolicyNum}"/>
+                                <TextBox  DockPanel.Dock="Right" Width="100" Height="21" MaxWidth="150" Margin="15,0,0,0" Text="{Binding Membership.PolicyNum}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Policy number</TextBlock>
+                                            <TextBlock Text="Number of a policy"/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="  This field is required in most cases. We need to validate subscriber by this number" FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" >
                                 <TextBlock Text="Letter Code:" DockPanel.Dock="Left" Margin="0" />
-                                <TextBox  DockPanel.Dock="Right" Width="100" MinHeight="20" Margin="15,0,0,0" Text="{Binding Membership.LetterCode}" />
+                                <TextBox  DockPanel.Dock="Right" Width="100" MinHeight="20" Margin="15,0,0,0" Text="{Binding Membership.LetterCode}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Letter code</TextBlock>
+                                            <TextBlock Text="Needs to be clarified."/>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" view:MarginSetter.Margin="5" Margin="16,0,0,0">
                             <DockPanel LastChildFill="False">
                                 <TextBlock Text="Valid From:" DockPanel.Dock="Left" Margin="0" />
-                                <DatePicker DockPanel.Dock="Right" Height="21" FontSize="10" Margin="8,0,0,0" Width="90" VerticalContentAlignment="Center" SelectedDate="{Binding Membership.ValidFrom}"/>
+                                <DatePicker DockPanel.Dock="Right" Height="21" FontSize="10" Margin="8,0,0,0" Width="90" VerticalContentAlignment="Center" SelectedDate="{Binding Membership.ValidFrom}"
+                                            ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <DatePicker.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Valid from</TextBlock>
+                                            <TextBlock Text="When the policy comes into force?"/>
+                                        </StackPanel>
+                                    </DatePicker.ToolTip>
+                                </DatePicker>
                             </DockPanel>
                             <DockPanel LastChildFill="False" >
                                 <TextBlock Text="Valid To:" DockPanel.Dock="Left" Margin="0" />
-                                <DatePicker DockPanel.Dock="Right" Height="21" FontSize="10" Margin="8,0,0,0" Width="90" VerticalContentAlignment="Center" SelectedDate="{Binding Membership.ValidTo}"/>
+                                <DatePicker DockPanel.Dock="Right" Height="21" FontSize="10" Margin="8,0,0,0" Width="90" VerticalContentAlignment="Center" SelectedDate="{Binding Membership.ValidTo}"
+                                            ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <DatePicker.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Valid to</TextBlock>
+                                            <TextBlock Text="When the policy comes out of a force?"/>
+                                        </StackPanel>
+                                    </DatePicker.ToolTip>
+                                </DatePicker>
                             </DockPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" view:MarginSetter.Margin="5" Margin="16,0,0,0">
                             <DockPanel LastChildFill="False">
                                 <TextBlock Text="Insured Days:" DockPanel.Dock="Left" Margin="0" />
-                                <TextBox  DockPanel.Dock="Right" Width="30" Height="21" MaxWidth="150" Margin="0,0,5,0" Text="{Binding Membership.InsuredDays}"/>
+                                <TextBox  DockPanel.Dock="Right" Width="30" Height="21" MaxWidth="150" Margin="0,0,5,0" Text="{Binding Membership.InsuredDays, Mode=TwoWay}" IsEnabled="False"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Insured days</TextBlock>
+                                            <TextBlock Text="How many days policy is in force. It is connected to valid to and from fields and sets automaticaly."/>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" Margin="3,8,3,5" >
                                 <TextBlock Text="Insur. Programm:" DockPanel.Dock="Left" Margin="0" />
-                                <TextBox  DockPanel.Dock="Right" Width="30" Height="21" Margin="10,0,5,0" Text="{Binding Membership.InsuredProgramm}"/>
+                                <TextBox  DockPanel.Dock="Right" Width="30" Height="21" Margin="10,0,5,0" Text="{Binding Membership.InsuredProgramm}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Insurance programm</TextBlock>
+                                            <TextBlock Text="If any?"/>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="16,0,0,0">
                             <DockPanel LastChildFill="False">
                                 <TextBlock Text="Deductable:" DockPanel.Dock="Left" Margin="0" />
-                                <TextBox  DockPanel.Dock="Right" Width="100" MaxWidth="150" Height="21" Margin="9,0" Text="{Binding Membership.Deductable}"/>
+                                <TextBox  DockPanel.Dock="Right" Width="100" MaxWidth="150" Height="21" Margin="9,0" Text="{Binding Membership.Deductable}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <TextBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Deductable</TextBlock>
+                                            <TextBlock Text="Indicates deductable if any."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="  It is very important to know if it is." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </DockPanel>
                             <DockPanel>
-                                <Button Content="Find Subsriber by Policy info" Width="170" Height="21" DockPanel.Dock="Bottom" Margin="0,6,8,6"/>
+                                <Button Content="Find Subsriber by Policy info" Width="170" Height="21" DockPanel.Dock="Bottom" Margin="0,6,8,6"
+                                        ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000" Command="{Binding Membership.ButtonFindSubByPolInfoPressed}">
+                                    <Button.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Find subscriber by policy info</TextBlock>
+                                            <TextBlock Text="In testing mode this button isn't working. &#x0a;But in dolphin you should always check if you can find client in inner database &#x0a;and see all information about policy."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="  This button is required to one time at least." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button.ToolTip>
+                                </Button>
                             </DockPanel>
                         </StackPanel>
                     </StackPanel>
@@ -484,18 +761,70 @@
                     <StackPanel Orientation="Vertical" Margin="0" Width="450" view:MarginSetter.Margin="4">
                         <DockPanel>
                             <TextBlock Text="Reason for call:" Width="60" DockPanel.Dock="Left" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontWeight="Bold"/>
-                            <TextBox Width="350" Height="70" DockPanel.Dock="Right" Margin="0" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Text="{Binding CallInfo.ReasonForCall}"/>
+                            <TextBox Width="350" Height="70" DockPanel.Dock="Right" Margin="0" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Text="{Binding CallInfo.ReasonForCall}"
+                                     ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Reason for call</TextBlock>
+                                        <TextBlock Text="This field describes how, where, whom, what happened, who is it happened. What kind of help needed"/>
+                                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                            <TextBlock Text="  This field is one of the most important information in case. You should pay attention to every detail." FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DockPanel>
                         <StackPanel Orientation="Horizontal">
                             <DockPanel Width="357" Margin="76,0,0,0">
-                                <CheckBox DockPanel.Dock="Left" Content="This is chronical desease" Margin="0,0,10,0" IsChecked="{Binding CallInfo.IsChronical}"/>
-                                <CheckBox DockPanel.Dock="Left" Content="Alcohol or Drug usage within 24h" IsChecked="{Binding CallInfo.IsAlcohol}"/>
+                                <CheckBox DockPanel.Dock="Left" Content="This is chronical desease" Margin="0,0,10,0" IsChecked="{Binding CallInfo.IsChronical}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <CheckBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Chronical desease</TextBlock>
+                                            <TextBlock Text="Check it if desease is chronical."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="  This is very important field. In most cases chronical desease are not covered by any insurance company.&#x0a;   If you doubt you can always ask duty doctor." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
+                                <CheckBox DockPanel.Dock="Left" Content="Alcohol or Drug usage within 24h" IsChecked="{Binding CallInfo.IsAlcohol}"
+                                          ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    <CheckBox.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Alcohol usage within 24h</TextBlock>
+                                            <TextBlock Text="Check it if fact of alcohol usage has been occured."/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="  This is also very important field. In most cases this event will be covered by any insurance company.&#x0a;   You should always ask it when an trauma or injury is received in suspicious circumstances." FontStyle="Italic"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
                             </DockPanel>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Width="273"  Height="33" Margin="0,0,0,64">
                         <TextBlock Text="Status of call:" DockPanel.Dock="Left" Margin="26,0,0,0"  Height="22"/>
-                        <ComboBox DockPanel.Dock="Right" Width="160" Height="22"  Margin="17,0,0,0" ItemsSource="{Binding CallInfo.StatusOfCalls}" SelectedItem="{Binding CallInfo.StatusSelected}" DisplayMemberPath="Name" Padding="6, 3, 0, 0"/>
+                        <ComboBox DockPanel.Dock="Right" Width="160" Height="22"  Margin="17,0,0,0" ItemsSource="{Binding CallInfo.StatusOfCalls}" SelectedItem="{Binding CallInfo.StatusSelected}" DisplayMemberPath="Name" Padding="6, 3, 0, 0"
+                                  ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                            <ComboBox.ToolTip>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Statuc of call</TextBlock>
+                                    <TextBlock Text="Choose this status of call."/>
+                                    <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                                        <TextBlock Text="  Do not leave this field empty. All further action will depends from it." FontStyle="Italic"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </ComboBox.ToolTip>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </Expander>
@@ -507,8 +836,14 @@
                     <StackPanel Orientation="Vertical" view:MarginSetter.Margin="4" Margin="17,10,0,0" Width="298">
                         <StackPanel Orientation="Horizontal">
                             <DockPanel VerticalAlignment="Center" LastChildFill="False" Width="239">
-                                <RadioButton GroupName="TreatDoc" Content="Outsourced doctor" DockPanel.Dock="Left" IsChecked="{Binding TreatDoctor.IsDoctor}"/>
-                                <RadioButton GroupName="TreatDoc" Content="Medical Facility" DockPanel.Dock="Right" IsChecked="{Binding TreatDoctor.IsFacility}"/>
+                                <RadioButton GroupName="TreatDoc" Content="Outsourced doctor" DockPanel.Dock="Left" IsChecked="{Binding TreatDoctor.IsDoctor}"
+                                             ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    
+                                </RadioButton>
+                                <RadioButton GroupName="TreatDoc" Content="Medical Facility" DockPanel.Dock="Right" IsChecked="{Binding TreatDoctor.IsFacility}"
+                                             ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                    
+                                </RadioButton>
                             </DockPanel>
                         </StackPanel>
 
@@ -518,10 +853,17 @@
                             <Button  DockPanel.Dock="Right" MinWidth="10" Margin="-13,0,0,0" Panel.ZIndex="1" Content="O" />
                             <TextBox  DockPanel.Dock="Right" Height="20" Width="294" Margin="0,0,4,0"  
                                  IsEnabled="{Binding TreatDoctor.IstreatingDoctorEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.TreatingDoctorView.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding TreatDoctor.TreatingDoctorView.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.DocEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Treating doctor or medical facility</TextBlock>
+                                        <TextBlock Text="If subscriber calling from medical facility or from doctor you can find it facility in our database (if it is there). &#x0a;Otherwise leave it empty."/>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
                             </TextBox>
                         </DockPanel>
                     </StackPanel>
@@ -532,10 +874,22 @@
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowCountryListWindow}"/>
                             <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0"
                                  IsEnabled="{Binding TreatDoctor.IsCountryEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding TreatDoctor.Country.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.CountryEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Country</TextBlock>
+                                        <TextBlock Text="Indicates where the doctor of medical facility is."/>
+                                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to find country automaticaly." FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
                             </TextBox>
                         </DockPanel>
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
@@ -544,10 +898,22 @@
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowRegionListWindow}"/>
                             <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0"
                                  IsEnabled="{Binding TreatDoctor.IsRegionEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding TreatDoctor.Region.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.RegionEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Region</TextBlock>
+                                        <TextBlock Text="Indicates where the doctor of medical facility is."/>
+                                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to find region automaticaly." FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
                             </TextBox>
                         </DockPanel>
                     </StackPanel>
@@ -558,15 +924,35 @@
                             <Button   DockPanel.Dock="Right" MinWidth="10" Margin="-25,0,12,0" Panel.ZIndex="1" Content="..." Command="{Binding TreatDoctor.ShowCityListWindow}"/>
                             <TextBox  DockPanel.Dock="Right" Width="130" Height="20" Margin="0,0,0,0"
                                  IsEnabled="{Binding TreatDoctor.IsCityEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Text="{Binding TreatDoctor.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding TreatDoctor.City.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding TreatDoctor.CityEnterKeyCommand}"/>
                                 </TextBox.InputBindings>
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">City</TextBlock>
+                                        <TextBlock Text="Indicates where the doctor of medical facility is."/>
+                                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to find it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly (you can save your time)." FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
                             </TextBox>
                         </DockPanel>
                         <DockPanel VerticalAlignment="Center" LastChildFill="False">
                             <TextBlock Text="Location info:" DockPanel.Dock="Left" Margin="0,0,0,0" />
-                            <TextBox  DockPanel.Dock="Right" Width="130" Height="20"  Margin="0,0,0,0" Text="{Binding TreatDoctor.LocationInfo}"/>
+                            <TextBox  DockPanel.Dock="Right" Width="130" Height="20"  Margin="0,0,0,0" Text="{Binding TreatDoctor.LocationInfo}"
+                                      ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                <TextBox.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="Bold">Location information</TextBlock>
+                                        <TextBlock Text="You can clarify exactly where the doctor of medical facility is, if it is located not is the city. &#x0a;Any orientation on terrain, village name, name of this area?"/>
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DockPanel>
                     </StackPanel>
                 </StackPanel>
@@ -577,14 +963,35 @@
                 </Expander.Header>
                 <StackPanel HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal" view:MarginSetter.Margin="3" Margin="10,0" >
-                        <Button Name="ContactsAddBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.AddButtonCommand}">
+                        <Button Name="ContactsAddBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.AddButtonCommand}"
+                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                             <Image Source="../Images/add1.ico"/>
+                            <Button.ToolTip>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Add contact</TextBlock>
+                                    <TextBlock Text="Adding one more row."/>
+                                </StackPanel>
+                            </Button.ToolTip>
                         </Button>
-                        <Button Name="ContactsCopyBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.CopyButtonCommand}">
+                        <Button Name="ContactsCopyBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.CopyButtonCommand}"
+                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                             <Image Source="../Images/copy.ico"/>
+                            <Button.ToolTip>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Copy contact</TextBlock>
+                                    <TextBlock Text="Copying selected row."/>
+                                </StackPanel>
+                            </Button.ToolTip>
                         </Button>
-                        <Button Name="ContactsDeleteBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.DeleteButtonCommand}">
+                        <Button Name="ContactsDeleteBtn" Height="25" Width="25" BorderBrush="#00707070" Background="#00DDDDDD" Command="{Binding ContactSection.DeleteButtonCommand}"
+                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                             <Image Source="../Images/delete.ico"/>
+                            <Button.ToolTip>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Delete contact</TextBlock>
+                                    <TextBlock Text="Deleting selected row."/>
+                                </StackPanel>
+                            </Button.ToolTip>
                         </Button>
                     </StackPanel>
                     <DataGrid Margin="10,0" CanUserResizeRows="False" SelectedIndex="{Binding ContactSection.SelectedIndex}"
@@ -600,10 +1007,13 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding  Path=Id}" Header="№" Width="23"/>
+                            <DataGridTextColumn Binding="{Binding  Path=Id}" Header="№" Width="23" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+
+                            </DataGridTextColumn>
                             <DataGridComboBoxColumn Header="Relation to Subscriber" Width="130"
                                                 SelectedItemBinding="{Binding SelectedRelToSub, UpdateSourceTrigger=PropertyChanged}"
-                                                DisplayMemberPath="Name">
+                                                DisplayMemberPath="Name"
+                                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <DataGridComboBoxColumn.ElementStyle>
                                     <Style TargetType="ComboBox">
                                         <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.RelToSubs, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
@@ -614,12 +1024,14 @@
                                         <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.RelToSubs, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
                                     </Style>
                                 </DataGridComboBoxColumn.EditingElementStyle>
-
                             </DataGridComboBoxColumn>
-                            <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" Width="150" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                
+                            </DataGridTextColumn>
                             <DataGridComboBoxColumn Header="Type of contact" Width="120"
                                                 SelectedItemBinding="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged}"
-                                                DisplayMemberPath="Name">
+                                                DisplayMemberPath="Name"
+                                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                 <DataGridComboBoxColumn.ElementStyle>
                                     <Style TargetType="ComboBox">
                                         <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.TypeOfContacts, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
@@ -632,8 +1044,12 @@
                                 </DataGridComboBoxColumn.EditingElementStyle>
 
                             </DataGridComboBoxColumn>
-                            <DataGridTextColumn Binding="{Binding Path=ContactNum}" Header="Contact" Width="100"/>
-                            <DataGridTextColumn Binding="{Binding Path=Info}" Header="Info" Width="225"/>
+                            <DataGridTextColumn Binding="{Binding Path=ContactNum}" Header="Contact" Width="100" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Path=Info}" Header="Info" Width="225" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
 
 
@@ -641,9 +1057,18 @@
                 </StackPanel>
             </Expander>
             <DockPanel  HorizontalAlignment="Stretch" Margin="0,0,10,0" LastChildFill="False">
-                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Close" Command="{Binding CancelButtonCommand}"/>
-                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" IsEnabled="{Binding SaveButttonEnabled}"/>
-                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}"/>
+                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Close" Command="{Binding CancelButtonCommand}"
+                        ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                    
+                </Button>
+                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" IsEnabled="{Binding SaveButttonEnabled}"
+                        ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                    
+                </Button>
+                <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}"
+                        ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                    
+                </Button>
             </DockPanel>
         </StackPanel>
     </ScrollViewer>

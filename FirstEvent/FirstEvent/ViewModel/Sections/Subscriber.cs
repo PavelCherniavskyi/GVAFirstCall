@@ -28,6 +28,8 @@ namespace FirstEvent.ViewModel.Sections
         private DateTime _arrival = DateTime.Now;
         private string _duration;
         private Brush _departureColor;
+        private DateTime _doB = DateTime.Now;
+        private string _age;
 
         public Subscriber()
         {
@@ -54,9 +56,26 @@ namespace FirstEvent.ViewModel.Sections
 
         public string Room { get; set; }
 
-        public string Age { get; set; }
+        public string Age
+        {
+            get { return _age; }
+            set
+            {
+                _age = value;
+                RaisePropertyChanged("Age");
+            }
+        }
 
-        public DateTime DoB { get; set; } = DateTime.Now;
+        public DateTime DoB
+        {
+            get { return _doB; }
+            set
+            {
+                var a = DateTime.Now - value;
+                _doB = value;
+                Age = (a.Days / 365).ToString();
+            }
+        }
 
         public DateTime Arrival
         {

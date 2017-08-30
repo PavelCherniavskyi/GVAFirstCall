@@ -17,25 +17,61 @@ namespace FirstEvent.ViewModel.Sections
     {
         private InsuranceView _insurance;
         private bool _isInsuranceEnabled = true;
+        private string _insuredDays;
+        private DateTime _validFrom = DateTime.MinValue;
+        private DateTime _validTo = DateTime.MinValue;
 
         public Membership()
         {
             Messenger.Default.Register(this, "MembershipInsurance", new Action<InsuranceView>(InsuranceCallerMessage));
+            PolicyNum = string.Empty;
         }
+
+        public bool FindSubByPolInfoPressed { get; set; }
+
+        public ICommand ButtonFindSubByPolInfoPressed => new RelayCommand(() => FindSubByPolInfoPressed = true, () => true);
 
         public string PolicyNum { set; get; }
 
         public string LetterCode { set; get; }
 
-        public string InsuredDays { set; get; }
+        public string InsuredDays
+        {
+            get { return _insuredDays; }
+            set
+            {
+                _insuredDays = value;
+                RaisePropertyChanged("InsuredDays");
+            }
+            
+        }
 
         public string InsuredProgramm { set; get; }
 
         public string Deductable { set; get; }
 
-        public DateTime ValidFrom { set; get; } = DateTime.Now;
+        public DateTime ValidFrom
+        {
+            get { return _validFrom; }
+            set
+            {
+                var a = _validTo - value;
+                _validFrom = value;
+                InsuredDays = a.Days.ToString();
+            }
+            
+        }
 
-        public DateTime ValidTo { set; get; } = DateTime.Now;
+        public DateTime ValidTo
+        {
+            get { return _validTo; }
+            set
+            {
+                var a = value - _validFrom;
+                _validTo = value;
+                InsuredDays = a.Days.ToString();
+            }
+        }
 
         public RelayCommand ShowHotelListWindow { get; } = new RelayCommand(() => new Insurance_Companies().ShowDialog(), () => true);
 
