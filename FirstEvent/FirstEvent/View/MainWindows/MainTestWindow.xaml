@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:FirstEvent.View"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Testing mode" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        Title="Testing mode" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding CancelButtonCommand}" />
@@ -101,7 +101,7 @@
                                         <TextBlock Text="You must choose a doctor who is on duty today from database"/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a contact code from database if you know it or try to type first leters of last name&#x0a;and it will automaticaly find it." FontStyle="Italic"/>
                                         </StackPanel>
                                         
@@ -171,7 +171,7 @@
                                         <TextBlock Text="This field tells us who we are dealing with in relation to the subscriber."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a relation code from database if you know it &#x0a;or try to type first leters and it will try to found relation automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -197,7 +197,7 @@
                                         <TextBlock Text="Indicates where the caller is."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to find country automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -221,7 +221,7 @@
                                         <TextBlock Text="Indicates where the caller is."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to find region automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -245,7 +245,7 @@
                                         <TextBlock Text="Indicates where the caller is."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to find it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly (you can save your time)." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -330,8 +330,8 @@
                                         <TextBlock Text="You should select insurance company of subscriber."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
-                                            <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                            <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25"/>
+                                            <TextBlock Text="This field is required!" FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </TextBox.ToolTip>
@@ -378,8 +378,8 @@
                                             <TextBlock Text="Last name of subscriber"/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
-                                                <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25"/>
+                                                <TextBlock Text="This field is required!" FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </TextBox.ToolTip>
@@ -395,8 +395,8 @@
                                             <TextBlock Text="First name of subscriber"/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
-                                                <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25"/>
+                                                <TextBlock Text="This field is required!" FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </TextBox.ToolTip>
@@ -424,8 +424,8 @@
                                                 <TextBlock Text="Date of birth of subscriber"/>
                                                 <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                                 <StackPanel Orientation="Horizontal">
-                                                    <Image Source="../Images/attention25x25.png" Width="25" Height="25"/>
-                                                    <TextBlock Text="  This field is required!" FontStyle="Italic"/>
+                                                    <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25"/>
+                                                    <TextBlock Text="This field is required!" FontStyle="Italic"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </DatePicker.ToolTip>
@@ -464,7 +464,7 @@
                                             <TextBlock Text="Indicates where the subscriber is."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                                 <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to find country automaticaly." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -488,7 +488,7 @@
                                             <TextBlock Text="Indicates where the subscriber is."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                                 <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to find region automaticaly." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -512,13 +512,13 @@
                                             <TextBlock Text="Indicates where the caller is."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                                 <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to find it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly (you can save your time)." FontStyle="Italic"/>
                                             </StackPanel>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                                <TextBlock Text="  This field is required! If subscriber is not in the city you should indicate here closet one and write additional information in field below." FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This field is required! If subscriber is not in the city you should indicate here closet one and write additional information in field below." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </TextBox.ToolTip>
@@ -534,7 +534,7 @@
                                             <TextBlock Text="You can clarify exactly where the caller is, if he is located not is the city. &#x0a;Any orientation on terrain, village name, name of this area?"/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                                <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                                 <TextBlock Text="This field is required if subscriber is not in selected city. We need to know exactly where the subscribe is." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -643,8 +643,8 @@
                                             <TextBlock Text="Number of a policy"/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                                <TextBlock Text="  This field is required in most cases. We need to validate subscriber by this number" FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This field is required in most cases. We need to validate subscriber by this number" FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </TextBox.ToolTip>
@@ -672,6 +672,11 @@
                                         <StackPanel>
                                             <TextBlock FontWeight="Bold">Valid from</TextBlock>
                                             <TextBlock Text="When the policy comes into force?"/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This field is required in most cases. We need to validate subscriber by this date" FontStyle="Italic"/>
+                                            </StackPanel>
                                         </StackPanel>
                                     </DatePicker.ToolTip>
                                 </DatePicker>
@@ -684,6 +689,11 @@
                                         <StackPanel>
                                             <TextBlock FontWeight="Bold">Valid to</TextBlock>
                                             <TextBlock Text="When the policy comes out of a force?"/>
+                                            <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This field is required in most cases. We need to validate subscriber by this date" FontStyle="Italic"/>
+                                            </StackPanel>
                                         </StackPanel>
                                     </DatePicker.ToolTip>
                                 </DatePicker>
@@ -726,8 +736,8 @@
                                             <TextBlock Text="Indicates deductable if any."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                                <TextBlock Text="  It is very important to know if it is." FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="It is very important to know if it is." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </TextBox.ToolTip>
@@ -742,8 +752,8 @@
                                             <TextBlock Text="In testing mode this button isn't working. &#x0a;But in dolphin you should always check if you can find client in inner database &#x0a;and see all information about policy."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                                <TextBlock Text="  This button is required to one time at least." FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This button is required to press one time at least." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </Button.ToolTip>
@@ -769,8 +779,8 @@
                                         <TextBlock Text="This field describes how, where, whom, what happened, who is it happened. What kind of help needed"/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                            <TextBlock Text="  This field is one of the most important information in case. You should pay attention to every detail." FontStyle="Italic"/>
+                                            <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                            <TextBlock Text="This field is one of the most important information in case. You should pay attention to every detail." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </TextBox.ToolTip>
@@ -786,8 +796,8 @@
                                             <TextBlock Text="Check it if desease is chronical."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                                <TextBlock Text="  This is very important field. In most cases chronical desease are not covered by any insurance company.&#x0a;   If you doubt you can always ask duty doctor." FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This is very important field. In most cases chronical desease are not covered by any insurance company.&#x0a;   If you doubt you can always ask duty doctor." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </CheckBox.ToolTip>
@@ -800,8 +810,8 @@
                                             <TextBlock Text="Check it if fact of alcohol usage has been occured."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                                <TextBlock Text="  This is also very important field. In most cases this event will be covered by any insurance company.&#x0a;   You should always ask it when an trauma or injury is received in suspicious circumstances." FontStyle="Italic"/>
+                                                <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                                <TextBlock Text="This is also very important field. In most cases this event will be covered by any insurance company.&#x0a;   You should always ask it when an trauma or injury is received in suspicious circumstances." FontStyle="Italic"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </CheckBox.ToolTip>
@@ -819,8 +829,8 @@
                                     <TextBlock Text="Choose this status of call."/>
                                     <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="../Images/attention25x25.png" Width="25" Height="25" VerticalAlignment="Center"/>
-                                        <TextBlock Text="  Do not leave this field empty. All further action will depends from it." FontStyle="Italic"/>
+                                        <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                        <TextBlock Text="Do not leave this field empty. All further action will depends from it." FontStyle="Italic"/>
                                     </StackPanel>
                                 </StackPanel>
                             </ComboBox.ToolTip>
@@ -885,7 +895,7 @@
                                         <TextBlock Text="Indicates where the doctor of medical facility is."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a country code from database if you know it &#x0a;or try to type first leters and it will try to find country automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -909,7 +919,7 @@
                                         <TextBlock Text="Indicates where the doctor of medical facility is."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a region code from database if you know it &#x0a;or try to type first leters and it will try to find region automaticaly." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -935,7 +945,7 @@
                                         <TextBlock Text="Indicates where the doctor of medical facility is."/>
                                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="../Images/tip25x25.png" Width="25" Height="25"/>
+                                            <Image Margin="5" Source="../Images/info-2-32.ico" Width="25" Height="25"/>
                                             <TextBlock Text="To do it faster you can enter a city code from database if you know it &#x0a;or try to type first leters and it will try to find it.&#x0a;Note that if you select a city, region and country fields will be settled automaticaly (you can save your time)." FontStyle="Italic"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -1007,13 +1017,10 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding  Path=Id}" Header="№" Width="23" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-
-                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding  Path=Id}" IsReadOnly="True" Header="№" Width="23"></DataGridTextColumn>
                             <DataGridComboBoxColumn Header="Relation to Subscriber" Width="130"
-                                                SelectedItemBinding="{Binding SelectedRelToSub, UpdateSourceTrigger=PropertyChanged}"
-                                                DisplayMemberPath="Name"
-                                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                                SelectedItemBinding="{Binding SelectedRelToSub, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                DisplayMemberPath="Name">
                                 <DataGridComboBoxColumn.ElementStyle>
                                     <Style TargetType="ComboBox">
                                         <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.RelToSubs, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
@@ -1025,13 +1032,10 @@
                                     </Style>
                                 </DataGridComboBoxColumn.EditingElementStyle>
                             </DataGridComboBoxColumn>
-                            <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" Width="150" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-                                
-                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="150"></DataGridTextColumn>
                             <DataGridComboBoxColumn Header="Type of contact" Width="120"
-                                                SelectedItemBinding="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged}"
-                                                DisplayMemberPath="Name"
-                                                ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
+                                                SelectedItemBinding="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                DisplayMemberPath="Name">
                                 <DataGridComboBoxColumn.ElementStyle>
                                     <Style TargetType="ComboBox">
                                         <Setter Property="ItemsSource" Value="{Binding DataContext.ContactSection.TypeOfContacts, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
@@ -1044,30 +1048,39 @@
                                 </DataGridComboBoxColumn.EditingElementStyle>
 
                             </DataGridComboBoxColumn>
-                            <DataGridTextColumn Binding="{Binding Path=ContactNum}" Header="Contact" Width="100" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-                                
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=Info}" Header="Info" Width="225" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-                                
-                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding ContactNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Contact" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Info, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Info" Width="225"></DataGridTextColumn>
                         </DataGrid.Columns>
-
-
                     </DataGrid>
                 </StackPanel>
             </Expander>
             <DockPanel  HorizontalAlignment="Stretch" Margin="0,0,10,0" LastChildFill="False">
                 <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Close" Command="{Binding CancelButtonCommand}"
                         ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-                    
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Closing</TextBlock>
+                            <TextBlock Text="Closing first event. No data will be saved."/>
+                        </StackPanel>
+                    </Button.ToolTip>
                 </Button>
                 <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="Save" Command="{Binding SaveButtonCommand}" IsEnabled="{Binding SaveButttonEnabled}"
                         ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-                    
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Saving first event</TextBlock>
+                            <TextBlock Text="Click me if you want to save first event. &#x0a;P.S. It works only in exam mode. Here it is not saving anything."/>
+                        </StackPanel>
+                    </Button.ToolTip>
                 </Button>
                 <Button DockPanel.Dock="Right" BorderBrush="#FFACCEE2" BorderThickness="2" Margin="5" Width="40" Content="OK" Command="{Binding OkButtonCommand}"
                         ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
-                    
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Save and close first call</TextBlock>
+                            <TextBlock Text="Click me if you not to save but close right away. &#x0a;P.S. It works only in exam mode. Here it is not saving anything."/>
+                        </StackPanel>
+                    </Button.ToolTip>
                 </Button>
             </DockPanel>
         </StackPanel>

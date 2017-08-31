@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="Name to Subcriber" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Name to Subcriber" Height="216.164" Width="217.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     <Window.DataContext>
         <viewmodel:CallerCountryListViewModel/>
     </Window.DataContext>

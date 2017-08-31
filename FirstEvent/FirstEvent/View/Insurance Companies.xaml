@@ -8,7 +8,7 @@
         xmlns:listWindows="clr-namespace:FirstEvent.ViewModel.ListWindows"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="Insurance Companies" Height="315" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Insurance Companies" Height="315" Width="305" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     <Window.DataContext>
         <listWindows:InsurancelListViewModel/>
     </Window.DataContext>

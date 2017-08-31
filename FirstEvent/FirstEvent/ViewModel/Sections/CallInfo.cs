@@ -30,7 +30,8 @@ namespace FirstEvent.ViewModel.Sections
             get { return _statusOfCalls ?? (_statusOfCalls = DataBaseManager.StatusOfCalls); }
             set { _statusOfCalls = value; RaisePropertyChanged("StatusOfCalls"); }
         }
-        public string ReasonForCall { get; set; }
+
+        public string ReasonForCall { get; set; } = string.Empty;
 
         public bool IsChronical { get; set; }
 

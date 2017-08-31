@@ -11,7 +11,7 @@ namespace FirstEvent.Model
     {
         public int Id { get; set; }
 
-        public int? FirstCallId { get; set; }
+        public int FirstCallId { get; set; }
 
         public int? RelToSubId { get; set; }
 
@@ -31,6 +31,7 @@ namespace FirstEvent.Model
         {
             SelectedContact = new TypeOfContact();
             SelectedRelToSub = new RelToSub();
+            _idCount++;
         }
 
         private static int _idCount;
@@ -39,13 +40,14 @@ namespace FirstEvent.Model
 
         public TypeOfContact SelectedContact { get; set; }
 
-        public int Id => ++_idCount;
+        public int Id => _idCount;
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public string ContactNum { get; set; }
+        public string ContactNum { get; set; } = string.Empty;
 
         public string Info { get; set; }
+
         public object Clone()
         {
             _idCount++;

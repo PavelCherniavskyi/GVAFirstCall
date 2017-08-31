@@ -8,13 +8,14 @@
         xmlns:listWindows="clr-namespace:FirstEvent.ViewModel.ListWindows"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="FEList" Height="216.164" Width="274" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="First Event list" Height="219" Width="274" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     <Window.DataContext>
         <listWindows:FeListViewModel/>
     </Window.DataContext>
     <Grid>
-        <StackPanel>
-            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Height="150" Margin="-2,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+        <DockPanel LastChildFill="False">
+            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Height="150" Margin="-2,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                      DockPanel.Dock="Top">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
                         <i:InvokeCommandAction Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}"/>
@@ -27,15 +28,14 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
-                <Button Content="Back" Width="50" Height="20" Margin="5,5,78,5" Command="{Binding BackCommand}" CommandParameter="{Binding ElementName=FeListWindow}"/>
-                <Button Content="Delete" Width="50" Height="20" Margin="5" Command="{Binding DeleteCommand}"/>
-                <Button Content="Ok" Width="50" IsDefault="True" Height="20" DockPanel.Dock="Right" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}" Margin="5"  />
-                
-            </StackPanel>
+            <DockPanel HorizontalAlignment="Center" Margin="0,0,0,0" DockPanel.Dock="Bottom" LastChildFill="False">
+                <Button BorderBrush="#FFACCEE2" Margin="5" BorderThickness="2" DockPanel.Dock="Left" Content="Back" Width="50" Height="20" Command="{Binding BackCommand}" CommandParameter="{Binding ElementName=FeListWindow}"/>
+                <Button BorderBrush="#FFACCEE2" Margin="5" BorderThickness="2" DockPanel.Dock="Right" Content="Ok" Width="50" IsDefault="True" Height="20" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}"  />
+                <Button BorderBrush="#FFACCEE2" Margin="5" BorderThickness="2" DockPanel.Dock="Right" Content="Delete" Width="50" Height="20" Command="{Binding DeleteCommand}"/>
+            </DockPanel>
             
             
-        </StackPanel>
+        </DockPanel>
 
     </Grid>
 </Window>

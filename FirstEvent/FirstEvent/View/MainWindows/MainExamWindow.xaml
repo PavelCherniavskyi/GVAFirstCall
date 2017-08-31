@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:FirstEvent.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="Exam" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        Title="Exam" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding CancelButtonCommand}" />

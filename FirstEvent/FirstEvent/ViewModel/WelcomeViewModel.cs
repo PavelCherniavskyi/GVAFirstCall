@@ -17,11 +17,13 @@ namespace FirstEvent.ViewModel
 {
     public class WelcomeViewModel
     {
+        private readonly Task _task = new Task(DataBaseManager.Initialize);
 
         public WelcomeViewModel()
         {
             AdminLoginCommand = new RelayCommand<Window>(AdminLoginExecute);
             UserLoginCommand = new RelayCommand<Window>(UserLoginExecute);
+            _task.Start();
         }
 
         public string UserName { get; set; } = string.Empty;
@@ -45,8 +47,10 @@ namespace FirstEvent.ViewModel
                 Password = ConvertToUnsecureString(secureString);
             }
 
+            _task.Wait();
+
             if (DataBaseManager.GetPassByName("Admin").Pass != Password)
-                MessageBox.Show("Wrong password");
+                new WarningWindow("Wrong password").ShowDialog();
             else
             {
                 new FEList().Show();
@@ -58,11 +62,13 @@ namespace FirstEvent.ViewModel
         {
             if (UserName == string.Empty)
             {
-                MessageBox.Show("Please enter user name.");
+                new WarningWindow("Please enter user name.").ShowDialog();
             }
             else
             {
-                if(IsExam)
+                _task.Wait();
+
+                if (IsExam)
                     new MainExamWindow(UserName).Show();
                 else
                     new MainTestWindow(UserName).Show();

@@ -28,7 +28,7 @@ namespace FirstEvent.ViewModel.Sections
         private DateTime _arrival = DateTime.Now;
         private string _duration;
         private Brush _departureColor;
-        private DateTime _doB = DateTime.Now;
+        private DateTime _doB = DateTime.MinValue;
         private string _age;
 
         public Subscriber()
@@ -46,9 +46,9 @@ namespace FirstEvent.ViewModel.Sections
 
         public string HomeAdress { set; get; }
 
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         public string MiddleName { get; set; }
 

@@ -11,7 +11,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Title="Administrator window" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        Title="Administrator window" Height="950" MinWidth="820" Width="820" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     <ScrollViewer>
         <StackPanel Orientation="Vertical">
             <Expander Margin="5" BorderThickness="2" BorderBrush="#FFACCEE2" IsExpanded="False" Padding="0,0,0,5">

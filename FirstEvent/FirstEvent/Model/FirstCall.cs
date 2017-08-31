@@ -92,7 +92,6 @@ namespace FirstEvent.Model
                 });
             }
             contactSection.ContactViewInForm = contactView;
-            
 
             return new MainAdminViewModel(caller, generalInfo, membership, subscriber, callInfo, treatDoctor, contactSection);
 

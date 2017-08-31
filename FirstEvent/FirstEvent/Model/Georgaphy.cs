@@ -15,7 +15,7 @@ namespace FirstEvent.Model
 
         public int CountryId { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
     }
 
@@ -30,7 +30,7 @@ namespace FirstEvent.Model
 
         public int CountryId { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public ObservableCollection<City> Cities { get; set; }
 
@@ -46,7 +46,7 @@ namespace FirstEvent.Model
 
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public ObservableCollection<City> Cities { get; set; }
 

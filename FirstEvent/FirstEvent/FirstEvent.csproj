@@ -191,6 +191,9 @@
     <Compile Include="View\TreatDocListWindow.xaml.cs">
       <DependentUpon>TreatDocListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WarningWindow.xaml.cs">
+      <DependentUpon>WarningWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WelcomeWind.xaml.cs">
       <DependentUpon>WelcomeWind.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\WarningWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WelcomeWind.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -292,10 +299,16 @@
     <Resource Include="View\Images\delete.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Images\tip25x25.png" />
+    <Resource Include="View\Images\dolphin.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Images\attention25x25.png" />
+    <Resource Include="View\Images\warning-2-64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\warning-4-32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\info-2-32.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

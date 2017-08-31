@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.Windows.Input;
 using FirstEvent.Model;
+using FirstEvent.View;
 using FirstEvent.ViewModel.Sections;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
@@ -68,7 +69,6 @@ namespace FirstEvent.ViewModel
                 SaveButtonCommandExecute();
             }
 
-            MessageBox.Show("Your results has been saved successfully.\nPlease ask Senior operator to check it.");
             Application.Current.Shutdown();
         }
 
@@ -84,7 +84,7 @@ namespace FirstEvent.ViewModel
         {
             if (SaveButttonEnabled)
             {
-                MessageBox.Show("Your results wasn't saved.");
+                new WarningWindow("Your results wasn't saved.").ShowDialog();
             }
             
             Application.Current.Shutdown();

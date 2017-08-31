@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
+using FirstEvent.View;
 using FirstEvent.ViewModel.Sections;
 
 namespace FirstEvent.Model
@@ -17,6 +18,8 @@ namespace FirstEvent.Model
     public static class DataBaseManager
     {
         private static readonly AppDbContext AppDb;
+        private static bool _isLoaded;
+
 
         public static ObservableCollection<Doctor> AllDoctors { get; private set; }
 
@@ -56,9 +59,15 @@ namespace FirstEvent.Model
 
         static DataBaseManager()
         {
+            AppDb = new AppDbContext();
+        }
+
+        public static void Initialize()
+        {
+            if (_isLoaded)
+                return;
             try
             {
-                AppDb = new AppDbContext();
                 AppDb.Doctors.Load();
                 AppDb.Cities.Load();
                 AppDb.Regions.Load();
@@ -96,13 +105,13 @@ namespace FirstEvent.Model
                 Contacts = AppDb.Contacts.Local;
                 FirstCalls = AppDb.FirstCalls.Local;
                 Passwords = AppDb.Passwords.Local;
-                //MessageBox.Show(Tests.Count.ToString());
+
+                _isLoaded = true;
             }
             catch (Exception e)
             {
                 MessageBox.Show("Problems with DB \nMessage: " + e.Message + '\n' + "Inner message: " + e.InnerException);
             }
-
         }
 
         public static void AddFirstCall(FirstCall f)
@@ -140,12 +149,20 @@ namespace FirstEvent.Model
 
         public static void DeleteFirstCallByDocTime(string docTime)
         {
-
-            var query = from f in FirstCalls
-                        where f.DocDateTime == docTime
-                        select f;
-            AppDb.FirstCalls.Remove(query.First());
-            FirstCalls = AppDb.FirstCalls.Local;
+            try
+            {
+                var query = from f in FirstCalls
+                            where f.DocDateTime == docTime
+                            select f;
+                AppDb.FirstCalls.Remove(query.First());
+                AppDb.SaveChanges();
+                FirstCalls = AppDb.FirstCalls.Local;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + '\n' + e.InnerException);
+            }
+            
         }
 
         public static void AddContacts(IEnumerable<Contact> c)

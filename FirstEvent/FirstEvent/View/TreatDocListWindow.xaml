@@ -8,7 +8,7 @@
         xmlns:listWindows="clr-namespace:FirstEvent.ViewModel.ListWindows"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="List of doctors" Height="216.164" Width="327.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="List of doctors" Height="216.164" Width="327.123" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico">
     
     <Window.DataContext>
         <listWindows:TreatDocListViewModel/>

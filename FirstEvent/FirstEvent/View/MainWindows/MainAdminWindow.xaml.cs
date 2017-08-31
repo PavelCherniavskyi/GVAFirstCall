@@ -26,7 +26,7 @@ namespace FirstEvent.View.MainWindows
             InitializeComponent();
             DataContext = new MainAdminViewModel(new Caller(), new GeneralInfo(), new Membership(), new Subscriber(),
                 new CallInfo(), new TreatDoctor(), new ContactSection());
-            MessageBox.Show("Admin window running via default constructor!\nIt is error somewhere.");
+            new WarningWindow("Admin window running via default constructor!\nIt is error somewhere.").ShowDialog();
         }
 
         public MainAdminWindow(MainAdminViewModel vm)
