@@ -33,8 +33,6 @@
                 <Button BorderBrush="#FFACCEE2" Margin="5" BorderThickness="2" DockPanel.Dock="Right" Content="Ok" Width="50" IsDefault="True" Height="20" Command="{Binding OkWindowCommand}" CommandParameter="{Binding ElementName=FeListWindow}"  />
                 <Button BorderBrush="#FFACCEE2" Margin="5" BorderThickness="2" DockPanel.Dock="Right" Content="Delete" Width="50" Height="20" Command="{Binding DeleteCommand}"/>
             </DockPanel>
-            
-            
         </DockPanel>
 
     </Grid>

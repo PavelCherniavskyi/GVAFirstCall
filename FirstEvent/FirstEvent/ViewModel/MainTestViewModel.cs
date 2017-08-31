@@ -17,6 +17,7 @@ namespace FirstEvent.ViewModel
     public class MainTestViewModel : ViewModelBase
     {
         private bool _saveButttonEnabled = true;
+        private bool _examStarting;
 
         public GeneralInfo GeneralInfo { get; set; }
 
@@ -50,12 +51,22 @@ namespace FirstEvent.ViewModel
             CallInfo = new CallInfo();
             TreatDoctor = new TreatDoctor();
             ContactSection = new ContactSection();
+            StartExamCommand = new RelayCommand<Window>(StartExamCommandExecute);
         }
 
 
         public ICommand OkButtonCommand
         {
             get { return new RelayCommand(OkButtonCommandExecute, () => true); }
+        }
+
+        public RelayCommand<Window> StartExamCommand { get; set; }
+
+        private void StartExamCommandExecute(Window win)
+        {
+            _examStarting = true;
+            new MainExamWindow(GeneralInfo.DutyOps).Show();
+            win.Close();
         }
 
         private void OkButtonCommandExecute()
@@ -74,10 +85,8 @@ namespace FirstEvent.ViewModel
 
         private void CancelButtonCommandExecute()
         {
-            if (SaveButttonEnabled)
-                new WarningWindow("Your results wasn't saved.").ShowDialog();
-
-            Application.Current.Shutdown();
+            if(!_examStarting)
+                Application.Current.Shutdown();
         }
 
         public ICommand SaveButtonCommand
