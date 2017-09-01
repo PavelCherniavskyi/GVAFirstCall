@@ -197,7 +197,7 @@ namespace FirstEvent.ViewModel.Sections
                 }
                 else
                 {
-                    if (!c.Name.ToUpper().Contains(strToSearch))
+                    if (!c.Name.ToUpper().Contains(strToSearch) && strToSearch != c.Code)
                         continue;
                 }
 

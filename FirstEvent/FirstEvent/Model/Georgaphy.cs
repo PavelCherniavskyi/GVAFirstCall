@@ -48,6 +48,8 @@ namespace FirstEvent.Model
 
         public string Name { get; set; } = string.Empty;
 
+        public string Code { get; set; }
+
         public ObservableCollection<City> Cities { get; set; }
 
         public ObservableCollection<Region> Regions { get; set; }

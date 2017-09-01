@@ -150,6 +150,11 @@ namespace FirstEvent.ViewModel
                 new WarningWindow("Is our client a child or a grandfather? \nHow do we know his age when organize medical help?").ShowDialog();
                 return false;
             }
+            if (Subscriber.HomeAdress == string.Empty)
+            {
+                new WarningWindow("We need to know his home address.").ShowDialog();
+                return false;
+            }
             return true;
         }
 
@@ -170,6 +175,12 @@ namespace FirstEvent.ViewModel
 
         private bool CheckContacts()
         {
+            if (ContactSection.ContactViewInForm.Count == 0)
+            {
+                new WarningWindow("Will you get in touch with client via post office? \nHere is a chance to get his phone number.").ShowDialog();
+                return false;
+            }
+
             foreach (var con in ContactSection.ContactViewInForm)
             {
                 if (con.SelectedRelToSub.Name == string.Empty)

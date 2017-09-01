@@ -44,7 +44,7 @@ namespace FirstEvent.ViewModel.Sections
             _departureColor = new SolidColorBrush(Color.FromArgb(255, 22, 32, 133));
         }
 
-        public string HomeAdress { set; get; }
+        public string HomeAdress { set; get; } = string.Empty;
 
         public string FirstName { get; set; } = string.Empty;
 
@@ -292,7 +292,7 @@ namespace FirstEvent.ViewModel.Sections
                 }
                 else
                 {
-                    if (!c.Name.ToUpper().Contains(strToSearch))
+                    if (!c.Name.ToUpper().Contains(strToSearch) && strToSearch != c.Code)
                         continue;
                 }
 

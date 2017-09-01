@@ -376,7 +376,7 @@
                                     <TextBox.ToolTip>
                                         <StackPanel>
                                             <TextBlock FontWeight="Bold">Last name</TextBlock>
-                                            <TextBlock Text="Last name of subscriber"/>
+                                            <TextBlock Text="Last name of subscriber. Must written on English."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
                                                 <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25"/>
@@ -393,7 +393,7 @@
                                     <TextBox.ToolTip>
                                         <StackPanel>
                                             <TextBlock FontWeight="Bold">First name</TextBlock>
-                                            <TextBlock Text="First name of subscriber"/>
+                                            <TextBlock Text="First name of subscriber. Must written on English."/>
                                             <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                                             <StackPanel Orientation="Horizontal">
                                                 <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25"/>
@@ -627,6 +627,11 @@
                                 <StackPanel>
                                     <TextBlock FontWeight="Bold">Home adress</TextBlock>
                                     <TextBlock Text="In some cases we need contacts of subscriber after medical help."/>
+                                    <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Margin="5" Source="../Images/warning-4-32.ico" Width="25" Height="25" VerticalAlignment="Center"/>
+                                        <TextBlock Text="This field is required! We need to know where to find relatives if something happen." FontStyle="Italic"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </TextBox.ToolTip>
                         </TextBox>
@@ -728,7 +733,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical" view:MarginSetter.Margin="3" Margin="16,0,0,0">
                             <DockPanel LastChildFill="False">
-                                <TextBlock Text="Deductable:" DockPanel.Dock="Left" Margin="0" />
+                                <TextBlock Text="Deductible:" DockPanel.Dock="Left" Margin="0" />
                                 <TextBox  DockPanel.Dock="Right" Width="100" MaxWidth="150" Height="21" Margin="9,0" Text="{Binding Membership.Deductable}"
                                           ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="100000">
                                     <TextBox.ToolTip>

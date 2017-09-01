@@ -9,7 +9,7 @@
         Title="Warning" Height="170" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/FirstEvent;component/View/Images/dolphin.ico" >
    <StackPanel Orientation="Horizontal">
        <Image Height="50" Width="50" Margin="20,10,10,10" Source="Images/warning-2-64.ico"></Image>
-       <DockPanel Margin="10" Width="200" Height="110" LastChildFill="False">
+       <DockPanel Margin="10" Width="190" Height="110" LastChildFill="False">
             <TextBlock x:Name="TextMessage" DockPanel.Dock="Top" MaxHeight="89" TextWrapping="Wrap"></TextBlock>
             <Button Width="70" Height="20" DockPanel.Dock="Bottom" Margin="100,0,0,0" Click="ButtonBase_OnClick">Ok</Button>
         </DockPanel>
